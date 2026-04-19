@@ -439,7 +439,9 @@ document.getElementById('datePick').addEventListener('change',function(){
     else{el.innerHTML='<div class="empty-page"><div class="title">'+fmt(v)+'</div><p>暂无日报内容</p></div>';}
 });
 
-document.getElementById('refreshBtn').addEventListener('click',function(){show(cur);});
+document.getElementById('refreshBtn').addEventListener('click',function(){
+    location.reload(true);
+});
 
 var h=location.hash.replace('#','');
 if(h&&DATES.indexOf(h)>=0)show(h);
