@@ -70,6 +70,12 @@ table.dt tr:hover td{background:#f8fafc}
 .date-picker-input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
 .nav-separator{width:1px;height:24px;background:#e2e8f0;margin:0 .3rem}
 .header{padding-bottom:1rem}
+
+.refresh-fab{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:all .2s;z-index:200}
+.refresh-fab:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.refresh-fab:active{transform:scale(.95)}
+.refresh-fab.spinning svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -574,8 +580,20 @@ table.dt tr:hover td{background:#f8fafc}
       loadReport(h);
     }
   });
+
+  // Refresh button
+  document.getElementById('refreshBtn').addEventListener('click', function(){
+    this.classList.add('spinning');
+    loadReport(currentDate).finally(()=>{
+      setTimeout(()=>this.classList.remove('spinning'), 300);
+    });
+  });
 })();
 </script>
 
+
+<button class="refresh-fab" id="refreshBtn" title="刷新当前日期日报">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+</button>
 </body>
 </html>
