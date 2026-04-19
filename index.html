@@ -56,86 +56,62 @@ table.dt tr:hover td{background:#f8fafc}
 .footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.82rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 .footer a{color:var(--blue);text-decoration:none}
 
-/* ===== 导航条 ===== */
-.nav-bar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e2e8f0;
-  padding: .8rem 1.2rem;
-  display: flex; align-items: center; justify-content: center; gap: .8rem;
-  flex-wrap: wrap;
+.nav-bar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid #e2e8f0;
+  padding:.7rem 1rem;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;
 }
-.nav-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border-radius: 8px;
-  border: 1px solid #e2e8f0; background: #fff;
-  cursor: pointer; font-size: 1.1rem; color: #0f172a;
-  transition: all .15s; text-decoration: none; font-weight: 700;
+.nav-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:8px;
+  border:1px solid #e2e8f0;background:#fff;
+  cursor:pointer;font-size:1.1rem;color:#0f172a;
+  transition:all .15s;text-decoration:none;font-weight:700;
 }
-.nav-btn:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
-.nav-btn.off { opacity: .25; pointer-events: none; }
-.nav-date { font-size: 1.05rem; font-weight: 700; color: #0f172a; min-width: 200px; text-align: center; }
-.nav-date .wk { display: block; font-size: .8rem; color: #64748b; font-weight: 500; }
-.nav-sep { width: 1px; height: 20px; background: #e2e8f0; }
-.nav-today {
-  padding: .3rem .7rem; border-radius: 6px;
-  border: 1px solid #2563eb; background: #eff6ff;
-  color: #2563eb; font-size: .78rem; font-weight: 600;
-  cursor: pointer; transition: all .15s; text-decoration: none;
-  display: none;
+.nav-btn:hover{background:#0f172a;color:#fff;border-color:#0f172a;}
+.nav-btn.off{opacity:.2;pointer-events:none;}
+.nav-info{font-size:.95rem;font-weight:700;color:#0f172a;min-width:180px;text-align:center;}
+.nav-info .today-tag{color:#2563eb;}
+.nav-sep{width:1px;height:20px;background:#e2e8f0;}
+.date-pick{
+  padding:.3rem .6rem;border:1px solid #e2e8f0;border-radius:6px;
+  font-size:.82rem;color:#0f172a;cursor:pointer;background:#fff;
 }
-.nav-today:hover { background: #2563eb; color: #fff; }
-.date-pick {
-  padding: .3rem .6rem; border: 1px solid #e2e8f0; border-radius: 6px;
-  font-size: .85rem; color: #0f172a; cursor: pointer;
+.date-pick:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 2px rgba(37,99,235,.1);}
+.refresh-btn{
+  position:fixed;bottom:1.5rem;right:1.5rem;
+  width:42px;height:42px;border-radius:50%;
+  background:#0f172a;color:#fff;border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.2);transition:all .2s;z-index:200;
 }
-.date-pick:focus { outline: none; border-color: #2563eb; }
-
-/* ===== 刷新按钮 ===== */
-.refresh-btn {
-  position: fixed; bottom: 1.5rem; right: 1.5rem;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: #0f172a; color: #fff; border: none;
-  cursor: pointer; font-size: 1.1rem;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 3px 12px rgba(0,0,0,.2); transition: all .2s; z-index: 200;
-}
-.refresh-btn:hover { transform: scale(1.1); }
-.refresh-btn.spin svg { animation: spin .6s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ===== 占位页 ===== */
-.empty-page {
-  text-align: center; padding: 4rem 1rem; color: #94a3b8;
-}
-.empty-page .icon { font-size: 3rem; margin-bottom: 1rem; }
-.empty-page .title { font-size: 1.1rem; font-weight: 600; color: #475569; }
-.empty-page .hint { font-size: .85rem; margin-top: .3rem; }
+.refresh-btn:hover{transform:scale(1.1);}
+.refresh-btn.spin svg{animation:spin .6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.empty-page{text-align:center;padding:4rem 1rem;color:#94a3b8;}
+.empty-page .icon{font-size:3rem;margin-bottom:.8rem;}
+.empty-page .title{font-size:1rem;font-weight:600;color:#475569;}
+.empty-page .hint{font-size:.82rem;margin-top:.3rem;color:#94a3b8;}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>全球情报日报</h1>
-  <div class="sub">25 个权威信源 · 每日更新</div>
+<h1>全球情报日报</h1>
+<div class="sub">25 个权威信源 · 每日更新</div>
 </div>
 
-<div class="nav-bar" id="nav">
+<div class="nav-bar">
   <a class="nav-btn" id="prevBtn" title="上一日">&#8249;</a>
-  <div class="nav-date" id="navDate">
-    <span id="dateStr">2026 年 4 月 19 日</span>
-    <span class="wk" id="wkStr">星期日</span>
-  </div>
+  <div class="nav-info"><span id="label"></span><span id="dateStr"></span></div>
   <a class="nav-btn" id="nextBtn" title="下一日">&#8250;</a>
   <div class="nav-sep"></div>
   <input type="date" class="date-pick" id="datePick" value="2026-04-19">
-  <a class="nav-today" id="todayBtn" href="#">今天</a>
 </div>
 
-<div class="container" id="content">
-
-
+<div class="container" id="embedded" style="display:none">
 <div class="toc">
 <h2>本期目录</h2>
 <ol>
@@ -482,93 +458,76 @@ table.dt tr:hover td{background:#f8fafc}
 <div>&#9989; 22. Gartner 技术趋势 gartner.com</div>
 </div>
 </div>
+</div>
 
-</div>
-</div>
+<div class="container" id="view"></div>
 
 <div class="footer">
-  <p>由 WPS 灵犀 AI 助手自动生成 · 仅供参考，不构成投资建议</p>
+<p>由 WPS 灵犀 AI 助手自动生成 · 仅供参考，不构成投资建议</p>
 </div>
 
-<button class="refresh-btn" id="refreshBtn" title="刷新">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+<button class="refresh-btn" id="refBtn" title="刷新">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
 </button>
 
 <script>
 (function(){
-  var FIRST = '2026-04-19';
-  var WK = ['日','一','二','三','四','五','六'];
-  var cur = FIRST;
+  var FIRST='2026-04-19',WK=['日','一','二','三','四','五','六'],cur=FIRST;
+  var E=document.getElementById('embedded'),V=document.getElementById('view');
 
-  function iso(y,m,d){ return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
-  function fmt(s){ var p=s.split('-'); return p[0]+' 年 '+parseInt(p[1])+' 月 '+parseInt(p[2])+' 日'; }
-  function add(s,n){ var d=new Date(s+'T12:00:00'); d.setDate(d.getDate()+n); return iso(d.getFullYear(),d.getMonth()+1,d.getDate()); }
-  function today(){ var d=new Date(); return iso(d.getFullYear(),d.getMonth()+d.getDate()); }
+  function iso(y,m,d){return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
+  function fmt(s){var p=s.split('-');return p[0]+' 年 '+parseInt(p[1])+' 月 '+parseInt(p[2])+' 日';}
+  function add(s,n){var d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return iso(d.getFullYear(),d.getMonth()+1,d.getDate());}
+  function today(){var d=new Date();return iso(d.getFullYear(),d.getMonth()+d.getDate());}
 
-  // 用 DOM 解析替代正则，更可靠
   function extract(html){
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    var container = doc.querySelector('.container');
-    return container ? container.innerHTML : null;
+    var doc=new DOMParser().parseFromString(html,'text/html');
+    var c=doc.querySelector('.container');
+    return c?c.innerHTML:null;
+  }
+
+  function render(html){
+    V.innerHTML=html||'<div class="empty-page"><div class="icon">&#128214;</div><div class="title">'+fmt(cur)+'</div><div class="hint">暂无日报内容</div></div>';
   }
 
   async function go(date){
-    var el = document.getElementById('content');
-    if(date === FIRST){
-      // 首日内容已内嵌，直接刷新页面恢复
-      location.reload();
-      return;
-    }
-    el.innerHTML = '<div class="empty-page"><div class="icon">&#8987;</div><p>加载中...</p></div>';
-    try {
-      var r = await fetch('reports/'+date+'/index.html');
-      if(!r.ok) throw 0;
-      var html = await r.text();
-      var body = extract(html);
-      el.innerHTML = body || '<div class="empty-page"><div class="icon">&#128214;</div><div class="title">'+fmt(date)+'</div><div class="hint">暂无日报内容</div></div>';
-    } catch(e){
-      el.innerHTML = '<div class="empty-page"><div class="icon">&#128214;</div><div class="title">'+fmt(date)+'</div><div class="hint">暂无日报内容</div><div class="hint" style="margin-top:.5rem">日报从 2026 年 4 月 19 日起发布</div></div>';
-    }
-    cur = date;
-    updateNav();
-    window.scrollTo({top:0,behavior:'smooth'});
-    history.replaceState(null,'','#'+date);
+    cur=date;
+    if(date===FIRST){render(E.innerHTML);upNav();window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'','#'+date);return;}
+    render('<div class="empty-page"><div class="icon">&#8987;</div><p>加载中...</p></div>');
+    try{
+      var r=await fetch('reports/'+date+'/index.html');
+      if(!r.ok)throw 0;
+      var body=extract(await r.text());
+      render(body||null);
+    }catch(e){render(null);}
+    upNav();window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'','#'+date);
   }
 
-  function updateNav(){
-    document.getElementById('dateStr').textContent = fmt(cur);
-    document.getElementById('wkStr').textContent = '星期'+WK[new Date(cur+'T12:00:00').getDay()];
-    document.getElementById('datePick').value = cur;
-    var t = today();
-    var pb = document.getElementById('prevBtn');
-    var nb = document.getElementById('nextBtn');
-    var tb = document.getElementById('todayBtn');
-    if(cur <= FIRST){ pb.classList.add('off'); pb.onclick=null; }
-    else { pb.classList.remove('off'); pb.onclick=function(e){ e.preventDefault(); go(add(cur,-1)); }; }
-    if(cur >= t){ nb.classList.add('off'); nb.onclick=null; }
-    else { nb.classList.remove('off'); nb.onclick=function(e){ e.preventDefault(); go(add(cur,1)); }; }
-    if(cur===t){ tb.style.display='none'; } else { tb.style.display='inline-flex'; tb.onclick=function(e){ e.preventDefault(); go(t); }; }
+  function upNav(){
+    var t=today();
+    document.getElementById('dateStr').textContent=(cur===t?'今天 · ':'')+fmt(cur);
+    document.getElementById('datePick').value=cur;
+    var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+    if(cur<=FIRST){pb.classList.add('off');pb.onclick=null;}
+    else{pb.classList.remove('off');pb.onclick=function(e){e.preventDefault();go(add(cur,-1));};}
+    if(cur>=t){nb.classList.add('off');nb.onclick=null;}
+    else{nb.classList.remove('off');nb.onclick=function(e){e.preventDefault();go(add(cur,1));};}
   }
 
   document.getElementById('datePick').addEventListener('change',function(){
-    var v=this.value, t=today();
-    if(v>t) v=t; if(v<FIRST) v=FIRST;
-    go(v);
+    var v=this.value,t=today();if(v>t)v=t;if(v<FIRST)v=FIRST;go(v);
+  });
+  document.getElementById('refBtn').addEventListener('click',function(){
+    var btn=this;btn.classList.add('spin');go(cur).finally(function(){setTimeout(function(){btn.classList.remove('spin');},300);});
   });
 
-  document.getElementById('refreshBtn').addEventListener('click',function(){
-    this.classList.add('spin');
-    go(cur).finally(function(){ setTimeout(function(){ document.getElementById('refreshBtn').classList.remove('spin'); },300); });
-  });
-
-  // 从 hash 初始化
-  var h = location.hash.replace('#','');
-  if(h && /^\d{4}-\d{2}-\d{2}$/.test(h)) go(h);
-  else updateNav();
+  var h=location.hash.replace('#','');
+  if(h&&/^\d{4}-\d{2}-\d{2}$/.test(h)&&h!==FIRST)go(h);
+  else{render(E.innerHTML);upNav();}
 
   window.addEventListener('popstate',function(){
-    var h = location.hash.replace('#','');
-    if(h && /^\d{4}-\d{2}-\d{2}$/.test(h)) go(h);
+    var h=location.hash.replace('#','');
+    if(h&&/^\d{4}-\d{2}-\d{2}$/.test(h))go(h);
   });
 })();
 </script>
