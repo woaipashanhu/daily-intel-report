@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全球情报日报</title>
+<style>
 
 :root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--orange:#d97706;--bg:#f1f5f9;--card:#fff}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -55,58 +56,84 @@ table.dt tr:hover td{background:#f8fafc}
 .footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.82rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 .footer a{color:var(--blue);text-decoration:none}
 
-<style>
-{-- Date Navigator --}
-.date-navigator{background:var(--card);border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba(255,255,255,0.92);border-bottom:1px solid #e2e8f0}
-.nav-arrow{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;font-size:1.2rem;color:var(--primary);transition:all .15s;user-select:none;text-decoration:none;font-weight:700}
-.nav-arrow:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.nav-arrow.disabled{opacity:.3;pointer-events:none;cursor:default}
-.nav-date-display{font-size:1.15rem;font-weight:700;color:var(--primary);min-width:220px;text-align:center;line-height:1.3}
-.nav-date-display .weekday{font-size:.85rem;color:#64748b;font-weight:500}
-.nav-today-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .8rem;border-radius:6px;border:1px solid var(--blue);background:#eff6ff;color:var(--blue);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none}
-.nav-today-btn:hover{background:var(--blue);color:#fff}
-.date-picker-wrapper{position:relative}
-.date-picker-input{padding:.4rem .7rem;border:1px solid #e2e8f0;border-radius:6px;font-size:.88rem;color:var(--primary);font-weight:500;cursor:pointer;background:#fff}
-.date-picker-input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
-.nav-separator{width:1px;height:24px;background:#e2e8f0;margin:0 .3rem}
-.header{padding-bottom:1rem}
+/* ===== 导航条 ===== */
+.nav-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+  padding: .8rem 1.2rem;
+  display: flex; align-items: center; justify-content: center; gap: .8rem;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid #e2e8f0; background: #fff;
+  cursor: pointer; font-size: 1.1rem; color: #0f172a;
+  transition: all .15s; text-decoration: none; font-weight: 700;
+}
+.nav-btn:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
+.nav-btn.off { opacity: .25; pointer-events: none; }
+.nav-date { font-size: 1.05rem; font-weight: 700; color: #0f172a; min-width: 200px; text-align: center; }
+.nav-date .wk { display: block; font-size: .8rem; color: #64748b; font-weight: 500; }
+.nav-sep { width: 1px; height: 20px; background: #e2e8f0; }
+.nav-today {
+  padding: .3rem .7rem; border-radius: 6px;
+  border: 1px solid #2563eb; background: #eff6ff;
+  color: #2563eb; font-size: .78rem; font-weight: 600;
+  cursor: pointer; transition: all .15s; text-decoration: none;
+  display: none;
+}
+.nav-today:hover { background: #2563eb; color: #fff; }
+.date-pick {
+  padding: .3rem .6rem; border: 1px solid #e2e8f0; border-radius: 6px;
+  font-size: .85rem; color: #0f172a; cursor: pointer;
+}
+.date-pick:focus { outline: none; border-color: #2563eb; }
 
-.refresh-fab{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:all .2s;z-index:200}
-.refresh-fab:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.refresh-fab:active{transform:scale(.95)}
-.refresh-fab.spinning svg{animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* ===== 刷新按钮 ===== */
+.refresh-btn {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #0f172a; color: #fff; border: none;
+  cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,.2); transition: all .2s; z-index: 200;
+}
+.refresh-btn:hover { transform: scale(1.1); }
+.refresh-btn.spin svg { animation: spin .6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== 占位页 ===== */
+.empty-page {
+  text-align: center; padding: 4rem 1rem; color: #94a3b8;
+}
+.empty-page .icon { font-size: 3rem; margin-bottom: 1rem; }
+.empty-page .title { font-size: 1.1rem; font-weight: 600; color: #475569; }
+.empty-page .hint { font-size: .85rem; margin-top: .3rem; }
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>全球情报日报</h1>
-<div class="sub">25 个权威信源 &middot; 每日更新 &middot; 地缘政治 &middot; 宏观经济 &middot; 金融 &middot; 科技</div>
+  <h1>全球情报日报</h1>
+  <div class="sub">25 个权威信源 · 每日更新</div>
 </div>
 
-<div class="container">
-
-<div class="date-navigator" id="dateNav">
-  <a class="nav-arrow" id="prevDay" title="上一日">&#8249;</a>
-
-  <div class="nav-date-display" id="dateDisplay">
-    <div id="dateText">2026 年 4 月 19 日</div>
-    <div class="weekday" id="weekdayText">星期日</div>
+<div class="nav-bar" id="nav">
+  <a class="nav-btn" id="prevBtn" title="上一日">&#8249;</a>
+  <div class="nav-date" id="navDate">
+    <span id="dateStr">2026 年 4 月 19 日</span>
+    <span class="wk" id="wkStr">星期日</span>
   </div>
-
-  <a class="nav-arrow" id="nextDay" title="下一日">&#8250;</a>
-
-  <div class="nav-separator"></div>
-
-  <div class="date-picker-wrapper">
-    <input type="date" class="date-picker-input" id="datePicker" value="2026-04-19">
-  </div>
-
-  <a class="nav-today-btn" id="todayBtn" href="#">&#9679; 今天</a>
+  <a class="nav-btn" id="nextBtn" title="下一日">&#8250;</a>
+  <div class="nav-sep"></div>
+  <input type="date" class="date-pick" id="datePick" value="2026-04-19">
+  <a class="nav-today" id="todayBtn" href="#">今天</a>
 </div>
 
-<div id="reportContent">
+<div class="container" id="content">
 
 
 <div class="toc">
@@ -456,144 +483,94 @@ table.dt tr:hover td{background:#f8fafc}
 </div>
 </div>
 
-
 </div>
-
 </div>
 
 <div class="footer">
-<p>由 WPS 灵犀 AI 助手自动生成 &middot; 仅供参考，不构成投资建议</p>
+  <p>由 WPS 灵犀 AI 助手自动生成 · 仅供参考，不构成投资建议</p>
 </div>
+
+<button class="refresh-btn" id="refreshBtn" title="刷新">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+</button>
 
 <script>
 (function(){
-  const FIRST_DATE = '2026-04-19';
-  const today = new Date().toISOString().split('T')[0];
-  const weekdayNames = ['日','一','二','三','四','五','六'];
+  var FIRST = '2026-04-19';
+  var WK = ['日','一','二','三','四','五','六'];
+  var cur = FIRST;
 
-  let currentDate = FIRST_DATE;
+  function iso(y,m,d){ return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
+  function fmt(s){ var p=s.split('-'); return p[0]+' 年 '+parseInt(p[1])+' 月 '+parseInt(p[2])+' 日'; }
+  function add(s,n){ var d=new Date(s+'T12:00:00'); d.setDate(d.getDate()+n); return iso(d.getFullYear(),d.getMonth()+1,d.getDate()); }
+  function today(){ var d=new Date(); return iso(d.getFullYear(),d.getMonth()+d.getDate()); }
 
-  function parseDate(s) { return new Date(s + 'T00:00:00'); }
-  function formatDate(d) {
-    return d.getFullYear() + ' 年 ' + (d.getMonth()+1) + ' 月 ' + d.getDate() + ' 日';
-  }
-  function toISO(d) {
-    const y = d.getFullYear();
-    const m = String(d.getMonth()+1).padStart(2,'0');
-    const dd = String(d.getDate()).padStart(2,'0');
-    return y + '-' + m + '-' + dd;
-  }
-  function offsetDate(iso, days) {
-    const d = parseDate(iso);
-    d.setDate(d.getDate() + days);
-    return toISO(d);
+  // 用 DOM 解析替代正则，更可靠
+  function extract(html){
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var container = doc.querySelector('.container');
+    return container ? container.innerHTML : null;
   }
 
-  async function loadReport(dateStr) {
-    const el = document.getElementById('reportContent');
-    el.innerHTML = '<div style="text-align:center;padding:3rem;color:#94a3b8;"><p style="font-size:2rem;">&#8987;</p><p>加载中...</p></div>';
-
+  async function go(date){
+    var el = document.getElementById('content');
+    if(date === FIRST){
+      // 首日内容已内嵌，直接刷新页面恢复
+      location.reload();
+      return;
+    }
+    el.innerHTML = '<div class="empty-page"><div class="icon">&#8987;</div><p>加载中...</p></div>';
     try {
-      const resp = await fetch('reports/' + dateStr + '/index.html');
-      if (!resp.ok) throw new Error('404');
-      const html = await resp.text();
-
-      // Extract container inner content from the daily report
-      const match = html.match(/<div class="container">([\s\S]*?)<\/div>\s*<div class="footer">/);
-      if (match) {
-        el.innerHTML = match[1];
-      } else {
-        el.innerHTML = '<div style="text-align:center;padding:3rem;color:#64748b;"><p style="font-size:3rem;">&#128214;</p><p style="font-size:1.1rem;font-weight:600;">' + formatDate(parseDate(dateStr)) + '</p><p style="color:#94a3b8;margin-top:.5rem;">暂无日报内容</p></div>';
-      }
-    } catch(e) {
-      el.innerHTML = '<div style="text-align:center;padding:3rem;color:#64748b;"><p style="font-size:3rem;">&#128214;</p><p style="font-size:1.1rem;font-weight:600;">' + formatDate(parseDate(dateStr)) + '</p><p style="color:#94a3b8;margin-top:.5rem;">暂无日报内容</p><p style="font-size:.82rem;margin-top:.3rem;">日报从 2026 年 4 月 19 日起开始发布</p></div>';
+      var r = await fetch('reports/'+date+'/index.html');
+      if(!r.ok) throw 0;
+      var html = await r.text();
+      var body = extract(html);
+      el.innerHTML = body || '<div class="empty-page"><div class="icon">&#128214;</div><div class="title">'+fmt(date)+'</div><div class="hint">暂无日报内容</div></div>';
+    } catch(e){
+      el.innerHTML = '<div class="empty-page"><div class="icon">&#128214;</div><div class="title">'+fmt(date)+'</div><div class="hint">暂无日报内容</div><div class="hint" style="margin-top:.5rem">日报从 2026 年 4 月 19 日起发布</div></div>';
     }
-
-    currentDate = dateStr;
+    cur = date;
     updateNav();
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    history.replaceState(null, '', '#' + dateStr);
+    window.scrollTo({top:0,behavior:'smooth'});
+    history.replaceState(null,'','#'+date);
   }
 
-  function updateNav() {
-    document.getElementById('dateText').textContent = formatDate(parseDate(currentDate));
-    document.getElementById('weekdayText').textContent = '星期' + weekdayNames[parseDate(currentDate).getDay()];
-    document.getElementById('datePicker').value = currentDate;
-
-    const prevBtn = document.getElementById('prevDay');
-    const nextBtn = document.getElementById('nextDay');
-    const todayBtn = document.getElementById('todayBtn');
-
-    // Prev: can go back until FIRST_DATE
-    const prevDate = offsetDate(currentDate, -1);
-    if (prevDate >= FIRST_DATE) {
-      prevBtn.href = '#';
-      prevBtn.onclick = function(e) { e.preventDefault(); loadReport(prevDate); };
-      prevBtn.classList.remove('disabled');
-    } else {
-      prevBtn.href = '#';
-      prevBtn.onclick = null;
-      prevBtn.classList.add('disabled');
-    }
-
-    // Next: can go forward until today
-    const nextDate = offsetDate(currentDate, 1);
-    if (nextDate <= today) {
-      nextBtn.href = '#';
-      nextBtn.onclick = function(e) { e.preventDefault(); loadReport(nextDate); };
-      nextBtn.classList.remove('disabled');
-    } else {
-      nextBtn.href = '#';
-      nextBtn.onclick = null;
-      nextBtn.classList.add('disabled');
-    }
-
-    // Today button
-    if (currentDate === today) {
-      todayBtn.style.display = 'none';
-    } else {
-      todayBtn.style.display = 'inline-flex';
-      todayBtn.onclick = function(e) { e.preventDefault(); loadReport(today); };
-    }
+  function updateNav(){
+    document.getElementById('dateStr').textContent = fmt(cur);
+    document.getElementById('wkStr').textContent = '星期'+WK[new Date(cur+'T12:00:00').getDay()];
+    document.getElementById('datePick').value = cur;
+    var t = today();
+    var pb = document.getElementById('prevBtn');
+    var nb = document.getElementById('nextBtn');
+    var tb = document.getElementById('todayBtn');
+    if(cur <= FIRST){ pb.classList.add('off'); pb.onclick=null; }
+    else { pb.classList.remove('off'); pb.onclick=function(e){ e.preventDefault(); go(add(cur,-1)); }; }
+    if(cur >= t){ nb.classList.add('off'); nb.onclick=null; }
+    else { nb.classList.remove('off'); nb.onclick=function(e){ e.preventDefault(); go(add(cur,1)); }; }
+    if(cur===t){ tb.style.display='none'; } else { tb.style.display='inline-flex'; tb.onclick=function(e){ e.preventDefault(); go(t); }; }
   }
 
-  // Date picker change
-  document.getElementById('datePicker').addEventListener('change', function(e) {
-    let selected = e.target.value;
-    if (selected > today) selected = today;
-    if (selected < FIRST_DATE) selected = FIRST_DATE;
-    loadReport(selected);
+  document.getElementById('datePick').addEventListener('change',function(){
+    var v=this.value, t=today();
+    if(v>t) v=t; if(v<FIRST) v=FIRST;
+    go(v);
   });
 
-  // Init from hash or default
-  const hash = window.location.hash.replace('#','');
-  if (hash && hash.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    loadReport(hash);
-  } else {
-    loadReport(FIRST_DATE);
-  }
-
-  // Handle browser back/forward
-  window.addEventListener('popstate', function() {
-    const h = window.location.hash.replace('#','');
-    if (h && h.match(/^\d{4}-\d{2}-\d{2}$/)) {
-      loadReport(h);
-    }
+  document.getElementById('refreshBtn').addEventListener('click',function(){
+    this.classList.add('spin');
+    go(cur).finally(function(){ setTimeout(function(){ document.getElementById('refreshBtn').classList.remove('spin'); },300); });
   });
 
-  // Refresh button
-  document.getElementById('refreshBtn').addEventListener('click', function(){
-    this.classList.add('spinning');
-    loadReport(currentDate).finally(()=>{
-      setTimeout(()=>this.classList.remove('spinning'), 300);
-    });
+  // 从 hash 初始化
+  var h = location.hash.replace('#','');
+  if(h && /^\d{4}-\d{2}-\d{2}$/.test(h)) go(h);
+  else updateNav();
+
+  window.addEventListener('popstate',function(){
+    var h = location.hash.replace('#','');
+    if(h && /^\d{4}-\d{2}-\d{2}$/.test(h)) go(h);
   });
 })();
 </script>
-
-
-<button class="refresh-fab" id="refreshBtn" title="刷新当前日期日报">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-</button>
 </body>
 </html>
