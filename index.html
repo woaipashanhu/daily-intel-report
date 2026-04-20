@@ -2,6 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="全球情报日报">
+<link rel="manifest" href="/manifest.json">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>全球情报日报</title>
 <style>:root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--orange:#d97706;--bg:#f1f5f9;--card:#fff}
@@ -449,7 +455,29 @@ document.getElementById('datePick').addEventListener('change',function(){var v=t
 document.getElementById('refreshBtn').addEventListener('click',function(){location.reload(true);});
 var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);else upNav();
 window.addEventListener('popstate',function(){var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);});
-})();</script>
+})();
+// 链接点击优化：手机弹出分享，电脑复制链接
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href]');
+  if(!a)return;
+  var href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||a.target==='_blank'||a.classList.contains('toc-tag')||a.classList.contains('nav-btn'))return;
+  e.preventDefault();
+  if(navigator.share){
+    navigator.share({title:document.title,url:href}).catch(function(){});
+  }else{
+    navigator.clipboard.writeText(href).then(function(){
+      var btn=a.closest('.card');
+      var tip=document.createElement('div');
+      tip.textContent='链接已复制';
+      tip.style.cssText='position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:.5rem 1rem;border-radius:8px;font-size:.85rem;z-index:999;transition:opacity .3s';
+      document.body.appendChild(tip);
+      setTimeout(function(){tip.style.opacity='0';setTimeout(function(){tip.remove();},300);},1500);
+    });
+  }
+});
+</script>
 
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js");}</script>
 </body>
 </html>
