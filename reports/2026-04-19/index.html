@@ -384,5 +384,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <div class="footer">
 <p>由 WPS 灵犀 AI 助手自动生成 · 21 个权威信源 · 仅供参考，不构成投资建议</p>
 </div>
+
+<script>
+document.addEventListener('click',function(e){
+  if(!navigator.share)return;
+  var a=e.target.closest('a[href]');
+  if(!a)return;
+  var href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||a.target==='_blank')return;
+  e.preventDefault();
+  var card=a.closest('.card');
+  var title=card?card.querySelector('h3'):null;
+  title=title?title.textContent.trim():'全球情报日报';
+  navigator.share({title:'全球情报日报',text:title+'\n'+href,url:href}).catch(function(){});
+});
+</script>
 </body>
 </html>

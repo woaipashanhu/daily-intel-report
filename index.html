@@ -463,25 +463,18 @@ document.getElementById('refreshBtn').addEventListener('click',function(){locati
 var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);else upNav();
 window.addEventListener('popstate',function(){var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);});
 })();
-// 链接点击优化：手机弹出分享（带标题+链接），电脑复制链接
+// 链接点击：Mac/电脑正常跳转，手机弹出分享
 document.addEventListener('click',function(e){
+  if(!navigator.share)return; // 没有分享API就不拦截，正常跳转
   var a=e.target.closest('a[href]');
   if(!a)return;
   var href=a.getAttribute('href');
   if(!href||href.startsWith('#')||a.target==='_blank'||a.classList.contains('toc-tag')||a.classList.contains('nav-btn'))return;
   e.preventDefault();
-  // 找到卡片标题和摘要
   var card=a.closest('.card');
   var title=card?card.querySelector('h3'):null;
   title=title?title.textContent.trim():'全球情报日报';
-  var text=title+'\n'+href;
-  if(navigator.share){
-    navigator.share({title:'全球情报日报',text:text,url:href}).catch(function(){});
-  }else{
-    navigator.clipboard.writeText(text).then(function(){
-      showTip('已复制：'+title);
-    });
-  }
+  navigator.share({title:'全球情报日报',text:title+'\n'+href,url:href}).catch(function(){});
 });
 
 // 复制全文按钮
