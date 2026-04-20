@@ -3,48 +3,494 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>全球情报日报 - 所有期次</title>
-<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="全球情报日报">
-<link rel="icon" href="/icon-192.png">
-<style>:root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--bg:#f1f5f9;--card:#fff}
+<meta name="apple-mobile-web-app-title" content="情报日报">
+<link rel="manifest" href="/manifest.json">
+<title>全球情报日报</title>
+<style>:root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--orange:#d97706;--bg:#f1f5f9;--card:#fff}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:#1e293b;line-height:1.75;font-size:15px}
-.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:#fff;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
-.header h1{font-size:2rem;letter-spacing:.05em}
-.header .sub{margin-top:.5rem;font-size:.85rem;opacity:.7}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:#1e293b;line-height:1.75;font-size:16px}
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:#fff;padding:1rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.header h1{font-size:1.3rem;letter-spacing:.05em}
+.header .sub{margin-top:.3rem;font-size:.8rem;opacity:.7}
 .container{max-width:860px;margin:0 auto;padding:1.5rem 1rem 3rem}
-.date-link{margin-bottom:.5rem}
-.date-link a{display:block;padding:.8rem 1rem;background:var(--card);border-radius:8px;text-decoration:none;color:var(--primary);font-weight:600;font-size:.9rem;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .15s}
-.date-link a:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-.info{background:var(--card);border-radius:10px;padding:1.2rem;margin:1.5rem 0;box-shadow:0 1px 3px rgba(0,0,0,.05);font-size:.85rem;color:#475569}
-.info strong{color:var(--primary)}
+.section-title{font-size:1.15rem;font-weight:700;margin:.8rem 0 .6rem;padding-bottom:.4rem;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:.5rem}
+.section-title .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:4px;font-weight:600;color:#fff}
+.tag-news{background:var(--blue)}
+.tag-research{background:var(--green)}
+.tag-urgent{background:var(--accent)}
+.card{background:var(--card);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.8rem;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.card h3{font-size:1.02rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
+.card h3 a{color:var(--primary);text-decoration:none}
+.card h3 a:hover{text-decoration:underline}
+.card .meta{font-size:.78rem;color:#64748b;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.card .meta .src{font-weight:600}
+.card .meta .label{font-size:.68rem;padding:.1rem .4rem;border-radius:3px;background:#f1f5f9;color:#475569;font-weight:500}
+.card .summary{font-size:.94rem;color:#334155;line-height:1.7}
+.card .summary strong{color:var(--primary)}
+.card-red{border-left:4px solid var(--accent)}
+.card-blue{border-left:4px solid var(--blue)}
+.card-green{border-left:4px solid var(--green)}
+.alert-badge{display:inline-block;font-size:.65rem;padding:.15rem .4rem;border-radius:3px;background:var(--accent);color:#fff;vertical-align:middle;margin-right:.3rem;font-weight:600}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem;margin:1rem 0}
+.market-item{background:var(--card);border-radius:8px;padding:.8rem;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.market-item .name{font-size:.78rem;color:#64748b;font-weight:500}
+.market-item .value{font-size:1.2rem;font-weight:700;margin:.2rem 0}
+.market-item .chg{font-size:.8rem;font-weight:600}
+.up{color:var(--green)}.down{color:var(--accent)}.flat{color:#64748b}
+.footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0}
+.sep{height:1px;background:linear-gradient(to right,transparent,#e2e8f0,transparent);margin:.8rem 0}
+
+.card-purple{border-left:4px solid #7c3aed}
+.tag-scholar{background:#7c3aed}
+.tag-davos{background:#0891b2}
+
+.toc-bar{background:var(--card);border-radius:10px;padding:.6rem .8rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow-x:auto}
+.toc-inner{display:flex;flex-wrap:wrap;gap:.35rem}
+.toc-tag{display:inline-block;padding:.25rem .65rem;font-size:.75rem;border-radius:20px;background:#f1f5f9;color:#475569;text-decoration:none;white-space:nowrap;transition:all .15s;font-weight:500}
+.toc-tag:hover{background:var(--primary);color:#fff}
+
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0;padding:.7rem 1rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.nav-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;font-size:1.1rem;color:#0f172a;transition:all .15s;text-decoration:none;font-weight:700}
+.nav-btn:hover{background:#0f172a;color:#fff;border-color:#0f172a}
+.nav-btn.off{opacity:.2;pointer-events:none}
+.nav-info{font-size:.95rem;font-weight:700;color:#0f172a;min-width:220px;text-align:center}
+.nav-sep{width:1px;height:20px;background:#e2e8f0}
+.date-pick{padding:.3rem .6rem;border:1px solid #e2e8f0;border-radius:6px;font-size:.82rem;color:#0f172a;cursor:pointer;background:#fff}
+.date-pick:focus{outline:none;border-color:#2563eb}
+.refresh-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:42px;height:42px;border-radius:50%;background:#0f172a;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:all .2s;z-index:200}
+.refresh-btn:hover{transform:scale(1.1)}
+.copy-btn{position:fixed;bottom:1.5rem;left:1.5rem;width:42px;height:42px;border-radius:50%;background:#0f172a;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:all .2s;z-index:200}
+.copy-btn:hover{transform:scale(1.1)}
+.empty-page{text-align:center;padding:4rem 1rem;color:#94a3b8}
+.empty-page .title{font-size:1rem;font-weight:600;color:#475569}
 </style>
 </head>
 <body>
+
 <div class="header">
-<h1>全球情报日报</h1>
-<div class="sub">25 个权威信源 · 自动采集 · 去重整理 · 每日更新</div>
-</div>
-<div class="container">
-<div class="info">
-<strong>数据来源：</strong>IMF、美联储、世界银行、CNBC、WEF、BlackRock、Moody's、Gartner、a16z、WIRED、NBER、PIIE、BEA、Scientific American、美国财政部、Congress.gov、美国国会五委员会、Russia in Global Affairs 等25个权威信源<br>
-<strong>覆盖板块：</strong>紧急关注、宏观经济、金融市场、科技前沿、地缘政治、立法监管、金融风险、俄罗斯视角、学术智库、历史回顾、下周前瞻
-</div>
-<div class="date-link">
-<a href="reports/2026-04-20/index.html">2026 年 4 月 20 日 · 星期日</a> <span style="font-size:.65rem;padding:.1rem .4rem;border-radius:3px;background:var(--accent);color:#fff;font-weight:600">最新</span>
-</div>
-<div class="date-link">
-<a href="reports/2026-04-19/index.html">2026 年 4 月 19 日 · 星期六</a>
+<h1>Global Intelligence Daily</h1>
+<div class="sub">全球情报日报</div>
 </div>
 
+<div class="nav-bar">
+<a class="nav-btn" id="prevBtn" title="上一日">&lsaquo;</a>
+<div class="nav-info" id="navInfo"></div>
+<a class="nav-btn" id="nextBtn" title="下一日">&rsaquo;</a>
+<div class="nav-sep"></div>
+<input type="date" class="date-pick" id="datePick" value="2026-04-19">
 </div>
+
+<div class="container" id="mainContent">
+<div class="toc-bar">
+<div class="toc-inner">
+<a class="toc-tag" href="#urgent">紧急关注</a>
+<a class="toc-tag" href="#geo">地缘政治与外交</a>
+<a class="toc-tag" href="#market">金融市场动态</a>
+<a class="toc-tag" href="#tech">科技与产业</a>
+<a class="toc-tag" href="#legislation">立法与监管</a>
+<a class="toc-tag" href="#data">市场数据</a>
+<a class="toc-tag" href="#macro">宏观经济</a>
+<a class="toc-tag" href="#fin">金融研究</a>
+<a class="toc-tag" href="#bigshots">大佬观点</a>
+<a class="toc-tag" href="#scholar">学者观点</a>
+<a class="toc-tag" href="#davos">达沃斯论坛</a>
+<a class="toc-tag" href="#trend">科技趋势</a>
+<a class="toc-tag" href="#thinktank">智库与学术</a>
+<a class="toc-tag" href="#risk">风险监测</a>
+</div>
+</div>
+</div>
+
+<!-- ==================== 紧急关注 ==================== -->
+
+<div class="section-title"><span class="tag tag-urgent">紧急</span> <span id="urgent"></span>紧急关注</div>
+
+<div class="card card-red">
+<h3><span class="alert-badge">突发</span><a href="https://www.cnbc.com/2026/04/19/iran-says-talks-continue-while-it-retains-control-of-strait-of-hormuz-.html" target="_blank">特朗普宣布美伊谈判将于周一下午在巴基斯坦伊斯兰堡恢复</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">地缘政治</span></div>
+<div class="summary">特朗普在 Truth Social 上宣布，美国谈判代表将于周一下午前往巴基斯坦伊斯兰堡，与伊朗进行下一轮和平谈判。特朗普表示"我们提供了一份非常公平合理的协议"，同时威胁如果伊朗不接受，将<strong>"摧毁伊朗每一座发电站和每一座桥梁"</strong>。当前两周停火协议将于周三到期。伊朗议长 Ghalibaf 表示谈判仍在继续，但武装力量已准备好恢复战斗，并重申将限制霍尔木兹海峡通行。伊朗革命卫队两艘炮艇周六向过境油轮开火。</div>
+</div>
+
+<div class="card card-red">
+<h3><span class="alert-badge">高危</span><a href="https://www.cnbc.com/2026/04/17/iran-trump-strait-hormuz-oil-tanker-traffic.html" target="_blank">霍尔木兹海峡航运仍处于混乱状态，多艘船只遭开火后折返</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">能源安全</span></div>
+<div class="summary">船舶追踪公司 Kpler 的视频显示，周五数艘油轮和货船尝试驶离霍尔木兹海峡但被迫折返。英国 UKMTO 中心报告至少两艘船只在尝试过境时遭到开火。印度就一艘印度籍油轮在穿越海峡时遭到攻击召见伊朗大使。全球约五分之一的原油运输依赖该海峡，其关闭已触发<strong>历史上最大的石油供应中断</strong>。</div>
+</div>
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-news">新闻</span> <span id="geo"></span>地缘政治与外交</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/17/trump-tanker-diplomacy-hormuz-cuba-iran-war.html" target="_blank">特朗普的油轮外交：从哈瓦那到霍尔木兹面临多重考验</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">地缘政治</span></div>
+<div class="summary">特朗普同时在古巴和霍尔木兹海峡面临外交危机。对古巴的油轮政策和对伊朗的海上封锁形成"双线外交"压力。分析认为特朗普在外交策略上试图同时展示强硬姿态和谈判意愿，但两场危机同时升级可能超出美国外交资源承受能力。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/18/us-uk-special-relationship-trump-starmer-king-ch.html" target="_blank">美英特殊关系因贸易争端和国王访美而紧张</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">外交</span></div>
+<div class="summary">在英国国王查尔斯即将访问华盛顿之际，美英特殊关系面临前所未有的紧张。贸易摩擦、对伊朗政策的分歧以及对乌克兰援助的协调问题使两国关系承压。这将是英国国王近年来最重要的外交访问之一。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://eng.globalaffairs.ru/articles/a-huge-miscalculation/" target="_blank">重大误判？美国和以色列深陷"胜利综合症"</a></h3>
+<div class="meta"><span class="src">Russia in Global Affairs</span><span class="label">地缘分析</span></div>
+<div class="summary">Global Affairs 分析认为，美国和以色列可能严重误判了中东局势。文章指出美国和以色列"深陷疾病"，对伊朗战争的持久性和复杂性估计不足。当前停火谈判的脆弱性反映了双方都未能实现战略目标。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://eng.globalaffairs.ru/articles/chinas-principled-stance-amidst-intensifying-us-iran-tensions/" target="_blank">中国在美国-伊朗紧张局势加剧中坚持原则立场</a></h3>
+<div class="meta"><span class="src">Russia in Global Affairs</span><span class="label">中国外交</span></div>
+<div class="summary">文章分析了中国在美伊冲突中的外交姿态。中国在霍尔木兹海峡危机中保持战略定力，呼吁和平解决争端，同时维护能源贸易利益。中俄伊三角关系成为影响中东局势的关键变量。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-news">新闻</span> <span id="market"></span>金融市场动态</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/13/markets-trump-strait-of-hormuz-blockade-gold-stocks-dollar.html" target="_blank">从恐慌到重新定价：市场是否已过"恐惧峰值"？</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">市场情绪</span></div>
+<div class="summary">CNBC 分析指出，市场从霍尔木兹海峡封锁初期的恐慌性抛售中逐步恢复。投资者正在重新评估"恐惧峰值"是否已过。黄金和美元作为避险资产仍保持强劲，但风险资产的反弹显示市场对停火谈判持谨慎乐观态度。历史数据显示，地缘冲突高峰后市场往往快速反弹。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/17/europe-stock-market-stoxx-600-ftse-100-trump-iran.html" target="_blank">欧洲股市因伊朗维持霍尔木兹海峡开放而大幅飙升</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">股市</span></div>
+<div class="summary">斯托克600指数和富时100指数大涨，旅游和能源板块领涨。市场对霍尔木兹海峡可能重新开放的消息反应积极。此前油价因供应中断担忧暴涨超10%，海峡可能重开的消息使油价回落至90美元/桶以下。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/18/berkshire-shares-left-behind-as-sp-500-rallies-t.html" target="_blank">标普500创新高之际，伯克希尔股价却落后于大盘</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">投资</span></div>
+<div class="summary">随着标普500和纳斯达克连续上涨创纪录新高（纳指连涨12个交易日），巴菲特的伯克希尔·哈撒韦却明显落后。市场分析认为，巴菲特持有<strong>3,500亿美元巨额现金</strong>的保守策略在当前AI驱动的市场反弹中错失了涨幅。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/16/us-dollar-dominance-reserve-currency-iran-war-oil-china.html" target="_blank">分析师称"现在还不是宣布美元霸权终结的时候"</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">外汇</span></div>
+<div class="summary">尽管"石油美元"体系因伊朗战争面临挑战，但分析师认为美元储备货币地位短期不会被撼动。中国和部分新兴市场推动的本币结算仍在早期阶段，美元在危机时期的避险属性反而得到加强。分析师建议关注去美元化进程的长期趋势而非短期波动。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/18/iran-war-gas-prices-consumer-spending-economy.html" target="_blank">伊朗战争和4美元油价已令消费者支出失去乐趣</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">经济影响</span></div>
+<div class="summary">美国加油站油价已升至每加仑4美元以上，消费者信心和支出意愿明显下降。零售数据显示消费者正在减少非必需品开支，餐饮和旅游行业受到冲击。分析认为能源成本上升的"溢出效应"正在向更广泛的经济领域传导。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-news">新闻</span> 科技产业动态</div>
+
+<div class="card">
+<h3><a href="https://www.wired.com/story/musk-v-altman-trial-openai-xai/" target="_blank">马斯克诉奥特曼：OpenAI 灵魂之争</a></h3>
+<div class="meta"><span class="src">WIRED</span><span class="label">AI竞争</span></div>
+<div class="summary">马斯克与奥特曼之间的法律战已演变为关于 OpenAI 未来方向的灵魂之争。马斯克的 xAI 正在加速发展，试图挑战 OpenAI 在 AGI 领域的主导地位。WIRED 深度分析了这场诉讼对整个AI行业格局的深远影响，以及它如何揭示硅谷科技巨头之间关于AI发展方向的根本分歧。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/19/siiicon-valley-ai-agent-openclaw-problems.html" target="_blank">硅谷 AI Agent 陷入困境：Token 浪费和混乱的工作流</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">AI产业</span></div>
+<div class="summary">AI Agent 在企业环境中的部署暴露出严重问题：大量 token 被浪费在无效操作上，工作流程混乱且难以管理。尽管 Agent 被视为2026年最重要的AI应用方向，但实际落地远不如预期。多家硅谷公司已开始调整 Agent 策略，从"全能型"转向"专用型"。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.wired.com/story/gazing-into-sam-altmans-orb-now-proves-youre-human-on-tinder/" target="_blank">Altman 的"全球虹膜球"已成为 Tinder 的人脸验证工具</a></h3>
+<div class="meta"><span class="src">WIRED</span><span class="label">AI技术</span></div>
+<div class="summary">OpenAI 联合创始人 Sam Altman 的 Worldcoin 虹膜识别项目已与约会平台 Tinder 合作，用户可以通过虹膜扫描来证明自己是真人而非 AI bot。这一应用展示了生物识别技术在大规模消费场景中的落地，同时也引发了对隐私保护的广泛争议。</div>
+</div>
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-news">新闻</span> 美国立法与监管</div>
+
+<div class="card">
+<h3><a href="https://www.cnbc.com/2026/04/17/tax-withholding-2026.html" target="_blank">财政部长 Bessent 建议调整工资税预扣，但警告操作失误风险</a></h3>
+<div class="meta"><span class="src">CNBC / Treasury</span><span class="label">税收政策</span></div>
+<div class="summary">美国财政部长 Scott Bessent 公开建议纳税人根据新的税法调整工资税预扣额度。但专家警告错误的预扣调整可能导致税务罚款或意外欠税。财政部正在更新预扣计算器以适应新税法的变更。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://financialservices.house.gov/" target="_blank">众议院金融服务委员会动态</a></h3>
+<div class="meta"><span class="src">House Financial Services</span><span class="label">金融监管</span></div>
+<div class="summary">委员会持续关注数字资产监管框架、消费者金融保护政策调整以及资本市场改革议题。在伊朗战争引发能源市场动荡的背景下，委员会成员呼吁加强对能源衍生品市场的监管审查。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-news">新闻</span> <span id="data"></span>市场数据概览</div>
+
+<div class="market-grid">
+<div class="market-item"><div class="name">标普 500</div><div class="value up">7,041</div><div class="chg up">+0.26%</div></div>
+<div class="market-item"><div class="name">纳斯达克</div><div class="value up">21,347</div><div class="chg up">+0.50%</div></div>
+<div class="market-item"><div class="name">WTI 原油</div><div class="value down">$89.50</div><div class="chg down">-10.2%</div></div>
+<div class="market-item"><div class="name">黄金</div><div class="value up">$3,120</div><div class="chg up">+1.5%</div></div>
+<div class="market-item"><div class="name">美元指数</div><div class="value up">104.2</div><div class="chg up">+0.3%</div></div>
+<div class="market-item"><div class="name">VIX 恐慌指数</div><div class="value down">16.8</div><div class="chg down">-5.1%</div></div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> <span id="macro"></span>宏观经济研究</div>
+
+<div class="card card-green">
+<h3><a href="https://www.imf.org/en/publications/weo/issues/2026/04/14/world-economic-outlook-april-2026" target="_blank">IMF 4月《世界经济展望》：战争阴影下的全球经济</a></h3>
+<div class="meta"><span class="src">IMF</span><span class="label">宏观研究</span></div>
+<div class="summary"><strong>核心发现：</strong>IMF 将 2026 年全球增长预测下调至 <strong>3.1%</strong>，并警告若中东战事持续升级且能源基础设施遭到严重破坏，全球增速可能跌破 2%，逼近衰退阈值。IMF 将常规"基准预测"改为"参考预测"以反映极端波动。伊朗经济预计萎缩 <strong>6.1%</strong>。中东能源冲击已显著削弱全球增长前景，供应链碎片化和通胀压力持续加剧。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://www.cnbc.com/2026/04/17/fed-governor-waller-says-iran-war-and-labor-market-risks-are-keeping-central-bank-on-hold.html" target="_blank">美联储理事 Waller：伊朗战争和劳动力市场风险使央行保持观望</a></h3>
+<div class="meta"><span class="src">Federal Reserve / CNBC</span><span class="label">央行政策</span></div>
+<div class="summary">美联储理事 Christopher Waller 表示，伊朗战争带来的通胀上行风险和劳动力市场的双重不确定性，使得美联储在利率决策上保持谨慎观望立场。战争引发的能源价格波动增加了通胀前景的复杂性，央行需要在抑制通胀和维持经济增长之间找到平衡。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://www.worldbank.org/en/news" target="_blank">世界银行 4 月地区经济半年报：全球经济增长普遍放缓</a></h3>
+<div class="meta"><span class="src">World Bank</span><span class="label">全球经济</span></div>
+<div class="summary">世界银行 4 月发布覆盖全球六大区域的地区经济半年报。报告判断当前全球经济增长普遍放缓，四大结构性挑战叠加：<strong>地缘冲突、债务高企、生产率低迷、贸易碎片化</strong>。新兴市场和发展中经济体面临的融资环境趋紧，多国面临债务风险。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> 金融市场研究</div>
+
+<div class="card card-green">
+<h3><a href="https://www.blackrock.com/lu/intermediaries/insights/global-weekly-commentary" target="_blank">BlackRock 周评：美伊谈判虽破裂，但经济动机推动各方走向和平</a></h3>
+<div class="meta"><span class="src">BlackRock Investment Institute</span><span class="label">市场策略</span></div>
+<div class="summary">BlackRock 认为尽管美伊谈判上周末破裂，但<strong>谈判本身能够启动就说明各方有强烈的经济动机结束冲突</strong>。建议投资者关注周期股与防御股的"奇特组合"（odd couple）策略——在不确定环境中同时配置增长型和防御型资产。BlackRock 强调地缘风险定价仍不充分，建议保持投资组合的多元化。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://www.blackrock.com/us/individual/insights" target="_blank">Larry Fink 2026 年致投资者信：长期投资帮助更多人分享国家增长成果</a></h3>
+<div class="meta"><span class="src">BlackRock</span><span class="label">投资理念</span></div>
+<div class="summary">BlackRock 董事长 Larry Fink 在 2026 年度致投资者信中探讨了地缘政治变革和 AI 如何重塑全球经济格局。Fink 认为长期投资是帮助普通民众分享国家经济增长的关键工具，并呼吁政策制定者关注退休保障和代际财富转移问题。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> 金融大佬观点</div>
+
+<div class="card card-blue">
+<h3>巴菲特：手握 3,500 亿美元现金，等待"大鱼跌到位"</h3>
+<div class="meta"><span class="src">CNBC / 伯克希尔年报</span><span class="label">投资观点</span></div>
+<div class="summary">巴菲特在 4 月最新访谈中表示，当前市场下跌程度远不足以触发大规模入场。他说"为了 5% 到 6% 的指数跌幅就进场，不是我的风格"，并回顾接管伯克希尔以来市场至少有三次跌幅超过 50%。<strong>"当前市场被 AI 热情推高，估值远未跌到让我兴奋的水平。"</strong>3,500 亿美元现金储备是巴菲特有史以来最大的现金仓位。</div>
+</div>
+
+<div class="card card-blue">
+<h3>Berkshire 股价落后标普 500 的反思</h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">投资对比</span></div>
+<div class="summary">随着标普500在AI驱动下连创新高（纳指连续12个交易日上涨），伯克希尔·哈撒韦明显跑输大盘。巴菲特的"现金为王"策略与市场追逐AI成长股形成鲜明对比。这引发了一个经典争论：<strong>短期跑输 vs. 长期风控</strong>——巴菲特历史上多次通过等待极端低估机会获得超额回报，但错过本轮AI牛市的代价也不小。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> <span id="scholar"></span>学者观点</div>
+
+<div class="card card-purple">
+<h3><a href="https://krugman.blogs.nytimes.com/" target="_blank">克鲁格曼（Paul Krugman，2008年诺贝尔经济学奖）：伊朗战争终结石油美元霸权，将全球能源主导权推向中国</a></h3>
+<div class="meta"><span class="src">Krugman Substack / Business Insider</span><span class="label">学者观点</span><span class="label">诺贝尔奖</span></div>
+<div class="summary">克鲁格曼在其 Substack 博客发表系列文章，核心观点：<strong>（1）石油美元体系正在瓦解。</strong>他在文中写道"一个渴望能源的世界正被美国推开，转而投入中国的怀抱"。<strong>（2）中国清洁技术出口已创历史纪录。</strong>路透社数据显示，2025年中国清洁技术出口额达到2220亿美元，电动汽车和电池出货量持续增长。<strong>（3）特朗普的能源政策正在自相矛盾。</strong>对伊朗的军事行动反而加强了美国地缘政治对手在全球能源转型中的地位。克鲁格曼警告，伊朗冲突正在重塑全球能源市场格局，而这种重塑将长期有利于中国。</div>
+</div>
+
+<div class="card card-purple">
+<h3><a href="https://krugman.blogs.nytimes.com/" target="_blank">克鲁格曼：全球贸易面临 25% 关税激增，"全面贸易战"信号明确</a></h3>
+<div class="meta"><span class="src">Krugman / NSTL</span><span class="label">学者观点</span><span class="label">诺贝尔奖</span></div>
+<div class="summary">克鲁格曼在另一篇文章中警告全球贸易正面临急剧恶化。他表示虽然有希望之光，但目前"真的很难找到"，所有信号都指向一场<strong>"全面的全球贸易战"</strong>。他对特朗普关税政策的长期经济后果表示严重担忧，认为这将加速全球供应链重构并削弱美国的贸易地位。</div>
+</div>
+
+<div class="card card-purple">
+<h3><a href="https://wir2022.wid.world/" target="_blank">斯蒂格利茨（Joseph Stiglitz，2001年诺贝尔经济学奖）：2026年世界不平等报告</a></h3>
+<div class="meta"><span class="src">G20 / World Inequality Lab</span><span class="label">学者观点</span><span class="label">诺贝尔奖</span></div>
+<div class="summary">由诺贝尔奖得主斯蒂格利茨主导、皮凯蒂（Thomas Piketty）等参与协调的<strong>2026年世界不平等报告</strong>在达沃斯期间发布。报告发出"不平等紧急状态"警告，呼吁建立"国际不平等委员会"。报告指出全球财富集中度继续攀升，AI 技术正在加剧劳动与资本之间的收入差距。斯蒂格利茨强调，当前经济政策缺乏对底层民众的有效保护机制。</div>
+</div>
+
+
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-davos">达沃斯</span> <span id="davos"></span>达沃斯论坛</div>
+
+<div class="card">
+<h3><a href="https://www.jpmorgan.com/insights/banking/investment-banking/davos-takeaways" target="_blank">摩根大通总结达沃斯2026年会七大要点</a></h3>
+<div class="meta"><span class="src">J.P. Morgan</span><span class="label">达沃斯</span></div>
+<div class="summary">摩根大通总结了2026年达沃斯年会的核心共识：<strong>（1）地缘政治格局加速演变</strong>，欧洲在特朗普格陵兰议题上学会了"挺身而出"。<strong>（2）AI 从实验转向规模化部署</strong>，企业级 AI 应用进入"关键拐点"。<strong>（3）通胀仍是全球性紧迫问题</strong>，各国央行面临"更高更久"的利率环境。<strong>（4）能源转型与安全供给的双重挑战</strong>并存。<strong>（5）全球合作机制面临前所未有的压力。</strong></div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.weforum.org/stories/2026/01/economic-growth-takeaways-from-davos-2026/" target="_blank">WEF 官方：达沃斯2026的关键经济启示</a></h3>
+<div class="meta"><span class="src">World Economic Forum</span><span class="label">达沃斯</span></div>
+<div class="summary">WEF 官方总结了年会的经济共识：<strong>AI 将重塑全球生产力分布</strong>，各国需要在教育、基础设施和监管框架上做前瞻性投资。论坛特别关注"负责任的AI"理念——如何在推动技术创新的同时防止社会分裂。会议还讨论了全球债务可持续性、气候融资缺口和新兴市场的增长挑战。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://www.usnews.com/news/world/articles/2026-01-23/five-takeaways-from-davos-2026" target="_blank">US News 五大要点：欧洲学会对特朗普说不</a></h3>
+<div class="meta"><span class="src">US News / WEF</span><span class="label">达沃斯</span></div>
+<div class="summary">US News 总结达沃斯五大要点：<strong>（1）欧洲在格陵兰问题上学会了对特朗普说"不"</strong>，跨大西洋关系进入新的博弈阶段。<strong>（2）AI 治理成为核心议题</strong>，各国对AI监管框架的分歧凸显。<strong>（3）全球供应链重构持续</strong>，"去风险"取代"脱钩"成为主流叙事。<strong>（4）中东局势是最大不确定因素</strong>。<strong>（5）2026夏季达沃斯将于6月底在天津举行</strong>，聚焦"如何将创新和科技潜力转化为经济增长和就业"。</div>
+</div>
+
+<div class="card">
+<h3><a href="https://baijiahao.baidu.com/s?id=1860532852856723075" target="_blank">2026夏季达沃斯将于6月底在天津举行</a></h3>
+<div class="meta"><span class="src">WEF / 新华社</span><span class="label">达沃斯</span></div>
+<div class="summary">世界经济论坛确认2026年夏季达沃斯（新领军者年会）将于6月底在中国天津举行。会议将聚焦如何通过<strong>更强的制度、增加的资本流动和前瞻性政策</strong>，将创新和技术潜力转化为经济增长、就业和新商业模式。这是在当前地缘政治紧张背景下，WEF 选择在中国举办的重要信号。</div>
+</div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> <span id="trend"></span>科技趋势研究</div>
+
+<div class="card card-green">
+<h3><a href="https://www.gartner.com/cn/information-technology/articles/top-technology-trends-2026" target="_blank">Gartner 2026 年十大战略技术趋势</a></h3>
+<div class="meta"><span class="src">Gartner</span><span class="label">技术趋势</span></div>
+<div class="summary">Gartner 预测 2026 年将迎来"AI原生开发平台"的关键拐点。核心趋势包括：<strong>AI原生开发平台</strong>赋能精干团队快速构建软件；AI平台与基础设施成为企业架构的核心；以及组织需要在AI治理、数据隐私和网络安全方面做出战略性投资。技术领导者面临的不是技术选择，而是<strong>战略决策</strong>。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://a16z.com/" target="_blank">a16z：AI Agent 从"演示"走向"真正可见的影响"</a></h3>
+<div class="meta"><span class="src">a16z</span><span class="label">行业预测</span></div>
+<div class="summary">顶级风投 a16z 认为 2025 年市场讨论了很多 AI Agent 概念，但真正成熟尚未到位。2026 年的变化将体现在 Agent 从演示阶段走向"真正可见的商业影响"。a16z 关注的核心赛道包括 AI 编程助手、企业级 AI 工作流自动化和 AI 驱动的客服系统。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://www.scientificamerican.com/article/why-game-theory-could-be-critical-in-a-nuclear-war/" target="_blank">博弈论在核战争中的关键作用</a></h3>
+<div class="meta"><span class="src">Scientific American</span><span class="label">科学分析</span></div>
+<div class="summary">Scientific American 发表深度文章，分析博弈论在当前核威慑环境中的适用性。文章结合美伊冲突背景，探讨威慑理论、升级控制机制和信号传递等博弈论概念如何影响大国间的战略决策。中东局势使"核博弈"理论重新回到学术和政策讨论的中心。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> <span id="thinktank"></span>智库与学术研究</div>
+
+<div class="card card-green">
+<h3><a href="https://www.nber.org/new.html" target="_blank">NBER 4 月最新工作论文</a></h3>
+<div class="meta"><span class="src">NBER</span><span class="label">学术研究</span></div>
+<div class="summary">NBER 4 月发布多篇重要工作论文（WP 35035-35041），研究方向包括：国际贸易中的 AI 相关产品、出生公民权对青少年犯罪的影响、住房市场测量方法等。其中关于<strong>国际AI贸易的研究</strong>使用大语言模型分析全球AI产品贸易格局，为理解AI产业的全球化趋势提供了新的实证证据。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://eng.globalaffairs.ru/articles/from-the-rupee-trap-to-strategic-development/" target="_blank">从"卢比陷阱"到战略发展：俄罗斯与印度、中国的新欧亚能源架构</a></h3>
+<div class="meta"><span class="src">Russia in Global Affairs</span><span class="label">智库分析</span></div>
+<div class="summary">Global Affairs 深度分析俄、中、印三国正在构建的新欧亚能源架构。文章认为美国制裁推动下的俄印贸易本币结算正在形成"去美元化"的雏形，但印度卢比的国际化面临结构性瓶颈。中俄能源贸易的结算创新可能成为全球金融体系变革的重要实验。</div>
+</div>
+
+<div class="card card-green">
+<h3><a href="https://eng.globalaffairs.ru/articles/orban-falls-but-hungarys-realities-remain/" target="_blank">欧尔班下台但匈牙利现实依旧</a></h3>
+<div class="meta"><span class="src">Russia in Global Affairs</span><span class="label">欧洲政治</span></div>
+<div class="summary">文章分析匈牙利政治格局的变化及其对欧盟的影响。欧尔班的落败不意味着匈牙利政治的彻底转向，其民族主义政治遗产和亲俄立场已在匈牙利社会深深扎根。欧盟东扩和中东欧政治格局的调整将继续影响欧洲的地缘政治平衡。</div>
+</div>
+
+<div class="sep"></div>
+
+
+<div class="sep"></div>
+
+<div class="section-title"><span class="tag tag-research">研究</span> 金融风险监测</div>
+
+<div class="card card-red">
+<h3><a href="https://www.cnbc.com/2026/04/18/iran-war-inflation-prices-energy-trump-economy-e.html" target="_blank">30+ 位央行家与政策制定者的共识：通胀风险大于衰退风险</a></h3>
+<div class="meta"><span class="src">CNBC</span><span class="label">风险研判</span></div>
+<div class="summary">CNBC 采访了超过 30 位央行行长、政策制定者和政治人物，他们的<strong>共识判断</strong>是：当前经济面临的首要风险来自通胀而非衰退。伊朗战争引发的能源价格冲击正在向核心通胀传导，而劳动力市场的韧性使央行难以快速降息。<strong>注意：这一观点与部分市场参与者押注的"衰退交易"形成矛盾。</strong></div>
+</div>
+
+<div class="card card-red">
+<h3>债务风险叠加：世界银行警告全球债务水平创历史新高</h3>
+<div class="meta"><span class="src">World Bank / Treasury</span><span class="label">债务危机</span></div>
+<div class="summary">世界银行和财政部数据均显示全球主权债务水平已创历史新高。战争导致的军事开支激增进一步恶化了多国财政状况。新兴市场面临的<strong>再融资风险</strong>和<strong>汇率风险</strong>正在加剧，部分低收入国家已出现债务违约迹象。</div>
+</div>
+
 <div class="footer">
-<p>由 WPS 灵犀 AI 助手自动生成 · GitHub Pages 部署 · 仅供参考，不构成投资建议</p>
+<p>由 WPS 灵犀 AI 助手自动生成 · 21 个权威信源 · 仅供参考，不构成投资建议</p>
 </div>
+
+<button class="copy-btn" id="copyBtn" title="复制全文">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+</button>
+
+<button class="refresh-btn" id="refreshBtn" title="刷新">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+</button>
+
+<script>(function(){
+var DATES=['2026-04-19'];
+var CONTENTS={};
+CONTENTS['2026-04-19']="<div class=\"toc-bar\">\n<div class=\"toc-inner\">\n<a class=\"toc-tag\" href=\"#urgent\">紧急关注</a>\n<a class=\"toc-tag\" href=\"#geo\">地缘政治与外交</a>\n<a class=\"toc-tag\" href=\"#market\">金融市场动态</a>\n<a class=\"toc-tag\" href=\"#tech\">科技与产业</a>\n<a class=\"toc-tag\" href=\"#legislation\">立法与监管</a>\n<a class=\"toc-tag\" href=\"#data\">市场数据</a>\n<a class=\"toc-tag\" href=\"#macro\">宏观经济</a>\n<a class=\"toc-tag\" href=\"#fin\">金融研究</a>\n<a class=\"toc-tag\" href=\"#bigshots\">大佬观点</a>\n<a class=\"toc-tag\" href=\"#scholar\">学者观点</a>\n<a class=\"toc-tag\" href=\"#davos\">达沃斯论坛</a>\n<a class=\"toc-tag\" href=\"#trend\">科技趋势</a>\n<a class=\"toc-tag\" href=\"#thinktank\">智库与学术</a>\n<a class=\"toc-tag\" href=\"#risk\">风险监测</a>\n</div>\n</div>\n</div>\n\n<!-- ==================== 紧急关注 ==================== -->\n\n<div class=\"section-title\"><span class=\"tag tag-urgent\">紧急</span> <span id=\"urgent\"></span>紧急关注</div>\n\n<div class=\"card card-red\">\n<h3><span class=\"alert-badge\">突发</span><a href=\"https://www.cnbc.com/2026/04/19/iran-says-talks-continue-while-it-retains-control-of-strait-of-hormuz-.html\" target=\"_blank\">特朗普宣布美伊谈判将于周一下午在巴基斯坦伊斯兰堡恢复</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">地缘政治</span></div>\n<div class=\"summary\">特朗普在 Truth Social 上宣布，美国谈判代表将于周一下午前往巴基斯坦伊斯兰堡，与伊朗进行下一轮和平谈判。特朗普表示\"我们提供了一份非常公平合理的协议\"，同时威胁如果伊朗不接受，将<strong>\"摧毁伊朗每一座发电站和每一座桥梁\"</strong>。当前两周停火协议将于周三到期。伊朗议长 Ghalibaf 表示谈判仍在继续，但武装力量已准备好恢复战斗，并重申将限制霍尔木兹海峡通行。伊朗革命卫队两艘炮艇周六向过境油轮开火。</div>\n</div>\n\n<div class=\"card card-red\">\n<h3><span class=\"alert-badge\">高危</span><a href=\"https://www.cnbc.com/2026/04/17/iran-trump-strait-hormuz-oil-tanker-traffic.html\" target=\"_blank\">霍尔木兹海峡航运仍处于混乱状态，多艘船只遭开火后折返</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">能源安全</span></div>\n<div class=\"summary\">船舶追踪公司 Kpler 的视频显示，周五数艘油轮和货船尝试驶离霍尔木兹海峡但被迫折返。英国 UKMTO 中心报告至少两艘船只在尝试过境时遭到开火。印度就一艘印度籍油轮在穿越海峡时遭到攻击召见伊朗大使。全球约五分之一的原油运输依赖该海峡，其关闭已触发<strong>历史上最大的石油供应中断</strong>。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-news\">新闻</span> <span id=\"geo\"></span>地缘政治与外交</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/17/trump-tanker-diplomacy-hormuz-cuba-iran-war.html\" target=\"_blank\">特朗普的油轮外交：从哈瓦那到霍尔木兹面临多重考验</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">地缘政治</span></div>\n<div class=\"summary\">特朗普同时在古巴和霍尔木兹海峡面临外交危机。对古巴的油轮政策和对伊朗的海上封锁形成\"双线外交\"压力。分析认为特朗普在外交策略上试图同时展示强硬姿态和谈判意愿，但两场危机同时升级可能超出美国外交资源承受能力。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/18/us-uk-special-relationship-trump-starmer-king-ch.html\" target=\"_blank\">美英特殊关系因贸易争端和国王访美而紧张</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">外交</span></div>\n<div class=\"summary\">在英国国王查尔斯即将访问华盛顿之际，美英特殊关系面临前所未有的紧张。贸易摩擦、对伊朗政策的分歧以及对乌克兰援助的协调问题使两国关系承压。这将是英国国王近年来最重要的外交访问之一。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://eng.globalaffairs.ru/articles/a-huge-miscalculation/\" target=\"_blank\">重大误判？美国和以色列深陷\"胜利综合症\"</a></h3>\n<div class=\"meta\"><span class=\"src\">Russia in Global Affairs</span><span class=\"label\">地缘分析</span></div>\n<div class=\"summary\">Global Affairs 分析认为，美国和以色列可能严重误判了中东局势。文章指出美国和以色列\"深陷疾病\"，对伊朗战争的持久性和复杂性估计不足。当前停火谈判的脆弱性反映了双方都未能实现战略目标。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://eng.globalaffairs.ru/articles/chinas-principled-stance-amidst-intensifying-us-iran-tensions/\" target=\"_blank\">中国在美国-伊朗紧张局势加剧中坚持原则立场</a></h3>\n<div class=\"meta\"><span class=\"src\">Russia in Global Affairs</span><span class=\"label\">中国外交</span></div>\n<div class=\"summary\">文章分析了中国在美伊冲突中的外交姿态。中国在霍尔木兹海峡危机中保持战略定力，呼吁和平解决争端，同时维护能源贸易利益。中俄伊三角关系成为影响中东局势的关键变量。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-news\">新闻</span> <span id=\"market\"></span>金融市场动态</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/13/markets-trump-strait-of-hormuz-blockade-gold-stocks-dollar.html\" target=\"_blank\">从恐慌到重新定价：市场是否已过\"恐惧峰值\"？</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">市场情绪</span></div>\n<div class=\"summary\">CNBC 分析指出，市场从霍尔木兹海峡封锁初期的恐慌性抛售中逐步恢复。投资者正在重新评估\"恐惧峰值\"是否已过。黄金和美元作为避险资产仍保持强劲，但风险资产的反弹显示市场对停火谈判持谨慎乐观态度。历史数据显示，地缘冲突高峰后市场往往快速反弹。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/17/europe-stock-market-stoxx-600-ftse-100-trump-iran.html\" target=\"_blank\">欧洲股市因伊朗维持霍尔木兹海峡开放而大幅飙升</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">股市</span></div>\n<div class=\"summary\">斯托克600指数和富时100指数大涨，旅游和能源板块领涨。市场对霍尔木兹海峡可能重新开放的消息反应积极。此前油价因供应中断担忧暴涨超10%，海峡可能重开的消息使油价回落至90美元/桶以下。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/18/berkshire-shares-left-behind-as-sp-500-rallies-t.html\" target=\"_blank\">标普500创新高之际，伯克希尔股价却落后于大盘</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">投资</span></div>\n<div class=\"summary\">随着标普500和纳斯达克连续上涨创纪录新高（纳指连涨12个交易日），巴菲特的伯克希尔·哈撒韦却明显落后。市场分析认为，巴菲特持有<strong>3,500亿美元巨额现金</strong>的保守策略在当前AI驱动的市场反弹中错失了涨幅。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/16/us-dollar-dominance-reserve-currency-iran-war-oil-china.html\" target=\"_blank\">分析师称\"现在还不是宣布美元霸权终结的时候\"</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">外汇</span></div>\n<div class=\"summary\">尽管\"石油美元\"体系因伊朗战争面临挑战，但分析师认为美元储备货币地位短期不会被撼动。中国和部分新兴市场推动的本币结算仍在早期阶段，美元在危机时期的避险属性反而得到加强。分析师建议关注去美元化进程的长期趋势而非短期波动。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/18/iran-war-gas-prices-consumer-spending-economy.html\" target=\"_blank\">伊朗战争和4美元油价已令消费者支出失去乐趣</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">经济影响</span></div>\n<div class=\"summary\">美国加油站油价已升至每加仑4美元以上，消费者信心和支出意愿明显下降。零售数据显示消费者正在减少非必需品开支，餐饮和旅游行业受到冲击。分析认为能源成本上升的\"溢出效应\"正在向更广泛的经济领域传导。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-news\">新闻</span> 科技产业动态</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.wired.com/story/musk-v-altman-trial-openai-xai/\" target=\"_blank\">马斯克诉奥特曼：OpenAI 灵魂之争</a></h3>\n<div class=\"meta\"><span class=\"src\">WIRED</span><span class=\"label\">AI竞争</span></div>\n<div class=\"summary\">马斯克与奥特曼之间的法律战已演变为关于 OpenAI 未来方向的灵魂之争。马斯克的 xAI 正在加速发展，试图挑战 OpenAI 在 AGI 领域的主导地位。WIRED 深度分析了这场诉讼对整个AI行业格局的深远影响，以及它如何揭示硅谷科技巨头之间关于AI发展方向的根本分歧。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/19/siiicon-valley-ai-agent-openclaw-problems.html\" target=\"_blank\">硅谷 AI Agent 陷入困境：Token 浪费和混乱的工作流</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">AI产业</span></div>\n<div class=\"summary\">AI Agent 在企业环境中的部署暴露出严重问题：大量 token 被浪费在无效操作上，工作流程混乱且难以管理。尽管 Agent 被视为2026年最重要的AI应用方向，但实际落地远不如预期。多家硅谷公司已开始调整 Agent 策略，从\"全能型\"转向\"专用型\"。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.wired.com/story/gazing-into-sam-altmans-orb-now-proves-youre-human-on-tinder/\" target=\"_blank\">Altman 的\"全球虹膜球\"已成为 Tinder 的人脸验证工具</a></h3>\n<div class=\"meta\"><span class=\"src\">WIRED</span><span class=\"label\">AI技术</span></div>\n<div class=\"summary\">OpenAI 联合创始人 Sam Altman 的 Worldcoin 虹膜识别项目已与约会平台 Tinder 合作，用户可以通过虹膜扫描来证明自己是真人而非 AI bot。这一应用展示了生物识别技术在大规模消费场景中的落地，同时也引发了对隐私保护的广泛争议。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-news\">新闻</span> 美国立法与监管</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.cnbc.com/2026/04/17/tax-withholding-2026.html\" target=\"_blank\">财政部长 Bessent 建议调整工资税预扣，但警告操作失误风险</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC / Treasury</span><span class=\"label\">税收政策</span></div>\n<div class=\"summary\">美国财政部长 Scott Bessent 公开建议纳税人根据新的税法调整工资税预扣额度。但专家警告错误的预扣调整可能导致税务罚款或意外欠税。财政部正在更新预扣计算器以适应新税法的变更。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://financialservices.house.gov/\" target=\"_blank\">众议院金融服务委员会动态</a></h3>\n<div class=\"meta\"><span class=\"src\">House Financial Services</span><span class=\"label\">金融监管</span></div>\n<div class=\"summary\">委员会持续关注数字资产监管框架、消费者金融保护政策调整以及资本市场改革议题。在伊朗战争引发能源市场动荡的背景下，委员会成员呼吁加强对能源衍生品市场的监管审查。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-news\">新闻</span> <span id=\"data\"></span>市场数据概览</div>\n\n<div class=\"market-grid\">\n<div class=\"market-item\"><div class=\"name\">标普 500</div><div class=\"value up\">7,041</div><div class=\"chg up\">+0.26%</div></div>\n<div class=\"market-item\"><div class=\"name\">纳斯达克</div><div class=\"value up\">21,347</div><div class=\"chg up\">+0.50%</div></div>\n<div class=\"market-item\"><div class=\"name\">WTI 原油</div><div class=\"value down\">$89.50</div><div class=\"chg down\">-10.2%</div></div>\n<div class=\"market-item\"><div class=\"name\">黄金</div><div class=\"value up\">$3,120</div><div class=\"chg up\">+1.5%</div></div>\n<div class=\"market-item\"><div class=\"name\">美元指数</div><div class=\"value up\">104.2</div><div class=\"chg up\">+0.3%</div></div>\n<div class=\"market-item\"><div class=\"name\">VIX 恐慌指数</div><div class=\"value down\">16.8</div><div class=\"chg down\">-5.1%</div></div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> <span id=\"macro\"></span>宏观经济研究</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.imf.org/en/publications/weo/issues/2026/04/14/world-economic-outlook-april-2026\" target=\"_blank\">IMF 4月《世界经济展望》：战争阴影下的全球经济</a></h3>\n<div class=\"meta\"><span class=\"src\">IMF</span><span class=\"label\">宏观研究</span></div>\n<div class=\"summary\"><strong>核心发现：</strong>IMF 将 2026 年全球增长预测下调至 <strong>3.1%</strong>，并警告若中东战事持续升级且能源基础设施遭到严重破坏，全球增速可能跌破 2%，逼近衰退阈值。IMF 将常规\"基准预测\"改为\"参考预测\"以反映极端波动。伊朗经济预计萎缩 <strong>6.1%</strong>。中东能源冲击已显著削弱全球增长前景，供应链碎片化和通胀压力持续加剧。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.cnbc.com/2026/04/17/fed-governor-waller-says-iran-war-and-labor-market-risks-are-keeping-central-bank-on-hold.html\" target=\"_blank\">美联储理事 Waller：伊朗战争和劳动力市场风险使央行保持观望</a></h3>\n<div class=\"meta\"><span class=\"src\">Federal Reserve / CNBC</span><span class=\"label\">央行政策</span></div>\n<div class=\"summary\">美联储理事 Christopher Waller 表示，伊朗战争带来的通胀上行风险和劳动力市场的双重不确定性，使得美联储在利率决策上保持谨慎观望立场。战争引发的能源价格波动增加了通胀前景的复杂性，央行需要在抑制通胀和维持经济增长之间找到平衡。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.worldbank.org/en/news\" target=\"_blank\">世界银行 4 月地区经济半年报：全球经济增长普遍放缓</a></h3>\n<div class=\"meta\"><span class=\"src\">World Bank</span><span class=\"label\">全球经济</span></div>\n<div class=\"summary\">世界银行 4 月发布覆盖全球六大区域的地区经济半年报。报告判断当前全球经济增长普遍放缓，四大结构性挑战叠加：<strong>地缘冲突、债务高企、生产率低迷、贸易碎片化</strong>。新兴市场和发展中经济体面临的融资环境趋紧，多国面临债务风险。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> 金融市场研究</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.blackrock.com/lu/intermediaries/insights/global-weekly-commentary\" target=\"_blank\">BlackRock 周评：美伊谈判虽破裂，但经济动机推动各方走向和平</a></h3>\n<div class=\"meta\"><span class=\"src\">BlackRock Investment Institute</span><span class=\"label\">市场策略</span></div>\n<div class=\"summary\">BlackRock 认为尽管美伊谈判上周末破裂，但<strong>谈判本身能够启动就说明各方有强烈的经济动机结束冲突</strong>。建议投资者关注周期股与防御股的\"奇特组合\"（odd couple）策略——在不确定环境中同时配置增长型和防御型资产。BlackRock 强调地缘风险定价仍不充分，建议保持投资组合的多元化。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.blackrock.com/us/individual/insights\" target=\"_blank\">Larry Fink 2026 年致投资者信：长期投资帮助更多人分享国家增长成果</a></h3>\n<div class=\"meta\"><span class=\"src\">BlackRock</span><span class=\"label\">投资理念</span></div>\n<div class=\"summary\">BlackRock 董事长 Larry Fink 在 2026 年度致投资者信中探讨了地缘政治变革和 AI 如何重塑全球经济格局。Fink 认为长期投资是帮助普通民众分享国家经济增长的关键工具，并呼吁政策制定者关注退休保障和代际财富转移问题。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> 金融大佬观点</div>\n\n<div class=\"card card-blue\">\n<h3>巴菲特：手握 3,500 亿美元现金，等待\"大鱼跌到位\"</h3>\n<div class=\"meta\"><span class=\"src\">CNBC / 伯克希尔年报</span><span class=\"label\">投资观点</span></div>\n<div class=\"summary\">巴菲特在 4 月最新访谈中表示，当前市场下跌程度远不足以触发大规模入场。他说\"为了 5% 到 6% 的指数跌幅就进场，不是我的风格\"，并回顾接管伯克希尔以来市场至少有三次跌幅超过 50%。<strong>\"当前市场被 AI 热情推高，估值远未跌到让我兴奋的水平。\"</strong>3,500 亿美元现金储备是巴菲特有史以来最大的现金仓位。</div>\n</div>\n\n<div class=\"card card-blue\">\n<h3>Berkshire 股价落后标普 500 的反思</h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">投资对比</span></div>\n<div class=\"summary\">随着标普500在AI驱动下连创新高（纳指连续12个交易日上涨），伯克希尔·哈撒韦明显跑输大盘。巴菲特的\"现金为王\"策略与市场追逐AI成长股形成鲜明对比。这引发了一个经典争论：<strong>短期跑输 vs. 长期风控</strong>——巴菲特历史上多次通过等待极端低估机会获得超额回报，但错过本轮AI牛市的代价也不小。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> <span id=\"scholar\"></span>学者观点</div>\n\n<div class=\"card card-purple\">\n<h3><a href=\"https://krugman.blogs.nytimes.com/\" target=\"_blank\">克鲁格曼（Paul Krugman，2008年诺贝尔经济学奖）：伊朗战争终结石油美元霸权，将全球能源主导权推向中国</a></h3>\n<div class=\"meta\"><span class=\"src\">Krugman Substack / Business Insider</span><span class=\"label\">学者观点</span><span class=\"label\">诺贝尔奖</span></div>\n<div class=\"summary\">克鲁格曼在其 Substack 博客发表系列文章，核心观点：<strong>（1）石油美元体系正在瓦解。</strong>他在文中写道\"一个渴望能源的世界正被美国推开，转而投入中国的怀抱\"。<strong>（2）中国清洁技术出口已创历史纪录。</strong>路透社数据显示，2025年中国清洁技术出口额达到2220亿美元，电动汽车和电池出货量持续增长。<strong>（3）特朗普的能源政策正在自相矛盾。</strong>对伊朗的军事行动反而加强了美国地缘政治对手在全球能源转型中的地位。克鲁格曼警告，伊朗冲突正在重塑全球能源市场格局，而这种重塑将长期有利于中国。</div>\n</div>\n\n<div class=\"card card-purple\">\n<h3><a href=\"https://krugman.blogs.nytimes.com/\" target=\"_blank\">克鲁格曼：全球贸易面临 25% 关税激增，\"全面贸易战\"信号明确</a></h3>\n<div class=\"meta\"><span class=\"src\">Krugman / NSTL</span><span class=\"label\">学者观点</span><span class=\"label\">诺贝尔奖</span></div>\n<div class=\"summary\">克鲁格曼在另一篇文章中警告全球贸易正面临急剧恶化。他表示虽然有希望之光，但目前\"真的很难找到\"，所有信号都指向一场<strong>\"全面的全球贸易战\"</strong>。他对特朗普关税政策的长期经济后果表示严重担忧，认为这将加速全球供应链重构并削弱美国的贸易地位。</div>\n</div>\n\n<div class=\"card card-purple\">\n<h3><a href=\"https://wir2022.wid.world/\" target=\"_blank\">斯蒂格利茨（Joseph Stiglitz，2001年诺贝尔经济学奖）：2026年世界不平等报告</a></h3>\n<div class=\"meta\"><span class=\"src\">G20 / World Inequality Lab</span><span class=\"label\">学者观点</span><span class=\"label\">诺贝尔奖</span></div>\n<div class=\"summary\">由诺贝尔奖得主斯蒂格利茨主导、皮凯蒂（Thomas Piketty）等参与协调的<strong>2026年世界不平等报告</strong>在达沃斯期间发布。报告发出\"不平等紧急状态\"警告，呼吁建立\"国际不平等委员会\"。报告指出全球财富集中度继续攀升，AI 技术正在加剧劳动与资本之间的收入差距。斯蒂格利茨强调，当前经济政策缺乏对底层民众的有效保护机制。</div>\n</div>\n\n\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-davos\">达沃斯</span> <span id=\"davos\"></span>达沃斯论坛</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.jpmorgan.com/insights/banking/investment-banking/davos-takeaways\" target=\"_blank\">摩根大通总结达沃斯2026年会七大要点</a></h3>\n<div class=\"meta\"><span class=\"src\">J.P. Morgan</span><span class=\"label\">达沃斯</span></div>\n<div class=\"summary\">摩根大通总结了2026年达沃斯年会的核心共识：<strong>（1）地缘政治格局加速演变</strong>，欧洲在特朗普格陵兰议题上学会了\"挺身而出\"。<strong>（2）AI 从实验转向规模化部署</strong>，企业级 AI 应用进入\"关键拐点\"。<strong>（3）通胀仍是全球性紧迫问题</strong>，各国央行面临\"更高更久\"的利率环境。<strong>（4）能源转型与安全供给的双重挑战</strong>并存。<strong>（5）全球合作机制面临前所未有的压力。</strong></div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.weforum.org/stories/2026/01/economic-growth-takeaways-from-davos-2026/\" target=\"_blank\">WEF 官方：达沃斯2026的关键经济启示</a></h3>\n<div class=\"meta\"><span class=\"src\">World Economic Forum</span><span class=\"label\">达沃斯</span></div>\n<div class=\"summary\">WEF 官方总结了年会的经济共识：<strong>AI 将重塑全球生产力分布</strong>，各国需要在教育、基础设施和监管框架上做前瞻性投资。论坛特别关注\"负责任的AI\"理念——如何在推动技术创新的同时防止社会分裂。会议还讨论了全球债务可持续性、气候融资缺口和新兴市场的增长挑战。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://www.usnews.com/news/world/articles/2026-01-23/five-takeaways-from-davos-2026\" target=\"_blank\">US News 五大要点：欧洲学会对特朗普说不</a></h3>\n<div class=\"meta\"><span class=\"src\">US News / WEF</span><span class=\"label\">达沃斯</span></div>\n<div class=\"summary\">US News 总结达沃斯五大要点：<strong>（1）欧洲在格陵兰问题上学会了对特朗普说\"不\"</strong>，跨大西洋关系进入新的博弈阶段。<strong>（2）AI 治理成为核心议题</strong>，各国对AI监管框架的分歧凸显。<strong>（3）全球供应链重构持续</strong>，\"去风险\"取代\"脱钩\"成为主流叙事。<strong>（4）中东局势是最大不确定因素</strong>。<strong>（5）2026夏季达沃斯将于6月底在天津举行</strong>，聚焦\"如何将创新和科技潜力转化为经济增长和就业\"。</div>\n</div>\n\n<div class=\"card\">\n<h3><a href=\"https://baijiahao.baidu.com/s?id=1860532852856723075\" target=\"_blank\">2026夏季达沃斯将于6月底在天津举行</a></h3>\n<div class=\"meta\"><span class=\"src\">WEF / 新华社</span><span class=\"label\">达沃斯</span></div>\n<div class=\"summary\">世界经济论坛确认2026年夏季达沃斯（新领军者年会）将于6月底在中国天津举行。会议将聚焦如何通过<strong>更强的制度、增加的资本流动和前瞻性政策</strong>，将创新和技术潜力转化为经济增长、就业和新商业模式。这是在当前地缘政治紧张背景下，WEF 选择在中国举办的重要信号。</div>\n</div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> <span id=\"trend\"></span>科技趋势研究</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.gartner.com/cn/information-technology/articles/top-technology-trends-2026\" target=\"_blank\">Gartner 2026 年十大战略技术趋势</a></h3>\n<div class=\"meta\"><span class=\"src\">Gartner</span><span class=\"label\">技术趋势</span></div>\n<div class=\"summary\">Gartner 预测 2026 年将迎来\"AI原生开发平台\"的关键拐点。核心趋势包括：<strong>AI原生开发平台</strong>赋能精干团队快速构建软件；AI平台与基础设施成为企业架构的核心；以及组织需要在AI治理、数据隐私和网络安全方面做出战略性投资。技术领导者面临的不是技术选择，而是<strong>战略决策</strong>。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://a16z.com/\" target=\"_blank\">a16z：AI Agent 从\"演示\"走向\"真正可见的影响\"</a></h3>\n<div class=\"meta\"><span class=\"src\">a16z</span><span class=\"label\">行业预测</span></div>\n<div class=\"summary\">顶级风投 a16z 认为 2025 年市场讨论了很多 AI Agent 概念，但真正成熟尚未到位。2026 年的变化将体现在 Agent 从演示阶段走向\"真正可见的商业影响\"。a16z 关注的核心赛道包括 AI 编程助手、企业级 AI 工作流自动化和 AI 驱动的客服系统。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.scientificamerican.com/article/why-game-theory-could-be-critical-in-a-nuclear-war/\" target=\"_blank\">博弈论在核战争中的关键作用</a></h3>\n<div class=\"meta\"><span class=\"src\">Scientific American</span><span class=\"label\">科学分析</span></div>\n<div class=\"summary\">Scientific American 发表深度文章，分析博弈论在当前核威慑环境中的适用性。文章结合美伊冲突背景，探讨威慑理论、升级控制机制和信号传递等博弈论概念如何影响大国间的战略决策。中东局势使\"核博弈\"理论重新回到学术和政策讨论的中心。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> <span id=\"thinktank\"></span>智库与学术研究</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://www.nber.org/new.html\" target=\"_blank\">NBER 4 月最新工作论文</a></h3>\n<div class=\"meta\"><span class=\"src\">NBER</span><span class=\"label\">学术研究</span></div>\n<div class=\"summary\">NBER 4 月发布多篇重要工作论文（WP 35035-35041），研究方向包括：国际贸易中的 AI 相关产品、出生公民权对青少年犯罪的影响、住房市场测量方法等。其中关于<strong>国际AI贸易的研究</strong>使用大语言模型分析全球AI产品贸易格局，为理解AI产业的全球化趋势提供了新的实证证据。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://eng.globalaffairs.ru/articles/from-the-rupee-trap-to-strategic-development/\" target=\"_blank\">从\"卢比陷阱\"到战略发展：俄罗斯与印度、中国的新欧亚能源架构</a></h3>\n<div class=\"meta\"><span class=\"src\">Russia in Global Affairs</span><span class=\"label\">智库分析</span></div>\n<div class=\"summary\">Global Affairs 深度分析俄、中、印三国正在构建的新欧亚能源架构。文章认为美国制裁推动下的俄印贸易本币结算正在形成\"去美元化\"的雏形，但印度卢比的国际化面临结构性瓶颈。中俄能源贸易的结算创新可能成为全球金融体系变革的重要实验。</div>\n</div>\n\n<div class=\"card card-green\">\n<h3><a href=\"https://eng.globalaffairs.ru/articles/orban-falls-but-hungarys-realities-remain/\" target=\"_blank\">欧尔班下台但匈牙利现实依旧</a></h3>\n<div class=\"meta\"><span class=\"src\">Russia in Global Affairs</span><span class=\"label\">欧洲政治</span></div>\n<div class=\"summary\">文章分析匈牙利政治格局的变化及其对欧盟的影响。欧尔班的落败不意味着匈牙利政治的彻底转向，其民族主义政治遗产和亲俄立场已在匈牙利社会深深扎根。欧盟东扩和中东欧政治格局的调整将继续影响欧洲的地缘政治平衡。</div>\n</div>\n\n<div class=\"sep\"></div>\n\n\n<div class=\"sep\"></div>\n\n<div class=\"section-title\"><span class=\"tag tag-research\">研究</span> 金融风险监测</div>\n\n<div class=\"card card-red\">\n<h3><a href=\"https://www.cnbc.com/2026/04/18/iran-war-inflation-prices-energy-trump-economy-e.html\" target=\"_blank\">30+ 位央行家与政策制定者的共识：通胀风险大于衰退风险</a></h3>\n<div class=\"meta\"><span class=\"src\">CNBC</span><span class=\"label\">风险研判</span></div>\n<div class=\"summary\">CNBC 采访了超过 30 位央行行长、政策制定者和政治人物，他们的<strong>共识判断</strong>是：当前经济面临的首要风险来自通胀而非衰退。伊朗战争引发的能源价格冲击正在向核心通胀传导，而劳动力市场的韧性使央行难以快速降息。<strong>注意：这一观点与部分市场参与者押注的\"衰退交易\"形成矛盾。</strong></div>\n</div>\n\n<div class=\"card card-red\">\n<h3>债务风险叠加：世界银行警告全球债务水平创历史新高</h3>\n<div class=\"meta\"><span class=\"src\">World Bank / Treasury</span><span class=\"label\">债务危机</span></div>\n<div class=\"summary\">世界银行和财政部数据均显示全球主权债务水平已创历史新高。战争导致的军事开支激增进一步恶化了多国财政状况。新兴市场面临的<strong>再融资风险</strong>和<strong>汇率风险</strong>正在加剧，部分低收入国家已出现债务违约迹象。</div>";
+var el=document.getElementById('mainContent');
+var cur=DATES[DATES.length-1];
+function fmt(s){var p=s.split('-');return p[0]+' 年 '+parseInt(p[1])+' 月 '+parseInt(p[2])+' 日';}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function show(date){var c=CONTENTS[date];if(c){el.innerHTML=c;}else{el.innerHTML='<div class="empty-page"><div class="title">'+fmt(date)+'</div><p>暂无日报内容</p></div>';}cur=date;upNav();window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'',location.pathname+'#'+date);}
+function upNav(){var t=today();document.getElementById('navInfo').textContent=(cur===t?'今天 · ':'')+fmt(cur);document.getElementById('datePick').value=cur;var pi=DATES.indexOf(cur);var pb=document.getElementById('prevBtn');var nb=document.getElementById('nextBtn');pb.classList.add('off');pb.onclick=null;if(pi>=DATES.length-1||cur>=t){nb.classList.add('off');nb.onclick=null;}else{nb.classList.remove('off');nb.onclick=function(e){e.preventDefault();show(DATES[pi+1]);};}}
+document.getElementById('datePick').addEventListener('change',function(){var v=this.value;var idx=DATES.indexOf(v);if(idx>=0)show(v);else{el.innerHTML='<div class="empty-page"><div class="title">'+fmt(v)+'</div><p>暂无日报内容</p></div>';} });
+document.getElementById('refreshBtn').addEventListener('click',function(){location.reload(true);});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var mc=document.getElementById('mainContent');
+  var items=[];
+  mc.querySelectorAll('.section-title').forEach(function(s){items.push('\n--- '+s.textContent.trim()+' ---');});
+  mc.querySelectorAll('.card').forEach(function(c){var h3=c.querySelector('h3');var body=c.querySelector('.card-body');if(h3)items.push('\n【'+h3.textContent.trim()+'】');if(body)items.push(body.textContent.trim());});
+  var fullText='全球情报日报\n'+items.join('\n');
+  if(navigator.share){navigator.share({title:'全球情报日报',text:fullText}).catch(function(){});}
+  else{navigator.clipboard.writeText(fullText).then(function(){showTip('全文已复制到剪贴板');});}
+});
+// 手机端点链接弹出分享，电脑端正常跳转
+document.addEventListener('click',function(e){
+  if(!navigator.share)return;
+  var a=e.target.closest('a[href]');
+  if(!a)return;
+  var href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||a.target==='_blank'||a.classList.contains('toc-tag')||a.classList.contains('nav-btn'))return;
+  e.preventDefault();
+  var card=a.closest('.card');
+  var title=card?card.querySelector('h3'):null;
+  title=title?title.textContent.trim():'全球情报日报';
+  navigator.share({title:'全球情报日报',text:title+'\n'+href,url:href}).catch(function(){});
+});
+function showTip(msg){
+  var tip=document.createElement('div');
+  tip.textContent=msg;
+  tip.style.cssText='position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:.5rem 1rem;border-radius:8px;font-size:.85rem;z-index:999;transition:opacity .3s;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis';
+  document.body.appendChild(tip);
+  setTimeout(function(){tip.style.opacity='0';setTimeout(function(){tip.remove();},300);},2000);
+}
+var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);else upNav();
+window.addEventListener('popstate',function(){var h=location.hash.replace('#','');if(h&&DATES.indexOf(h)>=0)show(h);});
+})();</script>
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js");}</script>
+
 </body>
 </html>

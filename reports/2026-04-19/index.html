@@ -6,25 +6,25 @@
 <title>全球情报日报 - 2026 年 4 月 20 日</title>
 <style>:root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--orange:#d97706;--bg:#f1f5f9;--card:#fff}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:#1e293b;line-height:1.75;font-size:15px}
-.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:#fff;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:#1e293b;line-height:1.75;font-size:16px}
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:#fff;padding:1.2rem 1.5rem;text-align:center;position:relative;overflow:hidden}
 .header h1{font-size:2rem;letter-spacing:.05em}
 .header .sub{margin-top:.5rem;font-size:.85rem;opacity:.7}
 .container{max-width:860px;margin:0 auto;padding:1.5rem 1rem 3rem}
-.section-title{font-size:1.15rem;font-weight:700;margin:1.2rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:.5rem}
+.section-title{font-size:1.15rem;font-weight:700;margin:.8rem 0 .6rem;padding-bottom:.4rem;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:.5rem}
 .section-title .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:4px;font-weight:600;color:#fff}
 .tag-news{background:var(--blue)}
 .tag-research{background:var(--green)}
 .tag-urgent{background:var(--accent)}
 .card{background:var(--card);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.8rem;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .15s}
 .card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.card h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
+.card h3{font-size:1.02rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
 .card h3 a{color:var(--primary);text-decoration:none}
 .card h3 a:hover{text-decoration:underline}
 .card .meta{font-size:.78rem;color:#64748b;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 .card .meta .src{font-weight:600}
 .card .meta .label{font-size:.68rem;padding:.1rem .4rem;border-radius:3px;background:#f1f5f9;color:#475569;font-weight:500}
-.card .summary{font-size:.88rem;color:#334155;line-height:1.7}
+.card .summary{font-size:.94rem;color:#334155;line-height:1.7}
 .card .summary strong{color:var(--primary)}
 .card-red{border-left:4px solid var(--accent)}
 .card-blue{border-left:4px solid var(--blue)}
@@ -37,7 +37,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .market-item .chg{font-size:.8rem;font-weight:600}
 .up{color:var(--green)}.down{color:var(--accent)}.flat{color:#64748b}
 .footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0}
-.sep{height:1px;background:linear-gradient(to right,transparent,#e2e8f0,transparent);margin:1.5rem 0}
+.sep{height:1px;background:linear-gradient(to right,transparent,#e2e8f0,transparent);margin:.8rem 0}
 
 .card-purple{border-left:4px solid #7c3aed}
 .tag-scholar{background:#7c3aed}
@@ -385,6 +385,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <p>由 WPS 灵犀 AI 助手自动生成 · 21 个权威信源 · 仅供参考，不构成投资建议</p>
 </div>
 
+<script>
+document.addEventListener('click',function(e){
+  if(!navigator.share)return;
+  var a=e.target.closest('a[href]');
+  if(!a)return;
+  var href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||a.target==='_blank')return;
+  e.preventDefault();
+  var card=a.closest('.card');
+  var title=card?card.querySelector('h3'):null;
+  title=title?title.textContent.trim():'全球情报日报';
+  navigator.share({title:'全球情报日报',text:title+'\n'+href,url:href}).catch(function(){});
+});
+</script>
 <script>
 document.addEventListener('click',function(e){
   if(!navigator.share)return;
