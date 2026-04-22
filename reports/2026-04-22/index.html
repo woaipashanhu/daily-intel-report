@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球情报日报 - 2026年4月22日</title>
+<style>
+:root {
+  --bg: #f8f9fa; --card-bg: #ffffff; --text: #1a1a2e; --text2: #4a4a6a;
+  --accent: #2d5a27; --red: #c62828; --orange: #e65100; --blue: #1565c0;
+  --border: #e0e0e0; --tag-bg: #e8f5e9; --tag-text: #2e7d32;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08); --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; max-width: 960px; margin: 0 auto; padding: 16px; }
+.header { text-align: center; padding: 32px 16px 24px; border-bottom: 2px solid var(--accent); margin-bottom: 24px; }
+.header h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 4px; letter-spacing: 2px; }
+.header .date { font-size: 0.95rem; color: var(--text2); }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: var(--card-bg); border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow); }
+.nav a { color: var(--blue); text-decoration: none; font-size: 0.9rem; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; }
+.nav a:hover { background: var(--blue); color: white; }
+.nav .refresh-btn { cursor: pointer; background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; }
+.section { margin-bottom: 28px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: var(--text); padding: 10px 16px; background: linear-gradient(135deg, var(--accent), #3a7d34); color: white; border-radius: var(--radius) var(--radius) 0 0; display: flex; align-items: center; gap: 8px; }
+.section-title.urgent { background: linear-gradient(135deg, var(--red), #e53935); }
+.section-title.risk { background: linear-gradient(135deg, #6a1b9a, #8e24aa); }
+.section-title.history { background: linear-gradient(135deg, #37474f, #546e7a); }
+.section-title.outlook { background: linear-gradient(135deg, #0d47a1, #1565c0); }
+.cards { padding: 4px 0; }
+.card { background: var(--card-bg); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 10px; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: transform 0.15s; }
+.card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px rgba(0,0,0,0.12); }
+.card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--text); line-height: 1.4; }
+.card .meta { display: flex; gap: 10px; align-items: center; font-size: 0.78rem; color: var(--text2); margin-bottom: 8px; flex-wrap: wrap; }
+.card .meta .src { white-space: nowrap; }
+.card .meta .tag { background: var(--tag-bg); color: var(--tag-text); padding: 1px 8px; border-radius: 4px; font-weight: 500; }
+.card .meta .tag.red { background: #ffebee; color: var(--red); }
+.card .meta .tag.blue { background: #e3f2fd; color: var(--blue); }
+.card .meta .tag.purple { background: #f3e5f5; color: #6a1b9a; }
+.card .meta .tag.orange { background: #fff3e0; color: var(--orange); }
+.card .summary { font-size: 0.9rem; color: var(--text2); line-height: 1.65; }
+.card .summary a { color: var(--blue); text-decoration: none; word-break: break-all; }
+.card .summary a:hover { text-decoration: underline; }
+.card .summary strong { color: var(--text); }
+.card.card-red { border-left-color: var(--red); background: linear-gradient(to right, #fff5f5, var(--card-bg)); }
+.card.card-red h3 { color: var(--red); }
+.alert-badge { display: inline-block; background: var(--red); color: white; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; margin-right: 6px; font-weight: 600; vertical-align: middle; }
+.risk-meter { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+.risk-bar { flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+.risk-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+.risk-label { font-size: 0.78rem; font-weight: 600; min-width: 48px; }
+.market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; padding: 12px; }
+.market-item { background: var(--card-bg); border-radius: 8px; padding: 12px; text-align: center; box-shadow: var(--shadow); }
+.market-item .name { font-size: 0.8rem; color: var(--text2); margin-bottom: 4px; }
+.market-item .value { font-size: 1.15rem; font-weight: 700; }
+.market-item .value.up { color: #2e7d32; }
+.market-item .value.down { color: var(--red); }
+.market-item .chg { font-size: 0.78rem; }
+.market-item .chg.up { color: #2e7d32; }
+.market-item .chg.down { color: var(--red); }
+.history-item { display: flex; gap: 16px; padding: 10px 16px; border-bottom: 1px solid #eee; }
+.history-item:last-child { border-bottom: none; }
+.history-item .year { font-size: 0.9rem; font-weight: 700; color: var(--accent); min-width: 80px; white-space: nowrap; }
+.history-item .event { font-size: 0.88rem; color: var(--text2); }
+.outlook-table { width: 100%; border-collapse: collapse; }
+.outlook-table th, .outlook-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.88rem; }
+.outlook-table th { background: #e3f2fd; font-weight: 600; color: var(--blue); }
+.outlook-table td:first-child { white-space: nowrap; font-weight: 500; }
+.footer { text-align: center; padding: 24px; font-size: 0.8rem; color: #999; border-top: 1px solid var(--border); margin-top: 32px; }
+@media (max-width: 640px) {
+  body { padding: 8px; }
+  .header h1 { font-size: 1.4rem; }
+  .market-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>全球情报日报</h1>
+  <div class="date">2026年4月22日 · 星期三</div>
+</div>
+
+<div class="nav">
+  <a href="../2026-04-21/index.html">&larr; 上一日 (4月21日)</a>
+  <button class="refresh-btn" onclick="location.reload()">刷新</button>
+  <a href="../2026-04-23/index.html">下一日 (4月23日) &rarr;</a>
+</div>
+
+<!-- 紧急关注 -->
+<div class="section">
+  <div class="section-title urgent">&#9888; 紧急关注</div>
+  <div class="cards">
+
+    <div class="card card-red">
+      <h3><span class="alert-badge">头条</span>伊朗拒绝出席伊斯兰堡第二轮美伊谈判，特朗普宣布延长停火期限</h3>
+      <div class="meta"><span class="src">新华社 / 央视新闻 &middot; 4月22日</span><span class="tag red">地缘危机</span></div>
+      <div class="summary">
+        美伊两周临时停火协议原定北京时间4月22日8时到期。最后时刻出现戏剧性转折——<strong>伊朗正式拒绝出席</strong>预期在巴基斯坦伊斯兰堡举行的第二轮谈判，指责美方阻挠实质协议。特朗普应巴基斯坦总理及陆军参谋长请求，<strong>宣布延长停火期限</strong>，但维持海上封锁与军事高压态势，条件是德黑兰先拿出"统一的谈判方案"。原油价格在消息刺激下剧烈波动。当前停火仅延长数日，若谈判仍无法重启，军事冲突风险将再度飙升。
+        <br><a href="https://baijiahao.baidu.com/s?id=1863130406174201609" target="_blank">查看原文</a> &nbsp;
+        <a href="http://finance.sina.com.cn/wm/2026-04-22/doc-inhvitah5657866.shtml" target="_blank">新浪财经</a>
+      </div>
+    </div>
+
+    <div class="card card-red">
+      <h3><span class="alert-badge">突发</span>朝鲜2026年第七次导弹试射，半岛紧张局势持续升级</h3>
+      <div class="meta"><span class="src">日韩防务部门 &middot; 4月19-20日</span><span class="tag red">东亚安全</span></div>
+      <div class="summary">
+        2026年4月19日清晨，朝鲜从东部咸镜南道新浦一带向日本海发射数枚弹道导弹，飞行约140公里后落在半岛东岸附近海域。<strong>这是2026年以来朝鲜第七次试射导弹，仅4月份就发射了四次</strong>。美国当前深陷中东战事，朝鲜选择这一时机密集发射，引发对东亚安全真空的担忧。日本外务省借机炒作对华议题，引发中方反驳。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862952558439066495" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+    <div class="card card-red">
+      <h3><span class="alert-badge">贸易</span>中美贸易战再度升级，美国非法关税退款遭中方反击</h3>
+      <div class="meta"><span class="src">中国商务部 / 外交部 &middot; 4月21日</span><span class="tag red">贸易摩擦</span></div>
+      <div class="summary">
+        4月20日零时，美国海关与边境保护局CAPE系统上线，涉及<strong>1660亿美元（约1.13万亿人民币）的非法关税退款</strong>操作启动。中方表示将"立即反击，毫不犹豫"。此前美国方面放话若发现中国向伊朗提供武器，将加征50%关税；中方外交部强调将坚决维护多边自由贸易体制。中美贸易博弈进入新阶段。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862989038127051939" target="_blank">查看原文</a> &nbsp;
+        <a href="http://www.xinhuanet.com/english/special/chinaustrade/index.htm" target="_blank">新华社专题</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 宏观经济与央行 -->
+<div class="section">
+  <div class="section-title">&#127758; 宏观经济与央行</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>IMF 4月WEO：全球经济增速下调至3.1%，警告中东战争若升级或陷入衰退</h3>
+      <div class="meta"><span class="src">IMF &middot; 4月14日</span><span class="tag">宏观预测</span></div>
+      <div class="summary">
+        IMF发布4月版《世界经济展望》，将2026年全球经济增长预期从3.3%下调至<strong>3.1%</strong>，显著低于2000-2019年间3.7%的历史平均水平。报告指出，全球活动在经受去年更高贸易壁垒和不确定性上升后，如今面临中东战争爆发带来的"重大考验"。若冲突持续、能源基础设施遭受严重破坏，<strong>全球经济增速可能跌破2%，逼近IMF定义的衰退阈值</strong>。报告同时发布GFSR金融稳定报告，警示全球金融裂缝。
+        <br><a href="https://www.imf.org/en/publications/weo/issues/2026/04/14/world-economic-outlook-april-2026" target="_blank">IMF WEO原文</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1862453315815210004" target="_blank">中文解读</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>IMF财政监测报告：全球公共债务与GDP之比预计2029年达100%</h3>
+      <div class="meta"><span class="src">IMF Fiscal Monitor &middot; 4月15日</span><span class="tag">财政风险</span></div>
+      <div class="summary">
+        IMF发布4月版《财政监测报告》，主题为"<strong>面临压力的财政政策：债务高企，风险加剧</strong>"。报告显示，全球公共债务与GDP之比在2025年已上升至略低于94%，预计到2029年将达到100%。这一预测较2025年4月预期大幅恶化，疫情时期的财政扩张、地缘冲突导致的军费开支激增，以及人口老龄化带来的长期社保压力是主要推手。
+        <br><a href="https://www.imf.org/zh/publications/fm/issues/2026/04/15/fiscal-monitor-april-2026" target="_blank">IMF原文</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1863066295828132621" target="_blank">中文解读</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>中国一季度GDP同比增长5.0%，超市场预期实现良好开局</h3>
+      <div class="meta"><span class="src">国家统计局 &middot; 4月16日</span><span class="tag blue">中国经济</span></div>
+      <div class="summary">
+        国家统计局发布数据，2026年一季度国内生产总值<strong>334193亿元，同比增长5.0%</strong>，略高于市场预期的4.8%，较上年四季度加快0.5个百分点。这是"十五五"开局之年交出的首季成绩单。专家表示，多项指标显示中国经济在复杂的国际环境下保持了发展韧性，工业生产、消费投资均呈现积极信号。
+        <br><a href="https://stock.10jqka.com.cn/20260418/c676095447.shtml" target="_blank">查看原文</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1862791422116455291" target="_blank">权威解读</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>美国CPI同比跃升至3.3%，创近两年新高，降息预期大幅逆转</h3>
+      <div class="meta"><span class="src">Trading Economics / BEA &middot; 4月</span><span class="tag orange">通胀预警</span></div>
+      <div class="summary">
+        美国3月CPI同比<strong>跃升至3.3%</strong>，为2024年5月以来最高水平，较1-2月的2.4%大幅加速。中东战争推动能源价格飙升是主要推手。美联储3月维持利率3.75%不变，但随着通胀反弹，<strong>市场对美联储降息的预期已被大幅推迟甚至逆转</strong>。欧洲央行方面，经济学家调查显示ECB或于6月加息25个基点，主要因伊朗战争推高通胀预期至2.6%。
+        <br><a href="https://tradingeconomics.com/united-states/inflation-cpi" target="_blank">Trading Economics</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1862705481055994256" target="_blank">ECB加息预测</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>人民币兑美元中间价报6.8594，美元指数维持98上方高位</h3>
+      <div class="meta"><span class="src">东方财富 &middot; 4月22日</span><span class="tag">汇率市场</span></div>
+      <div class="summary">
+        4月22日人民币兑美元中间价<strong>6.8594，较前日上调54个基点</strong>；在岸人民币报6.8316，离岸人民币报6.8276。美元指数报<strong>98.38</strong>，维持高位运行。印度央行疑似出售美元以限制卢比贬值，新兴市场货币普遍承压。全球贸易不确定性上升背景下，人民币汇率呈现双向波动加大态势。
+        <br><a href="http://finance.sina.com.cn/wm/2026-04-22/doc-inhvixkh9449109.shtml" target="_blank">新浪财经</a> &nbsp;
+        <a href="https://finance.eastmoney.com/a/202604223713065029.html" target="_blank">东方财富</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 金融市场与投资 -->
+<div class="section">
+  <div class="section-title">&#128200; 金融市场与投资</div>
+  <div class="cards">
+
+    <div class="market-grid">
+      <div class="market-item"><div class="name">上证指数</div><div class="value up">4,085</div><div class="chg up">+0.07%</div></div>
+      <div class="market-item"><div class="name">深证成指</div><div class="value up">14,982</div><div class="chg up">+0.10%</div></div>
+      <div class="market-item"><div class="name">创业板指</div><div class="value up">3,689</div><div class="chg up">+0.31%</div></div>
+      <div class="market-item"><div class="name">道琼斯</div><div class="value down">48,400</div><div class="chg down">-0.09%</div></div>
+      <div class="market-item"><div class="name">标普500</div><div class="value down">7,006</div><div class="chg down">-0.27%</div></div>
+      <div class="market-item"><div class="name">纳斯达克</div><div class="value down">24,010</div><div class="chg down">-0.27%</div></div>
+      <div class="market-item"><div class="name">WTI原油</div><div class="value down">86.77</div><div class="chg down">-0.74%</div></div>
+      <div class="market-item"><div class="name">布伦特原油</div><div class="value">~87</div><div class="chg">震荡</div></div>
+      <div class="market-item"><div class="name">黄金</div><div class="value down">4,762</div><div class="chg down">-3.0%</div></div>
+      <div class="market-item"><div class="name">国内金价</div><div class="value down">1,039</div><div class="chg down">-1.66%</div></div>
+      <div class="market-item"><div class="name">美元指数</div><div class="value up">98.38</div><div class="chg up">+0.33%</div></div>
+      <div class="market-item"><div class="name">人民币/美元</div><div class="value">6.8316</div><div class="chg">持平</div></div>
+    </div>
+
+    <div class="card">
+      <h3>美股三大指数全线转跌，停火延长令避险资产大幅回调</h3>
+      <div class="meta"><span class="src">人民财讯 / 凤凰财经 &middot; 4月21日</span><span class="tag">美股</span></div>
+      <div class="summary">
+        北京时间4月21日晚间，美股三大指数小幅高开后全线转跌。道琼斯跌0.09%，标普500跌0.27%，纳斯达克跌0.27%。中概股集体下跌，中国金龙指数下挫2%。特朗普宣布延长停火后，<strong>黄金白银加速下跌，现货黄金跌超3%，期银跌近6%</strong>，油价直线拉升后回落。市场对中东局势的定价在"停火延期"与"谈判破裂"之间反复摇摆。
+        <br><a href="https://news.ifeng.com/c/8sVyysJ4ajT" target="_blank">凤凰财经</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>A股缩量震荡：上证微涨0.07%，商业航天板块掀涨停潮</h3>
+      <div class="meta"><span class="src">同花顺 &middot; 4月21日</span><span class="tag blue">A股</span></div>
+      <div class="summary">
+        4月21日A股市场缩量震荡，上证指数涨0.07%报4085.08点，深证成指涨0.1%，创业板指涨0.31%。北证50跌1.52%。板块方面，<strong>商业航天概念反复活跃，蜀道装备、有研复材20cm涨停</strong>，博云新材、中国卫星等涨停。消息面上，国家航天局发布2026年重要任务信息，天问二号将接近目标小行星，商业航天景气持续上行。
+        <br><a href="http://news.10jqka.com.cn/20260421/c676155343.shtml" target="_blank">同花顺</a> &nbsp;
+        <a href="https://dy.163.com/article/KR03UU8J05199NPP.html" target="_blank">商业航天详情</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>国内油价将迎来2026年首次下调，92号汽油预计降0.42元/升</h3>
+      <div class="meta"><span class="src">行业数据 &middot; 4月21日</span><span class="tag">大宗商品</span></div>
+      <div class="summary">
+        受国际油价从前期高位回落超20%影响，国内成品油价格将迎来2026年首次下调。<strong>92号汽油每升降0.42元至约8.49元/升，95号汽油降0.43元至约9.11元/升</strong>。布伦特原油从冲突初期高位回落至84美元/桶附近，WTI报86.77美元/桶。高盛维持"5月中旬前中东原油流量恢复"预测，但强调"双向风险"加大。
+        <br><a href="https://baijiahao.baidu.com/s?id=1863047759669403398" target="_blank">查看详情</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>全球银行4月狂发债1800亿：工行400亿二级资本债、中信400亿永续债领衔</h3>
+      <div class="meta"><span class="src">券商研报 &middot; 4月20日</span><span class="tag orange">银行资本</span></div>
+      <div class="summary">
+        2026年4月以来，中国银行业密集启动资本补充：工商银行400亿元二级资本债、中信银行400亿元永续债、招商银行300亿元永续债先后登场。仅4月就已发债约1800亿元。<strong>银行大规模补充资本的背后，是地缘冲突加剧、不良贷款风险上升和巴塞尔协议III达标压力的三重驱动</strong>。
+        <br><a href="https://baijiahao.baidu.com/s?id=1863037629931853831" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 科技前沿 -->
+<div class="section">
+  <div class="section-title">&#128300; 科技前沿</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>里程碑突破：西北大学成功实现人工神经元与活体脑细胞的通信</h3>
+      <div class="meta"><span class="src">Scientific American / Science Daily &middot; 4月18日</span><span class="tag blue">AI+脑机</span></div>
+      <div class="summary">
+        美国西北大学工程师取得脑机接口领域的标志性突破——<strong>成功打印出能够与活体脑细胞进行实际通信的人工神经元</strong>。这项技术向将机器与人类大脑融合迈出了重大一步，为未来治疗神经系统疾病、开发新一代脑机接口设备奠定了基础。研究成果发表于同行评审期刊。
+        <br><a href="https://www.sciencedaily.com/news/computers_math/artificial_intelligence/" target="_blank">Science Daily</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>SpaceX猎鹰9号完成"最后一收"，正式进入星舰时代</h3>
+      <div class="meta"><span class="src">SpaceX / 航天新闻 &middot; 4月21日</span><span class="tag blue">航天</span></div>
+      <div class="summary">
+        2026年4月21日凌晨，一枚猎鹰9号火箭从卡纳维拉尔角40号发射场升空，完成今年第48次发射。<strong>这标志着猎鹰9号时代即将落幕，SpaceX正式转向星舰（Starship）为主力运载工具</strong>。猎鹰9号作为人类航天史上最成功的可重复使用火箭，累计执行数百次任务，深刻改变了商业航天格局。
+        <br><a href="https://www.163.com/dy/article/KR2KJF5705322XHI.html" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>中国2026年航天日：天问二号将接近目标小行星，商业航天任务密集实施</h3>
+      <div class="meta"><span class="src">国家航天局 &middot; 4月17日</span><span class="tag blue">中国航天</span></div>
+      <div class="summary">
+        国家航天局在2026年"中国航天日"新闻发布会上发布年度重要任务信息。2026年航天任务密集实施，<strong>天问二号将接近目标小行星开展探测</strong>。商业航天方面，多家民营公司获得发射许可，市场景气度持续上行。A股商业航天板块在消息刺激下反复活跃。
+        <br><a href="https://www.163.com/dy/article/KR47UNDK0539HAXR.html" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>先进封装大战再起：台积电/日月光全面部署CoWoS、SoIC等核心封装技术</h3>
+      <div class="meta"><span class="src">行业分析 &middot; 4月20日</span><span class="tag">半导体</span></div>
+      <div class="summary">
+        AI芯片需求持续爆发推动先进封装竞赛升级。台积电等头部代工厂计划布局<strong>7座先进封装工厂</strong>，全面部署CoWoS、WMCM及SoIC三大核心封装技术。AI大模型训练对HBM（高带宽存储器）和先进封装的需求急剧增长，半导体行业正从"制程竞赛"转向"封装竞赛"。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862963055850557282" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 地缘政治与外交 -->
+<div class="section">
+  <div class="section-title">&#127760; 地缘政治与外交</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>美伊战争全景：无赢家的消耗战加速中东格局彻底洗牌</h3>
+      <div class="meta"><span class="src">澎湃新闻 / 综合分析 &middot; 4月20-21日</span><span class="tag red">中东局势</span></div>
+      <div class="summary">
+        自2026年2月美以对伊朗发动军事打击以来，冲突持续39天。美以累计打击伊朗近2000个目标，摧毁17艘军舰；以色列已摧毁伊朗约70%钢铁产能，重点打击石化设施。<strong>巴基斯坦斡旋下的14天临时停火于4月7日生效，但第二轮谈判因伊朗拒绝出席而搁浅</strong>。这场没有明确胜者的战争正加速中东地缘政治格局转变，多国重新评估对美依赖。
+        <br><a href="https://www.thepaper.cn/newsDetail_forward_33019240" target="_blank">澎湃新闻</a> &nbsp;
+        <a href="http://k.sina.com.cn/article_7857201856_1d45362c001904ia44.html" target="_blank">全景分析</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>WEF全球合作与增长特别会议在沙特吉达开幕，聚焦中东危机应对</h3>
+      <div class="meta"><span class="src">WEF / 沙通社 &middot; 4月22-23日</span><span class="tag">国际论坛</span></div>
+      <div class="summary">
+        世界经济论坛（WEF）"全球合作与增长"特别会议于4月22-23日在沙特吉达举行，主题为<strong>"构建共识，重振增长"</strong>。此次会议原定于2月举行，因中东局势发展被推迟。在全球经济增长承压、中东战火未灭的背景下，与会各国领导人将讨论能源安全、贸易碎片化、AI治理等紧迫议题。沙特作为东道主和能源大国，其斡旋角色备受关注。
+        <br><a href="https://sa.mofcom.gov.cn/jmxw/art/2026/art_b72300977dca470ebad291196f07be1b.html" target="_blank">商务部报道</a> &nbsp;
+        <a href="https://peoplesdaily.pdnews.cn/world/er/30051717365" target="_blank">会议变更背景</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>霍尔木兹海峡重开谈判在伦敦举行，40国呼吁立即恢复航行自由</h3>
+      <div class="meta"><span class="src">AP News / 人民日报海外版 &middot; 4月2-3日</span><span class="tag">国际航运</span></div>
+      <div class="summary">
+        4月2日，英国在伦敦召集40国举行虚拟峰会，讨论重开被封锁的霍尔木兹海峡。英国外交大臣库珀主持会议，<strong>IMO秘书长和多国代表呼吁立即恢复海峡航行自由</strong>。全球约20%的石油贸易途经霍尔木兹海峡，持续封锁对全球能源供应链构成严重威胁。军事规划人员后续在伦敦举行进一步磋商。
+        <br><a href="https://apnews.com/article/hormuz-strait-shipping-summit-uk-iran-ca2c6af551df98c81a39f2137e417856" target="_blank">AP News</a> &nbsp;
+        <a href="https://peoplesdaily.pdnews.cn/world/er/30051804179" target="_blank">人民日报</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>伊拉克什叶派领导人提名巴塞姆·巴德里为总理候选人</h3>
+      <div class="meta"><span class="src">Reuters &middot; 4月20日</span><span class="tag">中东政治</span></div>
+      <div class="summary">
+        伊拉克什叶派领导人已选定<strong>巴塞姆·阿尔-巴德里（Bassem Al-Badry）</strong>为总理候选人。在邻国伊朗遭受军事打击、中东地缘格局剧烈变化的背景下，伊拉克新政府的组建方向将直接影响地区力量平衡。伊拉克作为伊朗的邻国和什叶派主导国家，其外交取向值得关注。
+        <br><a href="https://www.usnews.com/news/world" target="_blank">US News</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>圣彼得堡列宁像遭清洗，4月22日列宁诞辰156周年引争议</h3>
+      <div class="meta"><span class="src">国际媒体 &middot; 4月21日</span><span class="tag">俄罗斯</span></div>
+      <div class="summary">
+        4月22日是列宁诞辰156周年纪念日。在俄乌冲突持续、俄罗斯国内政治氛围转变的背景下，圣彼得堡市对列宁纪念碑进行了清洗维护操作，引发舆论争议。该事件折射出俄罗斯社会对苏联历史遗产的复杂态度。
+        <br><a href="https://www.163.com/dy/article/KR2BDRN20553TENB.html" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 美国立法与监管 -->
+<div class="section">
+  <div class="section-title">&#9878; 美国立法与监管</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>美国加密货币立法再次"闯关"，参议院结束休会期后法案加速推进</h3>
+      <div class="meta"><span class="src">国会山 / 行业分析 &middot; 4月13-15日</span><span class="tag purple">数字资产</span></div>
+      <div class="summary">
+        美国参议院于4月13日结束复活节休会期，<strong>加密货币监管立法成为优先议题之一</strong>。美国财长贝森特（Bessent）等政界人士、加密货币行业及活跃议员加大了对国会的施压力度。在金融稳定报告警示金融裂缝、IMF全球债务风险加剧的背景下，监管框架的确定性对市场信心至关重要。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862489415253932947" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>2026年金融科技政策密集落地：央行明确AI治理体系要求</h3>
+      <div class="meta"><span class="src">行业综合 &middot; 4月</span><span class="tag">金融科技</span></div>
+      <div class="summary">
+        2026年金融科技监管进入新阶段。<strong>央行明确要求金融机构建立健全AI治理体系</strong>，强调"科技向善"的伦理价值观，防范AI在金融领域的系统性风险。此外，九部门联合发布《促进和规范电子单证应用规定》，鼓励数字人民币跨境支付。证监会发布创业板改革意见，增设第四套上市标准服务新质生产力。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862488334610579360" target="_blank">查看原文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 金融风险监测 -->
+<div class="section">
+  <div class="section-title risk">&#128680; 金融风险监测</div>
+  <div class="cards">
+
+    <div class="card card-red">
+      <h3>IMF GFSR警示六大金融裂缝：股市回调、通胀反弹、新兴市场资本外流</h3>
+      <div class="meta"><span class="src">IMF GFSR &middot; 4月16日</span><span class="tag red">系统性风险</span></div>
+      <div class="summary">
+        IMF发布4月版《全球金融稳定报告》，指出中东战争引发全球金融市场震荡：<strong>全球股市自2月下旬以来跌约8%，未来两年通胀预期被推高0.3-0.8个百分点</strong>。报告识别出六大金融裂缝：资产价格回调、信用利差扩大、新兴市场资本外流、银行盈利压力上升、主权债务可持续性恶化、非银行金融机构脆弱性增加。
+        <br><a href="https://baijiahao.baidu.com/s?id=1862603858450999670" target="_blank">IMF GFSR解读</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1863038558270513803" target="_blank">家办视角六条裂缝</a>
+      </div>
+      <div class="risk-meter">
+        <div class="risk-bar"><div class="risk-fill" style="width:82%;background:#c62828"></div></div>
+        <div class="risk-label" style="color:#c62828">高风险</div>
+      </div>
+    </div>
+
+    <div class="card card-red">
+      <h3>全球债务再创新高：IMF财政监测报告发出严厉警告</h3>
+      <div class="meta"><span class="src">IMF Fiscal Monitor &middot; 4月15日</span><span class="tag red">债务风险</span></div>
+      <div class="summary">
+        全球公共债务与GDP之比预计2029年达到<strong>100%</strong>。疫情冲击带来的财政扩张基数、地缘冲突导致军费激增、人口老龄化的社保压力三重推动下，全球债务可持续性面临严峻挑战。罗杰斯此前警告称2026年可能爆发"最惨烈金融危机"，美国国债已超36万亿美元。
+        <br><a href="https://www.imf.org/zh/publications/fm/issues/2026/04/15/fiscal-monitor-april-2026" target="_blank">IMF原文</a> &nbsp;
+        <a href="https://baijiahao.baidu.com/s?id=1862500198379213739" target="_blank">罗杰斯预警</a>
+      </div>
+      <div class="risk-meter">
+        <div class="risk-bar"><div class="risk-fill" style="width:75%;background:#e65100"></div></div>
+        <div class="risk-label" style="color:#e65100">中高风险</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>新兴市场债券销售快速上升，印度央行疑似干预汇市</h3>
+      <div class="meta"><span class="src">财联社 &middot; 4月22日</span><span class="tag orange">新兴市场</span></div>
+      <div class="summary">
+        新兴市场债券销售近期出现快速上升，部分国家通过发行债券应对资本外流压力。<strong>交易员称印度央行可能出售美元以限制卢比贬值</strong>。在美元走强、地缘风险上升的背景下，新兴市场货币普遍承压，部分脆弱经济体面临外部融资环境恶化的风险。
+        <br><a href="https://www.cls.cn/subject/1556" target="_blank">财联社环球情报</a>
+      </div>
+      <div class="risk-meter">
+        <div class="risk-bar"><div class="risk-fill" style="width:55%;background:#f9a825"></div></div>
+        <div class="risk-label" style="color:#f9a825">中等风险</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>乌克兰4月面临"真正最关键时刻"：美国对俄石油制裁态度摇摆</h3>
+      <div class="meta"><span class="src">网易 / 综合分析 &middot; 4月21日</span><span class="tag">制裁风险</span></div>
+      <div class="summary">
+        4月15日，特朗普政府拒绝进一步收紧对俄罗斯石油制裁，引发乌克兰方面强烈不满。美国对俄制裁态度的<strong>"变脸"——从"收紧"到"松绑"——成为局势中最具戏剧性的变数</strong>。在地缘资源博弈中，制裁工具的政治化倾向日益明显，削弱了制裁的可信度和效果。
+        <br><a href="https://m.163.com/dy/article/KR16H2OE05531Z9P.html" target="_blank">查看原文</a>
+      </div>
+      <div class="risk-meter">
+        <div class="risk-bar"><div class="risk-fill" style="width:60%;background:#f9a825"></div></div>
+        <div class="risk-label" style="color:#f9a825">中等风险</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 俄罗斯视角 -->
+<div class="section">
+  <div class="section-title">&#127489;&#127482; 俄罗斯视角</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>《全球事务》2026年第2期：伊朗危机与俄罗斯的七大教训</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 2026年4-6月</span><span class="tag">俄方分析</span></div>
+      <div class="summary">
+        俄罗斯顶级国际关系期刊《全球事务》（Global Affairs）发布2026年第2期，封面专题为<strong>"伊朗危机与俄罗斯：七大教训"</strong>，由伊万·季莫费耶夫（Ivan N. Timofeev）撰文分析。同期刊登"俄日关系危机能否逆转？"（德米特里·斯特列尔佐夫）和"幻影威胁"（亚历山大·维尔希宁）等深度文章。该刊从俄罗斯战略视角审视中东战争对全球权力格局的影响。
+        <br><a href="https://eng.globalaffairs.ru/" target="_blank">Global Affairs官网</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>俄罗斯黄金交易同比大增500%，美元霸权受挑战信号凸显</h3>
+      <div class="meta"><span class="src">黄金资讯 &middot; 4月22日</span><span class="tag orange">去美元化</span></div>
+      <div class="summary">
+        在美伊战争和西方制裁加剧的背景下，<strong>俄罗斯黄金交易量同比大增500%</strong>，反映出俄罗斯加速推进去美元化战略。达利欧近期撰文将2026年比作1936年，警告美元霸权终结和世界秩序重塑。俄罗斯通过增加黄金储备、推动本币结算等方式，持续降低对美元体系的依赖。
+        <br><a href="http://gold.cnfol.com/jinshizhibo/20260422/32163217.shtml" target="_blank">查看原文</a> &nbsp;
+        <a href="http://www.zhihu.com/question/2010154250227958279/answer/2016469266547901468" target="_blank">达利欧长文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 学术与智库 -->
+<div class="section">
+  <div class="section-title">&#128218; 学术与智库</div>
+  <div class="cards">
+
+    <div class="card">
+      <h3>IMF三大春季报告齐发：WEO + GFSR + 财政监测报告构成完整风险图景</h3>
+      <div class="meta"><span class="src">IMF &middot; 4月14-15日</span><span class="tag">IMF研究</span></div>
+      <div class="summary">
+        IMF春季会议期间连续发布三份核心报告，构成2026年全球经济的完整风险评估图景。<strong>WEO聚焦增长预测（3.1%，下行风险突出）</strong>，GFSR聚焦金融市场脆弱性（六大裂缝），<strong>财政监测报告聚焦债务可持续性（2029年达100%GDP）</strong>。三者交叉印证的结论是：全球经济正同时面临增长放缓、金融脆弱和债务高企的三重挑战。
+        <br><a href="https://www.imf.org/en/publications" target="_blank">IMF出版物</a> &nbsp;
+        <a href="https://www.imf.org/en/live" target="_blank">IMF直播回放</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>达利欧最新长文：将2026年比作1936年，警告世界秩序处于"毁灭之下"</h3>
+      <div class="meta"><span class="src">Ray Dalio / Bridgewater &middot; 4月</span><span class="tag">学者观点</span></div>
+      <div class="summary">
+        桥水基金创始人瑞·达利欧发表最新长文，<strong>将2026年与1936年类比</strong>——一战与二战之间的关键转折年。达利欧警告当前局势与1913-1914年、1938-1939年"高度相似"，指出帝国过度扩张、国内分裂、国际秩序崩塌是周期性规律。他预测未来5年大规模冲突概率超过50%，强调普通人需建立危机意识。第62届慕尼黑安全会议主题"Under Destruction（毁灭之下）"与之呼应。
+        <br><a href="http://www.zhihu.com/question/2010154250227958279/answer/2016469266547901468" target="_blank">知乎解读</a> &nbsp;
+        <a href="https://www.163.com/dy/article/KQV2AC8Q055616Z4.html" target="_blank">网易解读</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>NBER 4月最新工作论文：战略转移定价、性别薪酬差异等前沿研究</h3>
+      <div class="meta"><span class="src">NBER &middot; 2026年4月</span><span class="tag">学术研究</span></div>
+      <div class="summary">
+        美国经济研究局（NBER）4月发布多篇工作论文，包括：WP 35094研究纵向一体化企业的<strong>战略转移定价</strong>行为（Kakani等）；WP 35043分析制药行业纵向整合中的<strong>定价策略与市场竞争</strong>关系。ECB同期发布No. 3220工作论文，探讨银行对非银行放贷与信贷重新配置的关系。这些研究为政策制定提供了实证基础。
+        <br><a href="https://www.nber.org/new.html" target="_blank">NBER最新论文</a> &nbsp;
+        <a href="https://www.nber.org/papers" target="_blank">NBER论文库</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>BlackRock地缘风险仪表盘更新，Moody's将全球能源行业展望转为"正面"</h3>
+      <div class="meta"><span class="src">BlackRock / Moody's &middot; 4月</span><span class="tag">机构研究</span></div>
+      <div class="summary">
+        BlackRock投资研究所更新其<strong>地缘风险交互仪表盘</strong>，持续追踪中东战争、中美博弈等对全球资产配置的影响。BlackRock 2026年度投资展望核心观点为"微观即宏观"——AI基础设施建设规模之大，已足以影响宏观经济表现。Moody's 4月16日将全球能源行业评级展望转为"正面"，<strong>认为中东冲突推高油价将提振能源企业盈利</strong>。
+        <br><a href="https://www.blackrock.com/corporate/insights/blackrock-investment-institute/interactive-charts/geopolitical-risk-dashboard" target="_blank">BlackRock仪表盘</a> &nbsp;
+        <a href="https://www.moodysanalytics.com/" target="_blank">Moody's</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>WEF《2026年全球风险报告》深度解读：四大结构性风险主导十年</h3>
+      <div class="meta"><span class="src">WEF / 分析解读 &middot; 1-4月</span><span class="tag">风险治理</span></div>
+      <div class="summary">
+        世界经济论坛发布的《2026年全球风险报告》汇集1400余位全球政界、商界和学界领袖观点，识别出未来十年主导的四大结构性风险：<strong>地缘政治对抗加剧、气候行动迟滞、技术治理缺位、社会两极分化</strong>。报告强调，这些风险相互关联且不断强化，需要跨领域、跨国界的协调应对。
+        <br><a href="http://k.sina.com.cn/article_7857201856_1d45362c001904df1e.html" target="_blank">报告解读</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>复旦大学发展研究院：2026年美国对华贸易政策议程与"管理性贸易"新框架</h3>
+      <div class="meta"><span class="src">复旦大学DDI &middot; 3月</span><span class="tag blue">中美关系</span></div>
+      <div class="summary">
+        复旦大学发展研究院发布分析报告，梳理2026年美国贸易政策议程。USTR代表格里尔向国会提交的《2026年贸易政策议程》揭示出一个新概念——<strong>"管理性贸易"（Managed Trade）</strong>，标志着美国对华经贸策略从传统关税对抗转向更加精细化的管控模式。在中美博弈进入相持阶段的背景下，这一框架的变数值得关注。
+        <br><a href="https://fddi.fudan.edu.cn/c8/91/c21253a772241/page.htm" target="_blank">复旦大学原文</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 历史上的今天 -->
+<div class="section">
+  <div class="section-title history">&#128197; 历史上的今天 · 4月22日</div>
+  <div class="cards">
+    <div class="history-item"><div class="year">353年</div><div class="event">东晋书法家王羲之与谢安、孙绰等名士举办兰亭集会，后撰写千古名篇《兰亭集序》，成为中国书法艺术最高象征</div></div>
+    <div class="history-item"><div class="year">1870年</div><div class="event">俄国革命家弗拉基米尔·伊里奇·列宁（Vladimir Lenin）诞辰。列宁领导的十月革命改变了20世纪世界历史进程</div></div>
+    <div class="history-item"><div class="year">1915年</div><div class="event">第一次世界大战期间，德军在比利时伊普尔首次大规模使用氯气，化学武器首次登上战争舞台，开启现代化学战序幕</div></div>
+    <div class="history-item"><div class="year">1945年</div><div class="event">苏联红军成功完成对柏林的包围，纳粹德国末日临近。希特勒在柏林地堡中度过最后一个生日</div></div>
+    <div class="history-item"><div class="year">1958年</div><div class="event">人民英雄纪念碑在北京天安门广场建成揭幕，纪念近百年中国革命先烈</div></div>
+    <div class="history-item"><div class="year">1970年</div><div class="event">首个"地球日"（Earth Day）在美国举行，由参议员盖洛德·尼尔森发起，2000万人参与，推动现代环保运动兴起</div></div>
+    <div class="history-item"><div class="year">1992年</div><div class="event">联合国在巴西里约热内卢召开地球峰会，通过《气候变化框架公约》和《生物多样性公约》，奠定全球环境治理基础</div></div>
+    <div class="history-item"><div class="year">2016年</div><div class="event">《巴黎协定》在纽约联合国总部正式签署，全球175个国家签署这一历史性气候变化协议</div></div>
+  </div>
+</div>
+
+<!-- 下周前瞻 -->
+<div class="section">
+  <div class="section-title outlook">&#128197; 下周前瞻 · 4月23日-29日</div>
+  <div class="cards">
+    <table class="outlook-table">
+      <tr><th>日期</th><th>事件</th><th>关注点</th></tr>
+      <tr><td>4月23日（周三）</td><td>WEF吉达特别会议·第二天</td><td>全球合作与增长会议闭幕声明；中东危机各方表态</td></tr>
+      <tr><td>4月23日（周三）</td><td>美伊停火延期后续</td><td>伊朗是否软化立场、第三轮谈判可能性</td></tr>
+      <tr><td>4月24日（周四）</td><td>美国初请失业金人数</td><td>劳动力市场韧性评估；美联储政策预期</td></tr>
+      <tr><td>4月25日（周五）</td><td>美国PCE物价指数（核心通胀指标）</td><td>美联储最关注的通胀指标；市场对降息路径的定价</td></tr>
+      <tr><td>4月25日（周五）</td><td>密歇根大学消费者信心指数</td><td>战争对消费信心的影响</td></tr>
+      <tr><td>4月26日（周六）</td><td>朝鲜半岛局势动态</td><td>朝鲜是否继续导弹试射；美韩日三方协调</td></tr>
+      <tr><td>4月27日（周日）</td><td>中美贸易谈判动态</td><td>1660亿关税退款后续；中方反制措施</td></tr>
+      <tr><td>4月28日（周一）</td><td>中国4月官方PMI</td><td>"十五五"开局之月经济景气度</td></tr>
+      <tr><td>4月29日（周二）</td><td>美国一季度GDP初值</td><td>战争影响下的经济增长韧性</td></tr>
+      <tr><td>4月29日（周二）</td><td>全球央行官员密集讲话周</td><td>鲍威尔/拉加德等关于通胀和利率的最新表态</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>全球情报日报 &middot; 2026年4月22日 &middot; 自动生成</p>
+  <p>数据来源：IMF、美联储、世界银行、CNBC、WEF、BlackRock、Moody's、Gartner、a16z、WIRED、NBER、PIIE、BEA、Scientific American、美国财政部、Congress.gov、Russia in Global Affairs 等25+信源</p>
+  <p><a href="https://woaipashanhu.github.io/daily-intel-report/" target="_blank">日报主页</a></p>
+</div>
+
+</body>
+</html>

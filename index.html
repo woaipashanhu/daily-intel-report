@@ -2,203 +2,36 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#0f172a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="情报日报">
-<link rel="manifest" href="/manifest.json">
-<title>全球情报日报</title>
-<style>:root{--primary:#0f172a;--accent:#dc2626;--blue:#2563eb;--green:#059669;--orange:#d97706;--bg:#f1f5f9;--card:#fff}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:#1e293b;line-height:1.75;font-size:16px}
-.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);color:#fff;padding:1rem 1.5rem;text-align:center;position:relative;overflow:hidden}
-.header h1{font-size:1.3rem;letter-spacing:.05em}
-.header .sub{margin-top:.3rem;font-size:.8rem;opacity:.7}
-.container{max-width:860px;margin:0 auto;padding:1.5rem 1rem 3rem}
-.section-title{font-size:1.15rem;font-weight:700;margin:.8rem 0 .6rem;padding-bottom:.4rem;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:.5rem}
-.section-title .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:4px;font-weight:600;color:#fff}
-.tag-news{background:var(--blue)}
-.tag-research{background:var(--green)}
-.tag-urgent{background:var(--accent)}
-.card{background:var(--card);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.8rem;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.card h3{font-size:1.02rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
-.card h3 a{color:var(--primary);text-decoration:none}
-.card h3 a:hover{text-decoration:underline}
-.card .meta{font-size:.78rem;color:#64748b;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.card .meta .src{font-weight:600}
-.card .meta .label{font-size:.68rem;padding:.1rem .4rem;border-radius:3px;background:#f1f5f9;color:#475569;font-weight:500}
-.card .summary{font-size:.94rem;color:#334155;line-height:1.7}
-.card .summary strong{color:var(--primary)}
-.card-red{border-left:4px solid var(--accent)}
-.card-blue{border-left:4px solid var(--blue)}
-.card-green{border-left:4px solid var(--green)}
-.alert-badge{display:inline-block;font-size:.65rem;padding:.15rem .4rem;border-radius:3px;background:var(--accent);color:#fff;vertical-align:middle;margin-right:.3rem;font-weight:600}
-.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem;margin:1rem 0}
-.market-item{background:var(--card);border-radius:8px;padding:.8rem;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.market-item .name{font-size:.78rem;color:#64748b;font-weight:500}
-.market-item .value{font-size:1.2rem;font-weight:700;margin:.2rem 0}
-.market-item .chg{font-size:.8rem;font-weight:600}
-.up{color:var(--green)}.down{color:var(--accent)}.flat{color:#64748b}
-.footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0}
-.sep{height:1px;background:linear-gradient(to right,transparent,#e2e8f0,transparent);margin:.8rem 0}
-
-.card-purple{border-left:4px solid #7c3aed}
-.tag-scholar{background:#7c3aed}
-.tag-davos{background:#0891b2}
-
-.toc-bar{background:var(--card);border-radius:10px;padding:.6rem .8rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow-x:auto}
-.toc-inner{display:flex;flex-wrap:wrap;gap:.35rem}
-.toc-tag{display:inline-block;padding:.25rem .65rem;font-size:.75rem;border-radius:20px;background:#f1f5f9;color:#475569;text-decoration:none;white-space:nowrap;transition:all .15s;font-weight:500}
-.toc-tag:hover{background:var(--primary);color:#fff}
-
-.nav-bar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0;padding:.7rem 1rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
-.nav-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;font-size:1.1rem;color:#0f172a;transition:all .15s;text-decoration:none;font-weight:700}
-.nav-btn:hover{background:#0f172a;color:#fff;border-color:#0f172a}
-.nav-btn.off{opacity:.2;pointer-events:none}
-.nav-info{font-size:.95rem;font-weight:700;color:#0f172a;min-width:220px;text-align:center}
-.nav-sep{width:1px;height:20px;background:#e2e8f0}
-.date-pick{padding:.3rem .6rem;border:1px solid #e2e8f0;border-radius:6px;font-size:.82rem;color:#0f172a;cursor:pointer;background:#fff}
-.date-pick:focus{outline:none;border-color:#2563eb}
-.refresh-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:42px;height:42px;border-radius:50%;background:#0f172a;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:all .2s;z-index:200}
-.refresh-btn:hover{transform:scale(1.1)}
-.copy-btn{position:fixed;bottom:1.5rem;left:1.5rem;width:42px;height:42px;border-radius:50%;background:#0f172a;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:all .2s;z-index:200}
-.copy-btn:hover{transform:scale(1.1)}
-.empty-page{text-align:center;padding:4rem 1rem;color:#94a3b8}
-.empty-page .title{font-size:1rem;font-weight:600;color:#475569}
-.loading{text-align:center;padding:3rem;color:#94a3b8;font-size:.95rem}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球情报日报 - 归档</title>
+<style>
+:root { --bg: #f8f9fa; --card-bg: #fff; --accent: #2d5a27; --text: #1a1a2e; --text2: #4a4a6a; --border: #e0e0e0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+.header { text-align: center; padding: 40px 16px 32px; border-bottom: 2px solid var(--accent); margin-bottom: 28px; }
+.header h1 { font-size: 2rem; color: var(--accent); letter-spacing: 3px; margin-bottom: 8px; }
+.header p { color: var(--text2); font-size: 0.9rem; }
+.date-list { display: flex; flex-direction: column; gap: 8px; }
+.date-link { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--card-bg); border-radius: 10px; text-decoration: none; color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.15s, box-shadow 0.15s; border-left: 4px solid var(--accent); }
+.date-link:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #f0fff0; }
+.date-text { font-weight: 600; font-size: 1rem; }
+.weekday { font-size: 0.85rem; color: var(--text2); background: #f0f0f0; padding: 2px 10px; border-radius: 12px; }
+.footer { text-align: center; padding: 32px; font-size: 0.8rem; color: #999; margin-top: 40px; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
-
 <div class="header">
-<h1>Global Intelligence Daily</h1>
-<div class="sub">全球情报日报</div>
+  <h1>全球情报日报</h1>
+  <p>每日精选25+权威信源，覆盖全球政经、金融、科技与地缘风险</p>
 </div>
+<div class="date-list">
+    <a href="reports/2026-04-22/index.html" class="date-link"><span class="date-text">2026年4月22日</span><span class="weekday">星期三</span></a>
+    <a href="reports/2026-04-20/index.html" class="date-link"><span class="date-text">2026年4月20日</span><span class="weekday">星期一</span></a>
+    <a href="reports/2026-04-19/index.html" class="date-link"><span class="date-text">2026年4月19日</span><span class="weekday">星期日</span></a>
 
-<div class="nav-bar">
-<a class="nav-btn" id="prevBtn" title="上一日">&lsaquo;</a>
-<div class="nav-info" id="navInfo"></div>
-<a class="nav-btn" id="nextBtn" title="下一日">&rsaquo;</a>
-<div class="nav-sep"></div>
-<input type="date" class="date-pick" id="datePick" value="2026-04-20">
 </div>
-
-<div class="container" id="mainContent">
-<div class="loading">正在加载...</div>
-</div>
-
 <div class="footer">
-<p>由 WPS 灵犀 AI 助手自动生成 · 21 个权威信源 · 仅供参考，不构成投资建议</p>
+  <p>全球情报日报 &middot; 自动生成 &middot; GitHub Pages 部署</p>
 </div>
-
-<button class="copy-btn" id="copyBtn" title="复制全文">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-</button>
-
-<button class="refresh-btn" id="refreshBtn" title="刷新">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-</button>
-
-<script>(function(){
-var el=document.getElementById('mainContent');
-var cur='';
-var cache={};
-var allDates=[];
-
-function initDates(){
-  var promises=[];
-  for(var i=0;i<30;i++){
-    var d=new Date();d.setDate(d.getDate()-i);
-    var ds=fmtDate(d);
-    allDates.push(ds);
-    (function(date){
-      promises.push(
-        fetch('/reports/'+date+'/index.html').then(function(r){
-          if(r.ok)return r.text();throw 'no';
-        }).then(function(html){
-          var m=html.match(/<div class="container"[^>]*>([\s\S]+?)<\/div>\s*<div class="footer">/);
-          if(m){cache[date]=m[1].trim();}
-        }).catch(function(){})
-      );
-    })(ds);
-  }
-  Promise.all(promises).then(function(){
-    allDates=allDates.filter(function(d){return cache[d];});
-    if(allDates.length===0)allDates=[today()];
-    var h=location.hash.replace('#','');
-    if(h&&cache[h]){show(h);}
-    else{show(allDates[0]);}
-  });
-}
-
-function today(){var d=new Date();return fmtDate(d);}
-function fmtDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function fmtCN(s){var p=s.split('-');return p[0]+' 年 '+parseInt(p[1])+' 月 '+parseInt(p[2])+' 日';}
-function show(date){
-  cur=date;
-  var c=cache[date];
-  if(c){el.innerHTML=c;}
-  else{el.innerHTML='<div class="empty-page"><div class="title">'+fmtCN(date)+'</div><p>暂无日报内容</p></div>';}
-  upNav();
-  window.scrollTo({top:0,behavior:'smooth'});
-  history.replaceState(null,'',location.pathname+'#'+date);
-}
-function upNav(){
-  var t=today();
-  document.getElementById('navInfo').textContent=(cur===t?'今天 \u00b7 ':'')+fmtCN(cur);
-  document.getElementById('datePick').value=cur;
-  var pi=allDates.indexOf(cur);
-  var pb=document.getElementById('prevBtn');
-  var nb=document.getElementById('nextBtn');
-  if(pi<=0){pb.classList.add('off');pb.onclick=null;}
-  else{pb.classList.remove('off');pb.onclick=function(e){e.preventDefault();show(allDates[pi-1]);};}
-  if(pi>=allDates.length-1){nb.classList.add('off');nb.onclick=null;}
-  else{nb.classList.remove('off');nb.onclick=function(e){e.preventDefault();show(allDates[pi+1]);};}
-}
-
-document.getElementById('datePick').addEventListener('change',function(){
-  var v=this.value;
-  if(cache[v])show(v);
-  else{el.innerHTML='<div class="empty-page"><div class="title">'+fmtCN(v)+'</div><p>暂无日报内容</p></div>';}
-});
-
-document.getElementById('refreshBtn').addEventListener('click',function(){location.reload(true);});
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  var items=[];
-  el.querySelectorAll('.section-title').forEach(function(s){items.push('\n--- '+s.textContent.trim()+' ---');});
-  el.querySelectorAll('.card').forEach(function(c){var h3=c.querySelector('h3');var body=c.querySelector('.card-body');if(h3)items.push('\n\u3010'+h3.textContent.trim()+'\u3011');if(body)items.push(body.textContent.trim());});
-  var fullText='全球情报日报\n'+items.join('\n');
-  if(navigator.share){navigator.share({title:'全球情报日报',text:fullText}).catch(function(){});}
-  else{navigator.clipboard.writeText(fullText).then(function(){showTip('全文已复制到剪贴板');});}
-});
-
-document.addEventListener('click',function(e){
-  if(!navigator.share)return;
-  var a=e.target.closest('a[href]');
-  if(!a)return;
-  var href=a.getAttribute('href');
-  if(!href||href.startsWith('#')||a.target==='_blank'||a.classList.contains('toc-tag')||a.classList.contains('nav-btn'))return;
-  e.preventDefault();
-  var card=a.closest('.card');
-  var title=card?card.querySelector('h3'):null;
-  title=title?title.textContent.trim():'全球情报日报';
-  navigator.share({title:'全球情报日报',text:title+'\n'+href,url:href}).catch(function(){});
-});
-
-function showTip(msg){
-  var tip=document.createElement('div');
-  tip.textContent=msg;
-  tip.style.cssText='position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:.5rem 1rem;border-radius:8px;font-size:.85rem;z-index:999;transition:opacity .3s;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis';
-  document.body.appendChild(tip);
-  setTimeout(function(){tip.style.opacity='0';setTimeout(function(){tip.remove();},300);},2000);
-}
-
-initDates();
-})();</script>
-<script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js");}</script>
-
 </body>
 </html>
