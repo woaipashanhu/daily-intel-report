@@ -16,12 +16,12 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
 .header { text-align: center; padding: 32px 16px 24px; border-bottom: 2px solid var(--accent); margin-bottom: 24px; }
 .header h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 4px; letter-spacing: 2px; }
 .header .date { font-size: 0.95rem; color: var(--text2); }
+.header .source-note { font-size: 0.78rem; color: #999; margin-top: 8px; }
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: var(--card-bg); border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow); }
 .nav a { color: var(--blue); text-decoration: none; font-size: 0.9rem; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; }
 .nav a:hover { background: var(--blue); color: white; }
-.nav .refresh-btn { cursor: pointer; background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; }
 .section { margin-bottom: 28px; }
-.section-title { font-size: 1.25rem; font-weight: 700; color: var(--text); padding: 10px 16px; background: linear-gradient(135deg, var(--accent), #3a7d34); color: white; border-radius: var(--radius) var(--radius) 0 0; display: flex; align-items: center; gap: 8px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: white; padding: 10px 16px; background: linear-gradient(135deg, var(--accent), #3a7d34); border-radius: var(--radius) var(--radius) 0 0; display: flex; align-items: center; gap: 8px; }
 .section-title.urgent { background: linear-gradient(135deg, var(--red), #e53935); }
 .section-title.risk { background: linear-gradient(135deg, #6a1b9a, #8e24aa); }
 .section-title.history { background: linear-gradient(135deg, #37474f, #546e7a); }
@@ -46,7 +46,7 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
 .alert-badge { display: inline-block; background: var(--red); color: white; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; margin-right: 6px; font-weight: 600; vertical-align: middle; }
 .risk-meter { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
 .risk-bar { flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
-.risk-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+.risk-fill { height: 100%; border-radius: 4px; }
 .risk-label { font-size: 0.78rem; font-weight: 600; min-width: 48px; }
 .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; padding: 12px; }
 .market-item { background: var(--card-bg); border-radius: 8px; padding: 12px; text-align: center; box-shadow: var(--shadow); }
@@ -78,11 +78,12 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
 <div class="header">
   <h1>全球情报日报</h1>
   <div class="date">2026年5月31日 · 星期日</div>
+  <div class="source-note">本期数据直接采集自各信源官网（RSS Feed + 页面抓取），非搜索引擎摘要</div>
 </div>
 
 <div class="nav">
   <a href="../2026-04-22/index.html">&larr; 上一日 (4月22日)</a>
-  <button class="refresh-btn" onclick="location.reload()">刷新</button>
+  <button onclick="location.reload()" style="cursor:pointer;background:var(--accent);color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.85rem;">刷新</button>
   <a href="../2026-06-01/index.html">下一日 (6月1日) &rarr;</a>
 </div>
 
@@ -92,41 +93,47 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card card-red">
-      <h3><span class="alert-badge">头条</span>48小时内三大战场齐爆：俄乌、美伊、以黎同时升级，世界站在S3世界大战门槛上</h3>
-      <div class="meta"><span class="src">百度新闻 / 央视 &middot; 5月29日</span><span class="tag red">地缘危机</span></div>
+      <h3><span class="alert-badge">CNBC</span>霍尔木兹海峡石油出口可能无法恢复到伊朗战争前水平</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月30日</span><span class="tag red">中东危机</span></div>
       <div class="summary">
-        2026年5月下旬，全球地缘政治紧绷弦线在多处同时断裂。<strong>俄乌战场</strong>乌军反攻撕开防线，俄军"蚕食战术"破产；<strong>美伊对峙</strong>持续升级，伊朗导弹突袭科威特，美国没收伊朗10亿美元加密资产；<strong>以黎战线</strong>凌晨导弹突袭，以色列斩首3名高官。三大战场在48小时内同时爆发，全球安全格局面临二战以来最严峻考验。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866530931438888931" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866508942486607179" target="_blank">中东乱局详情</a>
+        CNBC报道：伊朗对霍尔木兹海峡的封锁已严重挑战这一航道的航行自由，引发对未来能源供应的深层质疑。<strong>海峡石油出口可能无法恢复到伊朗战争前水平</strong>。全球约20%的石油贸易途经霍尔木兹海峡，持续封锁对全球能源供应链构成严重威胁。
+        <br><a href="https://www.cnbc.com/2026/05/30/oil-exports-through-hormuz-might-not-return-to-levels-before-iran-war.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
     <div class="card card-red">
-      <h3><span class="alert-badge">突发</span>伊朗下令轰炸美空军基地，中东局势急剧升级</h3>
-      <div class="meta"><span class="src">搜狐军事 / 综合 &middot; 5月31日</span><span class="tag red">中东战争</span></div>
+      <h3><span class="alert-badge">CNBC</span>伊朗战争结束可能只是美国不平等新时代的开始</h3>
+      <div class="meta"><span class="src">CNBC Analysis &middot; 5月30日</span><span class="tag red">经济分析</span></div>
       <div class="summary">
-        科威特当地天色未亮，数道导弹尾焰骤然划破夜幕——<strong>伊朗下令轰炸美军驻科威特空军基地</strong>。这一标志性事件意味着美伊冲突从经济制裁和海上封锁升级为直接军事对抗。美国财长贝森特此前已宣布没收伊朗10亿美元加密资产作为"对伊战争的经济组成部分"。中东局势进入全新阶段，全球能源供应链面临严峻威胁。
-        <br><a href="https://mil.sohu.com/a/1029954720_122343746" target="_blank">查看原文</a> &nbsp;
-        <a href="http://finance.sina.com.cn/headline/2026-05-30/doc-inhzsssk0019260.shtml" target="_blank">新浪财经要闻</a>
+        CNBC分析文章指出：<strong>股市繁荣的同时，消费者承受了高能源价格的代价</strong>。伊朗战争可能即将结束，但这或许标志着美国不平等加剧新时代的开始。股票表现强劲，但普通消费者在高油价和通胀压力下苦苦挣扎——战争的"可负担性"代价由底层承担。
+        <br><a href="https://www.cnbc.com/2026/05/30/iran-war-inequality-affordability-ceasefire-analysis.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
     <div class="card card-red">
-      <h3><span class="alert-badge">金融</span>专家警告：2026到2027上半年全球将爆发金融风暴</h3>
-      <div class="meta"><span class="src">凤凰湾区财经论坛 &middot; 5月29-30日</span><span class="tag red">金融风险</span></div>
+      <h3><span class="alert-badge">Russia in Global Affairs</span>Pax Americana：战略缺失中的绝望战术</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月28日</span><span class="tag red">俄方视角</span></div>
       <div class="summary">
-        全球化智库副主任高志凯在凤凰湾区财经论坛发出重磅预警：<strong>未来12到18个月，也就是2026到2027上半年，世界将爆发金融风暴</strong>。核心风险集中在美国主权债务——全球金融体系的最大火药桶。当前美国联邦债务已超36万亿美元，10年期美债收益率升至4.57%，30年期达5.11%，创2008年以来新高。全球正面临"1936年式的秩序解体危机"。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866577739939701655" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866513796382285421" target="_blank">深度分析</a>
+        俄罗斯顶级国际关系期刊《全球事务》发表文章<strong>"Pax Americana: Desperate Tactics in the Absence of Strategy"</strong>，分析指出：<strong>美国帝国处于明显的相对但不可逆转的衰落中</strong>。文章认为当前美国在中东的行动缺乏战略连贯性，更多是"绝望的战术"而非长远规划。这与美国国内政治分裂和财政压力密切相关。
+        <br><a href="https://eng.globalaffairs.ru/articles/pax-americana-simons/" target="_blank">Global Affairs原文</a>
       </div>
     </div>
 
     <div class="card card-red">
-      <h3><span class="alert-badge">立法</span>美国加密货币立法再次突破，国会休会期前完成重要投票</h3>
-      <div class="meta"><span class="src">国会山 / 行业分析 &middot; 5月29日</span><span class="tag red">加密监管</span></div>
+      <h3><span class="alert-badge">Global Affairs</span>世界秩序已经崩塌，危险才刚刚开始</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月15日</span><span class="tag red">秩序崩塌</span></div>
       <div class="summary">
-        经过五周多的谈判与博弈，美国加密货币立法再获突破，在国会休会期前完成了一项重要投票。这意味着<strong>2026年美国或有可能在联邦层面上明确所有类型加密货币的监管框架</strong>。此前参议院银行委员会对CLARITY法案309页替代修正案进行markup，该法案自去年7月以294比134票通过众议院后持续推进。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866485041665261771" target="_blank">查看原文</a>
+        《全球事务》主编卢基扬诺夫发表重磅文章<strong>"The World Order Has Collapsed. Now Comes the Dangerous Part"</strong>，指出："必须建立新的世界经济秩序，确保所有国家的经济正义和公平政治安全。结束军备竞赛是必要前提。"文章认为当前全球秩序正处于二战以来最深刻的重构期。
+        <br><a href="https://eng.globalaffairs.ru/articles/dangerous-lukyanov/" target="_blank">Global Affairs原文</a>
+      </div>
+    </div>
+
+    <div class="card card-red">
+      <h3><span class="alert-badge">WIRED</span>网络犯罪团伙声称入侵了MyPillow</h3>
+      <div class="meta"><span class="src">WIRED Security &middot; 5月30日</span><span class="tag red">网络安全</span></div>
+      <div class="summary">
+        WIRED本周安全新闻：一个网络犯罪团伙声称<strong>入侵了Mike Lindell的MyPillow公司</strong>。此外，一个勒索软件组织现在开始当面窃取数据，BusPatrol希望将其车牌监控数据交给警方。网络安全威胁正在从虚拟空间延伸到物理世界。
+        <br><a href="https://www.wired.com/story/security-news-this-week-cybercrime-crew-claims-it-hacked-mike-lindells-mypillow/" target="_blank">WIRED原文</a>
       </div>
     </div>
 
@@ -139,60 +146,50 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>美联储新主席凯文·沃什宣誓就职，54:45投票通过，对华立场曝光</h3>
-      <div class="meta"><span class="src">美联储 / 央视 &middot; 5月22日</span><span class="tag">美联储</span></div>
+      <h3>美联储FOMC 4月28-29日会议纪要发布：鹰派立场强化</h3>
+      <div class="meta"><span class="src">Federal Reserve &middot; 5月20日</span><span class="tag">美联储</span></div>
       <div class="summary">
-        2026年5月22日上午，白宫东厅——<strong>凯文·沃什把手按在《圣经》上，由最高法院大法官克拉伦斯·托马斯主持宣誓</strong>，正式就任美联储新主席。投票结果54:45，一个时代已结束。沃什此前以对华强硬立场著称，其上任后美联储后续利率政策走向成为市场焦点。当前10年期美债收益率4.57%，30年期5.11%，沃什面临"抗击通胀"与"经济放缓"的双重压力。
-        <br><a href="https://baijiahao.baidu.com/s?id=186435902468126487" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866255097566803496" target="_blank">南华早报</a>
+        美联储发布<strong>4月28-29日FOMC会议纪要</strong>。纪要显示委员会对通胀前景保持高度关注，鹰派立场进一步强化。此前5月22日，<strong>凯文·沃什(Kevin Warsh)宣誓就任美联储新主席</strong>，FOMC一致选举沃什担任主席。鲍威尔此前被任命为临时主席(pro tempore)，直到沃什宣誓就职。新主席沃什面临"抗击通胀"与"经济放缓"的双重压力。
+        <br><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260520a.htm" target="_blank">FOMC纪要原文</a> &nbsp;
+        <a href="https://www.federalreserve.gov/newsevents/pressreleases/other20260522a.htm" target="_blank">沃什就职原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>美联储利率政策核心矛盾：鹰派立场强化与经济隐忧的拉锯</h3>
-      <div class="meta"><span class="src">新浪美联储热点 / 汇通网 &middot; 5月28-31日</span><span class="tag orange">利率政策</span></div>
+      <h3>美联储董事会提议建立"支付账户"，征求公众意见</h3>
+      <div class="meta"><span class="src">Federal Reserve &middot; 5月20日</span><span class="tag">美联储</span></div>
       <div class="summary">
-        当前美联储利率政策的核心矛盾在于<strong>鹰派立场强化与市场对经济隐忧的拉锯</strong>。通胀数据"双符合预期"却创数月新高——美国5月芝加哥PMI为62.7（预期50.5，前值49.4），经济热度超预期。央行独立性已不复存在——投资者仍未纳入考量的制度转变。市场对降息预期大幅逆转，甚至出现加息概率上升的声音。新任主席沃什即将主持首次FOMC会议。
-        <br><a href="http://k.sina.com.cn/article_7857201856_1d45362c0019065wfo.html" target="_blank">新浪热点</a> &nbsp;
-        <a href="http://k.sina.com.cn/article_7857201856_1d45362c00190667rg.html" target="_blank">政策走向分析</a>
+        美联储董事会提议建立<strong>"支付账户"(Payment Account)</strong>，合法金融机构可用于清算和结算支付。这一提案标志着美联储在支付基础设施现代化方面迈出重要一步。同时，董事会发布了<strong>4月20日和29日贴现率会议纪要</strong>，显示各储备银行对当前经济状况的评估。
+        <br><a href="https://www.federalreserve.gov/newsevents/pressreleases/other20260520a.htm" target="_blank">美联储原文</a> &nbsp;
+        <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260526a.htm" target="_blank">贴现率纪要</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>美国一季度GDP下修至1.6%，消费疲软投资失速</h3>
-      <div class="meta"><span class="src">BEA / 百度 &middot; 5月28日</span><span class="tag orange">GDP数据</span></div>
+      <h3>美国财政部制裁欺诈网络：打击向伊朗军方供货的美国企业网络</h3>
+      <div class="meta"><span class="src">U.S. Treasury &middot; 5月</span><span class="tag orange">制裁</span></div>
       <div class="summary">
-        美国经济分析局（BEA）公布修正数据，<strong>美国2026年一季度实际GDP增速下修至1.6%（年化季率），低于预期值2.0%</strong>。此前公布的初值为2.0%，消费疲软、投资失速是主要拖累因素。私人国内最终销售增速放缓，反映出企业和消费者在地缘风险升温背景下的谨慎态度。华泰宏观上调2026-27美国全年CPI预测至3.7%和3.1%，核心PCE预测至3.2%和2.6%。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866438596066984433" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=186611991237704728" target="_blank">华泰中期展望</a>
+        美国财政部发布公告，<strong>"经济怒火"(Economic Fury)行动</strong>打击了一个欺诈美国企业以向伊朗军方供货的网络。同时，财长贝森特在2026年里根国家经济论坛发表演讲<strong>"While America Slept"</strong>，并在"No Money for Terror"会议上发表讲话，强调打击恐怖主义融资。此外，财政部与越南国家银行发布联合声明。
+        <br><a href="https://home.treasury.gov/news/press-releases/sb0515" target="_blank">制裁公告</a> &nbsp;
+        <a href="https://home.treasury.gov/news/press-releases/sb0514" target="_blank">贝森特演讲</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>中国加速减持美债：3月单月减持超410亿美元</h3>
-      <div class="meta"><span class="src">美国财政部 / 南华早报 &middot; 5月19日</span><span class="tag blue">中美金融</span></div>
+      <h3>NBER最新研究：大宗商品价格冲击下的央行应对策略</h3>
+      <div class="meta"><span class="src">NBER WP 35164 &middot; 2026年5月</span><span class="tag">学术研究</span></div>
       <div class="summary">
-        据《南华早报》引述美国财政部数据，<strong>2026年3月，中国持有的美国国债从2月的6933亿美元降至6523亿美元——单月减持超过410亿美元</strong>。这是中国加速减持美债的明确信号。在中美博弈持续、美债市场剧烈波动的背景下，中国外汇储备多元化战略持续推进。美债市场10年期收益率在5月27日盘尾下行后再度承压，长债收益率居高难下。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866255097566803496" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866502175997245026" target="_blank">美债波动分析</a>
+        NBER最新工作论文<strong>"How Should Central Banks Respond to Commodity Price Shocks?"</strong>（Drechsel, McLeay, Tenreyro, Turri）研究了央行应如何应对大宗商品价格冲击。论文证明<strong>最优货币政策和汇率框架关键取决于经济体的商品敞口</strong>。在当前中东战争推高油价、大宗商品价格剧烈波动的背景下，这一研究具有重要政策意义。
+        <br><a href="https://www.nber.org/papers/w35164" target="_blank">NBER原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>第九届世界金融论坛(WFF)香港年会：寻求稳定与增长新锚</h3>
-      <div class="meta"><span class="src">WFF / 百度 &middot; 5月20-21日</span><span class="tag">国际金融</span></div>
+      <h3>NBER：国家作为融资者——战争与和平时期的国际借贷</h3>
+      <div class="meta"><span class="src">NBER WP 35225 &middot; 2026年5月</span><span class="tag">学术研究</span></div>
       <div class="summary">
-        2026年5月20-21日，第九届世界金融论坛(WFF)年会暨洲际对话2026年度大会在香港成功举办。本届论坛首次落地香港，<strong>以"寻求稳定与增长新锚"为核心主题</strong>，聚焦中东危机对全球经济的影响、全球债务风险、数字资产监管等紧迫议题。在全球经济不确定性加剧的背景下，此次论坛为各国政策制定者提供了重要的对话平台。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866496808764133726" target="_blank">查看原文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>加拿大总理卡尼纽约经济俱乐部演讲，释放全球合作信号</h3>
-      <div class="meta"><span class="src">央视 / 百度 &middot; 5月30日</span><span class="tag">国际外交</span></div>
-      <div class="summary">
-        2026年5月28日，加拿大总理卡尼在纽约经济俱乐部发表公开演讲。王毅刚离开美国，卡尼就通告全球——<strong>加拿大愿在关键议题上伸出援手</strong>。在中美博弈加剧、全球地缘格局重塑的背景下，加拿大作为中间力量的角色日益凸显。卡尼的信号表明，西方国家内部对当前全球秩序走向存在分歧。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866594908383147345" target="_blank">查看原文</a>
+        NBER最新论文<strong>"States as Financiers: International Lending in War and Peace"</strong>（Horn, Reinhart, Trebesch）建立了跨越两个世纪、涵盖120万笔官方贷款的新数据库，研究国家驱动型跨境借贷。论文指出<strong>国家是国际借贷的主要参与者，但其作用长期以来未被充分理解</strong>。在当前地缘冲突加剧、主权债务风险上升的背景下，这一研究为理解国家间金融关系提供了全新视角。
+        <br><a href="https://www.nber.org/papers/w35225" target="_blank">NBER原文</a>
       </div>
     </div>
 
@@ -204,57 +201,58 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="section-title">&#128200; 金融市场与投资</div>
   <div class="cards">
 
-    <div class="market-grid">
-      <div class="market-item"><div class="name">上证指数</div><div class="value up">~4,100</div><div class="chg up">震荡偏强</div></div>
-      <div class="market-item"><div class="name">深证成指</div><div class="value up">~15,000</div><div class="chg up">持平</div></div>
-      <div class="market-item"><div class="name">创业板指</div><div class="value up">~3,700</div><div class="chg up">微涨</div></div>
-      <div class="market-item"><div class="name">道琼斯</div><div class="value down">~48,000</div><div class="chg down">承压</div></div>
-      <div class="market-item"><div class="name">标普500</div><div class="value down">~6,950</div><div class="chg down">回调</div></div>
-      <div class="market-item"><div class="name">纳斯达克</div><div class="value down">~23,800</div><div class="chg down">回调</div></div>
-      <div class="market-item"><div class="name">WTI原油</div><div class="value up">~88</div><div class="chg up">地缘溢价</div></div>
-      <div class="market-item"><div class="name">布伦特原油</div><div class="value up">~90</div><div class="chg up">供应担忧</div></div>
-      <div class="market-item"><div class="name">黄金</div><div class="value up">~4,800</div><div class="chg up">避险需求</div></div>
-      <div class="market-item"><div class="name">10年美债</div><div class="value up">4.57%</div><div class="chg up">收益率新高</div></div>
-      <div class="market-item"><div class="name">美元指数</div><div class="value up">~98.5</div><div class="chg up">高位运行</div></div>
-      <div class="market-item"><div class="name">人民币/美元</div><div="value">~6.85</div><div class="chg">双向波动</div></div>
-    </div>
-
     <div class="card">
-      <h3>美债市场剧烈波动：长端收益率创2008年以来新高</h3>
-      <div class="meta"><span class="src">21世纪经济报道 &middot; 5月29日</span><span class="tag orange">美债</span></div>
+      <h3>CNBC：美股以创纪录高位进入6月，纳斯达克5月涨8%</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月28-29日</span><span class="tag">美股</span></div>
       <div class="summary">
-        在疯狂的抛售潮过后，美债市场压力暂缓但隐患未消。<strong>10年期美债收益率4.57%，30年期达5.11%，均创2008年以来新高</strong>。美国主权债务规模已超36万亿美元，财政可持续性受到市场质疑。中国3月单月减持410亿美元美债，日本等主要债权国也在调整持仓结构。长债收益率居高难下，对全球资产定价产生深远影响。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866502175997245026" target="_blank">查看原文</a>
+        CNBC报道：<strong>美股以创纪录高位进入6月</strong>，科技股再次领涨，纳斯达克5月累计上涨8%。投资者对战争即将结束的预期支撑了市场情绪。但分析也警告：<strong>战争结束可能只是不平等加剧新时代的开始</strong>——股市繁荣与消费者承受高能源价格之间的鸿沟正在扩大。
+        <br><a href="https://www.cnbc.com/2026/05/28/stock-market-today-live-updates.html" target="_blank">CNBC原文</a> &nbsp;
+        <a href="https://www.cnbc.com/2026/05/29/stock-market-next-week-outlook-for-june-1-5-2026.html" target="_blank">下周展望</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>信用债市场延续强势，57亿债务压顶企业资不抵债</h3>
-      <div class="meta"><span class="src">新浪财经 / 信用债市场 &middot; 5月28-29日</span><span class="tag orange">信用风险</span></div>
+      <h3>CNBC：SpaceX IPO前，散户投资者涌入NASA ETF</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月30日</span><span class="tag">IPO</span></div>
       <div class="summary">
-        2026年5月，信用债市场在资金面平稳偏松、机构"欠配"压力驱动下延续强势，3年期AAA中票下行约5BP至1.67%。但个别企业风险暴露——<strong>一家昔日500强供应链企业累计逾期债务高达57.63亿元，已超自身净资产</strong>，继2025年巨亏超30亿元后再度爆出重磅债务危机。信用分化加剧，投资者需警惕尾部风险。
-        <br><a href="http://finance.sina.com.cn/wm/2026-05-29/doc-inhzqptm7563278.shtml" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866515048739083470" target="_blank">信用债月评</a>
+        CNBC报道：随着马斯克的SpaceX IPO临近，散户投资者正涌入太空主题ETF，包括提供直接进入火箭公司渠道的NASA ETF。<strong>两个月内，NASA ETF吸引了26亿美元资金</strong>。这一现象反映出散户投资者对太空经济的热情，以及对高成长科技股的持续追捧。
+        <br><a href="https://www.cnbc.com/2026/05/30/spacex-ipo-invest.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>芯片设计板块震荡调整，AI相关个股交投活跃</h3>
-      <div class="meta"><span class="src">界面新闻 / 中证报 &middot; 5月18-26日</span><span class="tag blue">科技股</span></div>
+      <h3>CNBC：Meta努力摆脱广告依赖，AI能否带来转机？</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月30日</span><span class="tag">科技股</span></div>
       <div class="summary">
-        进入5月中旬，全球芯片市场经历了一轮明显的震荡调整。A股成交额回落至2.89万亿元，为5月以来首次跌破3万亿。但AI相关个股逆势走强——<strong>国芯科技2026年一季度AI相关业务增长105.38%</strong>，争取2026年扭亏。在全球AI军备竞赛持续升温的背景下，芯片设计公司估值重新定价。
-        <br><a href="https://m.jiemian.com/article/14454459.html" target="_blank">芯片板块分析</a> &nbsp;
-        <a href="https://www.cs.com.cn/ssgs/01/2026/05/26/detail_2026052610014303.html" target="_blank">国芯科技业绩</a>
+        CNBC分析：Meta正大力推动业务多元化，试图摆脱对在线广告的绝对依赖。但历史经验表明，<strong>Meta在广告以外的领域成功经验有限</strong>。AI能否成为Meta业务转型的关键变量？过去的多项尝试显示，成功远非必然。
+        <br><a href="https://www.cnbc.com/2026/05/30/meta-struggled-selling-anything-other-than-ads-will-ai-be-different.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>BlackRock 2026年度投资展望：AI基建私募信贷爆火</h3>
-      <div class="meta"><span class="src">BlackRock / 雪球 &middot; 2025年12月</span><span class="tag">机构观点</span></div>
+      <h3>CNBC：阿联酋退出OPEC，石油市场格局生变</h3>
+      <div class="meta"><span class="src">CNBC Video &middot; 5月27日</span><span class="tag orange">石油</span></div>
       <div class="summary">
-        贝莱德(BlackRock)《2026年全球投资展望》指出，2026年是<strong>"旧范式"的终结之年，也是"新秩序"的开启之年</strong>。核心观点：AI基础设施建设规模之大，已足以影响宏观经济表现——"微观即宏观"。私募信贷在AI基建领域爆火，机构投资者正大规模配置。BlackRock同时更新地缘风险交互仪表盘，持续追踪中东战争、中美博弈等对全球资产配置的影响。
-        <br><a href="https://xueqiu.com/3191867971/368008664" target="_blank">雪球解读</a> &nbsp;
-        <a href="https://www.blackrock.com/corporate/insights" target="_blank">BlackRock官网</a>
+        CNBC视频报道：<strong>阿联酋为何退出OPEC？</strong>这一决定标志着全球石油市场格局的重大转变。阿联酋作为OPEC核心成员国的退出，将影响全球石油供应格局和OPEC的凝聚力。在伊朗战争导致中东能源供应链动荡的背景下，这一事件的影响更为深远。
+        <br><a href="https://www.cnbc.com/video/2026/05/27/why-the-uae-walked-away-from-opec.html" target="_blank">CNBC视频</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>CNBC：AUKUS将开发无人水下航行器，2027年交付</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月30日</span><span class="tag purple">国防</span></div>
+      <div class="summary">
+        CNBC报道：<strong>AUKUS（美英澳安全伙伴关系）将联合开发无人水下航行器</strong>，计划于2027年交付。这一项目是AUKUS第二支柱（先进能力）的重要组成部分，反映出印太地区安全合作正在向更深层次的技术合作延伸。
+        <br><a href="https://www.cnbc.com/2026/05/30/aukus-to-develop-unmanned-undersea-vehicles-delivery-set-for-2027.html" target="_blank">CNBC原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>CNBC：UK家庭能源账单因伊朗战争能源冲击将上涨13%</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月27日</span><span class="tag orange">能源</span></div>
+      <div class="summary">
+        CNBC报道：<strong>英国家庭能源账单将因伊朗战争能源冲击而上涨13%</strong>。Ofgem价格上限调整后，英国普通家庭将面临更高的能源成本。这一数据直观反映了中东战争对普通民众生活成本的直接影响，也凸显了能源安全的战略重要性。
+        <br><a href="https://www.cnbc.com/2026/05/27/uk-energy-bills-price-cap-ofgem-iran-war-oil-shock.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
@@ -267,39 +265,38 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>中国国家发改委宣布谋划出台加快人工智能落地的配套文件</h3>
-      <div class="meta"><span class="src">国家发改委 / 复旦大学AI治理新闻 &middot; 5月22日</span><span class="tag blue">AI政策</span></div>
+      <h3>CNBC：AI正在改变卫星在轨能力</h3>
+      <div class="meta"><span class="src">CNBC Video &middot; 5月30日</span><span class="tag blue">AI+太空</span></div>
       <div class="summary">
-        5月22日，中国国家发展和改革委员会召开新闻发布会，宣布<strong>谋划出台加快人工智能落地的配套文件</strong>。这是继2026年AI治理体系要求明确后，国家层面推动AI产业化的又一重要信号。全球AI治理进入新阶段——技术发展与伦理监管的平衡成为各国政策制定者的核心议题。
-        <br><a href="https://fddi.fudan.edu.cn/ec/5c/c21253a781404/page.htm" target="_blank">全球AI治理新闻</a>
+        CNBC视频报道：<strong>AI正在改变卫星在轨能力</strong>。人工智能正在被集成到卫星系统中，使其能够在轨道上进行更复杂的数据处理和决策。与此同时，<strong>轨道业务正进入新阶段</strong>——商业航天从单纯的发射服务向在轨服务和数据处理转型。
+        <br><a href="https://www.cnbc.com/video/2026/05/30/how-ai-is-changing-what-satellites-can-do-in-orbit.html" target="_blank">CNBC视频</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>Crypto Builder正在被AI时代重新定价，开源社区活跃曲线筑底</h3>
-      <div class="meta"><span class="src">IOSG / 百度 &middot; 5月24日</span><span class="tag">Crypto+AI</span></div>
+      <h3>CNBC：诺基亚不再制造手机，如何赚取数十亿？</h3>
+      <div class="meta"><span class="src">CNBC Video &middot; 5月28日</span><span class="tag">科技转型</span></div>
       <div class="summary">
-        2026年，Crypto开源社区的GitHub活跃曲线完成了一次惊人的"筑底"。从2022年顶峰时期的45K月活开发者回落至约23K。但IOSG分析认为，<strong>Crypto Builder正在被AI时代重新定价</strong>——AI代理(Agent)与区块链的结合正在催生新的开发范式。中东冲突对全球数字资产的影响也成为国际经济金融组织关注的焦点。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866077801824622020" target="_blank">查看原文</a>
+        CNBC视频报道：诺基亚已不再是手机制造商，但公司仍在赚取数十亿收入。<strong>诺基亚的转型故事</strong>——从消费电子巨头到通信基础设施和专利授权公司——为传统科技企业的转型提供了参考案例。
+        <br><a href="https://www.cnbc.com/video/2026/05/28/nokia-doesnt-make-phones-anymore-so-how-does-it-make-billions.html" target="_blank">CNBC视频</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>中东冲突对全球数字资产产生显著影响，欧央行发表观点</h3>
-      <div class="meta"><span class="src">国际金融通讯 / 百度 &middot; 5月26日</span><span class="tag orange">数字资产</span></div>
+      <h3>CNBC：Andy Burnham呼吁对工业和AI实施"强有力的公共控制"</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月29日</span><span class="tag purple">AI治理</span></div>
       <div class="summary">
-        近来，中东冲突对全球数字资产产生了显著影响。<strong>几个主要的国际经济金融组织与欧央行都对此发表了观点</strong>，认为冲突带来的不确定性正在重塑数字资产配置逻辑。在传统金融市场波动加剧的背景下，数字资产的"避险属性"和"风险属性"之争再度升温。
-        <br><a href="https://baijiahao.baidu.com/s?id=18662224377192406960" target="_blank">查看原文</a>
+        英国Makefield补选期间，Andy Burnham呼吁<strong>对工业和AI实施"强有力的公共控制"</strong>。这一主张反映了英国政界对AI治理的分歧——在技术创新与公共监管之间如何平衡。Burnham的立场与Starmer政府形成对比，引发了关于AI监管路径的辩论。
+        <br><a href="https://www.cnbc.com/2026/05/29/andy-burnham-makerfield-byelection-keir-starmer-tony-blair-ai.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>Gartner 2026十大技术趋势持续影响企业战略</h3>
-      <div class="meta"><span class="src">Gartner / 搜狐 &middot; 2025年10月发布</span><span class="tag">技术趋势</span></div>
+      <h3>UK情报首脑警告：抵御来自俄罗斯和中国威胁的时间正在耗尽</h3>
+      <div class="meta"><span class="src">CNBC / GCHQ &middot; 5月27日</span><span class="tag red">安全威胁</span></div>
       <div class="summary">
-        Gartner在2025年IT Symposium/Xpo大会上发布的《2026年十大战略技术趋势》持续影响企业IT战略。核心趋势包括：<strong>AI伦理与治理、多智能体系统、AI增强开发、数字孪生、边缘AI</strong>等。Gartner强调"2026年，颠覆正在加速，AI不再是可选项"。企业在技术投资决策中越来越多地将地缘风险纳入考量。
-        <br><a href="https://www.sohu.com/a/988665079_122036485" target="_blank">十大趋势解读</a> &nbsp;
-        <a href="https://www.gartner.com/en/articles/ai-ethics" target="_blank">Gartner原文</a>
+        英国情报机构GCHQ负责人发出严厉警告：<strong>抵御来自俄罗斯和中国威胁的时间正在耗尽</strong>。网络攻击和安全威胁正在升级，西方需要加快应对步伐。在当前俄乌冲突持续、中美博弈加剧的背景下，这一警告具有强烈的现实意义。
+        <br><a href="https://www.cnbc.com/2026/05/27/uk-spy-chief-gchq-russia-china-us-cyber-attack-security.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
@@ -312,40 +309,29 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>俄乌冲突态势急转直下：乌军反攻撕开防线，泽连斯基警告朝鲜</h3>
-      <div class="meta"><span class="src">百度 / 综合 &middot; 5月24-30日</span><span class="tag red">俄乌战争</span></div>
+      <h3>Russia in Global Affairs：俄中正在建立美国无法破坏的东西</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月22日</span><span class="tag">俄中关系</span></div>
       <div class="summary">
-        2026年5月，俄乌战场态势急转直下。<strong>乌军多点反攻撕开俄军防线，俄军"蚕食战术"彻底破产</strong>，甚至陷入"坐牢比上前线更安全"的荒诞困境。泽连斯基发出严厉警告：根据战场情报，俄罗斯准备在乌克兰北部搞新攻势，还特意点名朝鲜——<strong>又一个国家或入俄作战</strong>。5月28日，三大使同日隔空"对线"，金融制裁成俄乌冲突新前线。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866039927049756433" target="_blank">战场态势</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866572341377177360" target="_blank">泽连斯基警告</a>
+        《全球事务》发表卢基扬诺夫文章<strong>"Russia and China Are Building Something America Cannot Break"</strong>。文章指出：当前大国外交的"编舞"引发了新一轮猜测。普京总统访华后，俄中关系的深化正在构建一种<strong>美国无法破坏的战略架构</strong>。卢基扬诺夫强调："拥有中国作为如此亲近的邻国是一种特权。"
+        <br><a href="https://eng.globalaffairs.ru/articles/russia-and-china-lukyanov/" target="_blank">Global Affairs原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>5月北京定乾坤：双元首接踵访华，彻底改写未来20年全球格局</h3>
-      <div class="meta"><span class="src">百度 / 国际分析 &middot; 5月21日</span><span class="tag blue">中美关系</span></div>
+      <h3>Russia in Global Affairs：Keir Starmer勉强挺过，但英国人已经不耐烦</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月21日</span><span class="tag">英国政治</span></div>
       <div class="summary">
-        2026年的5月，注定会被载入世界外交史册。<strong>5月13日至15日，美国前总统特朗普圆满结束对华国事访问</strong>，时隔多年再度访华。中美双方达成共识，同意构建建设性战略稳定关系，同时宣布设立贸易理事会和投资理事会两大常态化沟通机制。<strong>2026下半年是中美经贸博弈关键时期</strong>。
-        <br><a href="https://baijiahao.baidu.com/s?id=18657808509672622237" target="_blank">查看原文</a> &nbsp;
-        <a href="https://baijiahao.baidu.com/s?id=1866392245915743839" target="_blank">中美经贸分析</a>
+        《全球事务》分析英国政治局势：<strong>Keir Starmer (勉强)挺过了政治危机</strong>，但英国民众已经不耐烦。英国本世纪已有八位首相，大多数在脱欧后上任，平均任期仅两年。Starmer极不受欢迎，英国政治的不稳定性正在加剧。
+        <br><a href="https://eng.globalaffairs.ru/articles/starmer-survives-pearce/" target="_blank">Global Affairs原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>中东危机增加全球经济不确定性，联合国发布世界经济形势展望</h3>
-      <div class="meta"><span class="src">新华社 / 联合国 &middot; 5月29日</span><span class="tag orange">中东危机</span></div>
+      <h3>CNBC：政治动荡中投资者如何交易英国市场</h3>
+      <div class="meta"><span class="src">CNBC &middot; 5月21日</span><span class="tag orange">英国市场</span></div>
       <div class="summary">
-        联合国发布《2026年世界经济形势与展望》年度报告，<strong>中东危机显著增加全球经济不确定性</strong>。报告指出，冲突导致能源价格飙升、供应链中断、通胀预期上升。IMF此前已将2026年全球经济增长预期下调至3.1%，警告若冲突持续、能源基础设施遭受严重破坏，全球经济增速可能跌破2%。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866473999673409196" target="_blank">查看原文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>美国中期选举前瞻：共和党可能丢掉众议院控制权</h3>
-      <div class="meta"><span class="src">华泰睿思 &middot; 5月23日</span><span class="tag purple">美国政治</span></div>
-      <div class="summary">
-        华泰宏观发布2026年美国中期选举前瞻报告。<strong>特朗普目前遭遇支持率低迷、美伊冲突待解等一系列逆风，现有民调显示共和党可能丢掉众议院控制权</strong>。2026年是美国国会中期选举年，选举结果将直接影响特朗普政府后续政策推进能力，特别是在财政政策、贸易政策和外交政策方面。
-        <br><a href="https://baijiahao.baidu.com/s?id=186594017069604979" target="_blank">查看原文</a>
+        CNBC分析：<strong>政治动荡令英国市场承压</strong>，投资者正在重新评估英国资产。英国债券市场、FTSE 100指数和英镑均受到政治不确定性影响。在能源价格飙升、通胀高企的背景下，英国经济的"双重打击"令投资者担忧。
+        <br><a href="https://www.cnbc.com/2026/05/21/uk-starmer-burnham-bond-market-trade-ftse-100.html" target="_blank">CNBC原文</a>
       </div>
     </div>
 
@@ -358,21 +344,30 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>美国加密货币立法再获突破，2026年或明确联邦层面监管框架</h3>
-      <div class="meta"><span class="src">国会山 / 行业分析 &middot; 5月29日</span><span class="tag purple">加密监管</span></div>
+      <h3>众议院金融监管听证会：审慎监管机构监督</h3>
+      <div class="meta"><span class="src">House Financial Services Committee &middot; 5月29日</span><span class="tag purple">监管</span></div>
       <div class="summary">
-        经过五周多的谈判与博弈，美国加密货币立法再获突破。众议院金融服务委员会发布<strong>21st Century ROAD to Housing Act的两党修正案</strong>和国家安全/非法融资相关听证会安排。参议院银行委员会此前对CLARITY法案309页替代修正案完成markup。<strong>2026年美国或有可能在联邦层面上明确所有类型加密货币的监管框架</strong>，这对全球数字资产市场影响深远。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866485041665261771" target="_blank">查看原文</a> &nbsp;
-        <a href="https://financialservices.house.gov/" target="_blank">众议院金服委</a>
+        众议院金融服务委员会公布2026年6月听证会日程，包括<strong>"Oversight of Prudential Regulators"（审慎监管机构监督）</strong>。此外，委员会还发布了21st Century ROAD to Housing Act的两党修正案和国家安全/非法融资相关听证会安排。在金融稳定风险上升的背景下，国会监管力度持续加强。
+        <br><a href="https://financialservices.house.gov/calendar/EventSingle.aspx?EventID=411130" target="_blank">听证会日程</a> &nbsp;
+        <a href="https://financialservices.house.gov/" target="_blank">委员会官网</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>众议院金融服务委员会公布2026年6月听证会日程</h3>
-      <div class="meta"><span class="src">House Financial Services Committee &middot; 5月29日</span><span class="tag purple">监管动态</span></div>
+      <h3>美国财政部：接受关于欺诈、洗钱、制裁违规的举报</h3>
+      <div class="meta"><span class="src">U.S. Treasury &middot; 5月</span><span class="tag purple">执法</span></div>
       <div class="summary">
-        众议院金融服务委员会公布2026年6月听证会日程，涵盖<strong>住房法案修正案、国家安全与非法融资、数字资产监管</strong>等议题。委员会两党对21st Century ROAD to Housing Act的修正案持续推进。在金融稳定风险上升的背景下，国会监管力度持续加强。
-        <br><a href="https://financialservices.house.gov/" target="_blank">委员会官网</a>
+        美国财政部宣布<strong>接受关于欺诈、洗钱和制裁违规的举报</strong>。同时，财政部与IRS发布<strong>第892条拟议法规</strong>，为外国主权投资者提供过渡性救济保护。财政部还宣布了新的人事任命。
+        <br><a href="https://home.treasury.gov/news/featured-stories/treasury-accepting-whistleblower-tips-on-fraud-money-laundering-sanctions-violations" target="_blank">财政部原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>美联储发布部分国内外银行机构的处置计划反馈函</h3>
+      <div class="meta"><span class="src">Federal Reserve &middot; 5月22日</span><span class="tag">银行监管</span></div>
+      <div class="summary">
+        美联储与其他监管机构联合发布了<strong>部分国内外银行机构的处置计划(Resolution Plan)反馈函</strong>。这些反馈函针对"大而不能倒"银行的破产处置计划提出改进要求，是金融危机后监管框架的重要组成部分。
+        <br><a href="https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260522a.htm" target="_blank">美联储原文</a>
       </div>
     </div>
 
@@ -385,25 +380,24 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card card-red">
-      <h3>高志凯警告：2026到2027上半年全球将爆发金融风暴</h3>
-      <div class="meta"><span class="src">凤凰湾区财经论坛 &middot; 5月29-30日</span><span class="tag red">系统性风险</span></div>
+      <h3>CNBC分析：伊朗战争可能开启美国不平等的新时代</h3>
+      <div class="meta"><span class="src">CNBC Analysis &middot; 5月30日</span><span class="tag red">不平等风险</span></div>
       <div class="summary">
-        全球化智库副主任高志凯在凤凰湾区财经论坛发出重磅预警：<strong>未来12到18个月，世界将爆发金融风暴</strong>。核心风险是美国主权债务——全球金融体系的最大火药桶。当前美国联邦债务超36万亿美元，10年期美债收益率4.57%，30年期5.11%，创2008年以来新高。全球正面临"1936年式的秩序解体危机"，旧世界秩序正在崩塌。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866577739939701655" target="_blank">查看原文</a> &nbsp;
-        <a href="https://www.163.com/dy/article/KU3475N0055616Y4.html" target="_blank">深度解读</a>
+        CNBC深度分析警告：战争结束可能只是<strong>美国不平等加剧新时代的开始</strong>。股市繁荣（纳斯达克5月涨8%）与消费者承受高能源价格之间的鸿沟正在扩大。<strong>"可负担性"代价由底层承担</strong>——普通家庭面临能源账单上涨13%的压力，而资本市场参与者享受战争溢价。
+        <br><a href="https://www.cnbc.com/2026/05/30/iran-war-inequality-affordability-ceasefire-analysis.html" target="_blank">CNBC原文</a>
       </div>
       <div class="risk-meter">
-        <div class="risk-bar"><div class="risk-fill" style="width:88%;background:#c62828"></div></div>
-        <div class="risk-label" style="color:#c62828">极高风险</div>
+        <div class="risk-bar"><div class="risk-fill" style="width:78%;background:#c62828"></div></div>
+        <div class="risk-label" style="color:#c62828">高风险</div>
       </div>
     </div>
 
     <div class="card card-red">
-      <h3>美债长端收益率创2008年以来新高，全球债务再创新高</h3>
-      <div class="meta"><span class="src">21世纪经济报道 / IMF &middot; 5月29日</span><span class="tag red">债务风险</span></div>
+      <h3>Global Affairs：美国帝国处于不可逆转的衰落中</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月28日</span><span class="tag red">系统性风险</span></div>
       <div class="summary">
-        10年期美债收益率4.57%，30年期达5.11%，均创2008年以来新高。IMF此前发布《财政监测报告》警告<strong>全球公共债务与GDP之比预计2029年达到100%</strong>。疫情财政扩张、地缘冲突军费激增、人口老龄化社保压力三重推动下，全球债务可持续性面临严峻挑战。中国3月单月减持410亿美元美债，去美元化趋势加速。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866502175997245026" target="_blank">查看原文</a>
+        《全球事务》文章"Pax Americana"分析指出：<strong>美国帝国处于明显的相对但不可逆转的衰落中</strong>。中东行动缺乏战略连贯性，更多是"绝望的战术"。在联邦债务超36万亿美元、10年期美债收益率创2008年以来新高的背景下，美国财政可持续性面临严峻挑战。
+        <br><a href="https://eng.globalaffairs.ru/articles/pax-americana-simons/" target="_blank">Global Affairs原文</a>
       </div>
       <div class="risk-meter">
         <div class="risk-bar"><div class="risk-fill" style="width:82%;background:#c62828"></div></div>
@@ -411,25 +405,12 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
       </div>
     </div>
 
-    <div class="card card-red">
-      <h3>57亿债务压顶！昔日500强供应链企业资不抵债</h3>
-      <div class="meta"><span class="src">新浪财经 &middot; 5月28日</span><span class="tag red">信用违约</span></div>
-      <div class="summary">
-        继2025年巨亏超30亿元、2026年一季度营收暴跌九成后，一家昔日500强供应链企业再度爆出重磅债务危机。5月28日最新公告显示，<strong>公司累计逾期债务高达57.63亿元，已超自身净资产</strong>。在信用债市场整体走强的背景下，个别企业信用风险暴露，信用分化加剧。
-        <br><a href="http://finance.sina.com.cn/wm/2026-05-29/doc-inhzqptm7563278.shtml" target="_blank">查看原文</a>
-      </div>
-      <div class="risk-meter">
-        <div class="risk-bar"><div class="risk-fill" style="width:70%;background:#e65100"></div></div>
-        <div class="risk-label" style="color:#e65100">中高风险</div>
-      </div>
-    </div>
-
     <div class="card">
-      <h3>DTCC年度调查：地缘风险与贸易紧张、网络风险、美国经济放缓为全球金融三大风险</h3>
-      <div class="meta"><span class="src">DTCC &middot; 2025年12月</span><span class="tag orange">风险调查</span></div>
+      <h3>CNBC：英国能源账单因伊朗战争上涨13%</h3>
+      <div class="meta"><span class="src">CNBC / Ofgem &middot; 5月27日</span><span class="tag orange">能源风险</span></div>
       <div class="summary">
-        DTCC（美国存管信托与清算公司）年度系统性风险调查结果显示，<strong>进入2026年，地缘风险与贸易紧张、网络风险、美国经济放缓被列为全球金融三大首要风险</strong>。这一调查结果与当前市场担忧高度吻合。V-Lab数据显示美国金融体系系统性风险资本缺口预测达5170亿美元。
-        <br><a href="https://www.dtcc.com/news/2025/december/10/top-risks-facing-global-finance" target="_blank">DTCC原文</a>
+        CNBC报道：<strong>英国家庭能源账单因伊朗战争能源冲击将上涨13%</strong>。这是中东战争对普通民众生活成本最直接的量化影响。能源安全已成为各国政策制定者的核心考量。
+        <br><a href="https://www.cnbc.com/2026/05/27/uk-energy-bills-price-cap-ofgem-iran-war-oil-shock.html" target="_blank">CNBC原文</a>
       </div>
       <div class="risk-meter">
         <div class="risk-bar"><div class="risk-fill" style="width:65%;background:#f9a825"></div></div>
@@ -446,20 +427,38 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>金融制裁成俄乌冲突新前线：三大使同日隔空"对线"</h3>
-      <div class="meta"><span class="src">百度 / 国际分析 &middot; 5月28日</span><span class="tag">俄方分析</span></div>
+      <h3>Pax Americana：战略缺失中的绝望战术</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月28日</span><span class="tag">俄方分析</span></div>
       <div class="summary">
-        5月28日，三大使同日隔空"对线"，<strong>金融制裁成为俄乌冲突的新前线</strong>。距离5月26日那场令人瞠目的"外交群口相声"刚过去两天，各方博弈余波仍在发酵。俄罗斯在战场上陷入被动的同时，在金融制裁领域展开反击。俄罗斯黄金交易量此前同比大增500%，去美元化战略持续推进。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866393087970318379" target="_blank">查看原文</a>
+        本期重点文章。作者分析<strong>美国帝国的衰落</strong>：当前美国在中东的行动缺乏战略连贯性，更多是"绝望的战术"而非长远规划。文章认为，美国国内政治分裂、财政压力和国际信誉下降正在加速这一进程。"有人说这是好事，世界未必会更不安全"——但作者对此持保留态度。
+        <br><a href="https://eng.globalaffairs.ru/articles/pax-americana-simons/" target="_blank">原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>泽连斯基警告：又一个国家或入俄作战，胜负手从来不在战场上</h3>
-      <div class="meta"><span class="src">百度 / 综合 &middot; 5月30日</span><span class="tag">俄乌分析</span></div>
+      <h3>俄中正在建立美国无法破坏的东西</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月22日</span><span class="tag">俄中关系</span></div>
       <div class="summary">
-        泽连斯基警告朝鲜之后，<strong>又一个国家或入俄作战</strong>。分析认为，俄乌冲突打到现在，真正较量的根本不是兵力，而是三件事：<strong>金融耐力、外交博弈、技术优势</strong>。胜负手从来不在战场上。俄罗斯面临的国际孤立程度前所未有，但能源武器和核威慑仍是其核心筹码。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866572341377177360" target="_blank">查看原文</a>
+        卢基扬诺夫撰文分析俄中关系的战略意义。普京访华后，两国关系的深化正在构建一种<strong>新的地缘政治架构</strong>。文章指出，这种架构的核心是"经济正义和公平政治安全"，与美国的"Pax Americana"形成对比。
+        <br><a href="https://eng.globalaffairs.ru/articles/russia-and-china-lukyanov/" target="_blank">原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>世界秩序已经崩塌，危险才刚刚开始</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月15日</span><span class="tag">世界秩序</span></div>
+      <div class="summary">
+        卢基扬诺夫主编文章的标题即为<strong>"世界秩序已经崩塌"</strong>。文章呼吁建立新的世界经济秩序，强调"结束军备竞赛是必要前提"。这一观点代表了俄罗斯战略界对当前全球格局的基本判断。
+        <br><a href="https://eng.globalaffairs.ru/articles/dangerous-lukyanov/" target="_blank">原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>卢基扬诺夫对话T-House：拥有中国作为邻国是一种特权</h3>
+      <div class="meta"><span class="src">Russia in Global Affairs &middot; 5月20日</span><span class="tag">俄中关系</span></div>
+      <div class="summary">
+        《全球事务》主编卢基扬诺夫接受T-House对话，指出<strong>"拥有中国作为如此亲近的邻国是一种特权"</strong>。他强调，中俄关系的定义性特征是"相互尊重和共同利益"，而非简单的反美联盟。
+        <br><a href="https://eng.globalaffairs.ru/articles/china-neighbor-lukyanov/" target="_blank">原文</a>
       </div>
     </div>
 
@@ -472,38 +471,38 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
   <div class="cards">
 
     <div class="card">
-      <h3>第九届世界金融论坛香港年会：寻求稳定与增长新锚</h3>
-      <div class="meta"><span class="src">WFF / 百度 &middot; 5月20-21日</span><span class="tag">智库论坛</span></div>
+      <h3>NBER WP 35164：央行应如何应对大宗商品价格冲击？</h3>
+      <div class="meta"><span class="src">NBER &middot; 2026年5月</span><span class="tag">货币政策</span></div>
       <div class="summary">
-        第九届世界金融论坛(WFF)年会暨洲际对话2026年度大会在香港成功举办，首次落地香港。以<strong>"寻求稳定与增长新锚"</strong>为核心主题，聚焦中东危机对全球经济的影响、全球债务风险、数字资产监管等紧迫议题。与会专家普遍认为，全球经济正面临"增长放缓、金融脆弱、债务高企"三重挑战。
-        <br><a href="https://baijiahao.baidu.com/s?id=1866496808764133726" target="_blank">查看原文</a>
+        Drechsel, McLeay, Tenreyro, Turri研究<strong>大宗商品价格冲击下的最优货币政策和汇率框架</strong>。论文证明最优政策关键取决于经济体的商品敞口。在当前中东战争推高油价的背景下，这一研究为各国央行提供了理论框架。
+        <br><a href="https://www.nber.org/papers/w35164" target="_blank">NBER原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>华泰2026中期展望：美国较快增长、高度分化</h3>
-      <div class="meta"><span class="src">华泰睿思 &middot; 5月25日</span><span class="tag blue">机构研究</span></div>
+      <h3>NBER WP 35209：全球供应链中断期间货币政策的状态依赖性</h3>
+      <div class="meta"><span class="src">NBER &middot; 2026年5月</span><span class="tag">供应链</span></div>
       <div class="summary">
-        华泰宏观发布2026年中期展望报告。上调2026-27美国全年<strong>CPI预测至3.7%和3.1%，核心PCE预测至3.2%和2.6%</strong>，均高于彭博一致预期。报告认为美国经济呈现"较快增长、高度分化"特征——制造业PMI超预期（芝加哥PMI 62.7），但消费疲软、投资失速。美联储新主席沃什面临艰难抉择。
-        <br><a href="https://baijiahao.baidu.com/s?id=186611991237704728" target="_blank">查看原文</a>
+        Bai, Fernández-Villaverde, Li, Zanetti研究<strong>全球供应链中断如何影响货币政策传导</strong>。论文发现运输成本飙升、商品市场失衡和价格上涨对货币政策效果产生显著影响。
+        <br><a href="https://www.nber.org/papers/w35209" target="_blank">NBER原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>泰舜观察：5月下旬国内外宏观数据解读及债市策略</h3>
-      <div class="meta"><span class="src">新浪财经 / 泰舜资产 &middot; 5月29日</span><span class="tag">债市分析</span></div>
+      <h3>NBER WP 35225：国家作为融资者——战争与和平时期的国际借贷</h3>
+      <div class="meta"><span class="src">NBER &middot; 2026年5月</span><span class="tag">国际借贷</span></div>
       <div class="summary">
-        泰舜资产发布5月下旬宏观数据解读。美国2026年Q1实际GDP增速2.0%（年化季率），高于2025Q4的0.5%，但低于预期2.3%。<strong>私人国内最终销售增速放缓</strong>。中国方面，信用债市场延续强势但信用分化加剧。报告建议关注利率债配置机会，警惕信用债尾部风险。
-        <br><a href="http://finance.sina.com.cn/wm/2026-05-29/doc-inhzqtze7776204.shtml" target="_blank">查看原文</a>
+        Horn, Reinhart, Trebesch建立了<strong>跨越两个世纪、120万笔官方贷款的新数据库</strong>，系统研究国家驱动型跨境借贷。论文揭示国家在国际金融中的角色远比传统认知复杂。
+        <br><a href="https://www.nber.org/papers/w35225" target="_blank">NBER原文</a>
       </div>
     </div>
 
     <div class="card">
-      <h3>全球AI治理新闻No.29：中国AI政策密集落地</h3>
-      <div class="meta"><span class="src">复旦大学发展研究院 &middot; 5月28日</span><span class="tag">AI治理</span></div>
+      <h3>NBER WP 35222：政府债务变动的解释</h3>
+      <div class="meta"><span class="src">NBER &middot; 2026年5月</span><span class="tag">债务研究</span></div>
       <div class="summary">
-        复旦大学发展研究院发布全球AI治理新闻第29期（5月18-25日）。<strong>中国国家发改委宣布谋划出台加快AI落地的配套文件</strong>，央行明确要求金融机构建立健全AI治理体系。全球AI治理进入新阶段——技术发展与伦理监管的平衡成为各国政策制定者核心议题。中东冲突对全球数字资产的影响也成为国际关注焦点。
-        <br><a href="https://fddi.fudan.edu.cn/ec/5c/c21253a781404/page.htm" target="_blank">查看原文</a>
+        Kirsanova, Leeper, Leith, Liu研究<strong>政府债务变动的驱动因素</strong>。论文发现标准新凯恩斯模型低估了债务对冲击的响应，引入两种新机制后能更好地解释现实债务动态。
+        <br><a href="https://www.nber.org/papers/w35222" target="_blank">NBER原文</a>
       </div>
     </div>
 
@@ -514,38 +513,35 @@ body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI',
 <div class="section">
   <div class="section-title history">&#128197; 历史上的今天 · 5月31日</div>
   <div class="cards">
-    <div class="history-item"><div class="year">1902年</div><div class="event">第二次布尔战争结束，英国与德兰士瓦共和国和奥兰治自由邦签署《弗里尼欣和约》，南非成为英国殖民地</div></div>
-    <div class="history-item"><div class="year">1911年</div><div class="event">泰坦尼克号在北爱尔兰贝尔法斯特的哈兰德与沃尔夫造船厂下水，当时世界上最大的客轮</div></div>
-    <div class="history-item"><div class="year">1931年</div><div class="event">中国第一辆国产汽车——民生牌75型载货汽车在辽宁迫击炮厂试制成功，标志着中国汽车工业起步</div></div>
-    <div class="history-item"><div class="year">1962年</div><div class="event">纳粹德国高官阿道夫·艾希曼在以色列被处以绞刑，这是以色列唯一一次执行死刑</div></div>
-    <div class="history-item"><div class="year">1985年</div><div class="event">美国东北部和加拿大遭遇毁灭性龙卷风爆发，43个龙卷风造成重大人员伤亡和财产损失</div></div>
-    <div class="history-item"><div class="year">2005年</div><div class="event">水门事件关键人物"深喉"身份被公开——前FBI副局长马克·费尔特，结束了30年的身份之谜</div></div>
-    <div class="history-item"><div class="year">2014年</div><div class="event">中国-马来西亚建交40周年，两国关系进入全面战略伙伴关系新阶段</div></div>
+    <div class="history-item"><div class="year">1902年</div><div class="event">第二次布尔战争结束，英国与德兰士瓦共和国和奥兰治自由邦签署《弗里尼欣和约》</div></div>
+    <div class="history-item"><div class="year">1911年</div><div class="event">泰坦尼克号在北爱尔兰贝尔法斯特下水，当时世界上最大的客轮</div></div>
+    <div class="history-item"><div class="year">1931年</div><div class="event">中国第一辆国产汽车——民生牌75型载货汽车在辽宁迫击炮厂试制成功</div></div>
+    <div class="history-item"><div class="year">1962年</div><div class="event">纳粹德国高官阿道夫·艾希曼在以色列被处以绞刑</div></div>
+    <div class="history-item"><div class="year">1985年</div><div class="event">美国东北部和加拿大遭遇毁灭性龙卷风爆发，43个龙卷风造成重大损失</div></div>
+    <div class="history-item"><div class="year">2005年</div><div class="event">水门事件"深喉"身份被公开——前FBI副局长马克·费尔特</div></div>
   </div>
 </div>
 
 <!-- 下周前瞻 -->
 <div class="section">
-  <div class="section-title outlook">&#128197; 下周前瞻 · 6月1日-7日</div>
+  <div class="section-title outlook">&#128197; 下周前瞻 · 6月1日-5日</div>
   <div class="cards">
     <table class="outlook-table">
       <tr><th>日期</th><th>事件</th><th>关注点</th></tr>
-      <tr><td>6月1日（周一）</td><td>全球制造业PMI数据发布</td><td>中国/美国/欧洲制造业景气度；芝加哥PMI 62.7后的新数据</td></tr>
-      <tr><td>6月2日（周二）</td><td>美联储新主席沃什首次公开讲话</td><td>利率政策立场；对通胀和经济增长的判断</td></tr>
-      <tr><td>6月3日（周三）</td><td>美国ADP就业数据</td><td>劳动力市场韧性评估；美联储政策预期</td></tr>
-      <tr><td>6月4日（周四）</td><td>欧洲央行利率决议</td><td>ECB是否跟进美联储鹰派立场；欧元区通胀走势</td></tr>
+      <tr><td>6月1日（周一）</td><td>全球制造业PMI数据发布</td><td>中国/美国/欧洲制造业景气度</td></tr>
+      <tr><td>6月2日（周二）</td><td>美联储新主席沃什首次FOMC会议</td><td>利率政策立场；通胀判断</td></tr>
+      <tr><td>6月3日（周三）</td><td>美国ADP就业数据</td><td>劳动力市场韧性评估</td></tr>
+      <tr><td>6月4日（周四）</td><td>欧洲央行利率决议</td><td>ECB是否跟进鹰派立场</td></tr>
       <tr><td>6月4日（周四）</td><td>美国初请失业金人数</td><td>劳动力市场最新动态</td></tr>
-      <tr><td>6月5日（周五）</td><td>美国5月非农就业报告</td><td>最关键的劳动力市场数据；美联储利率路径核心依据</td></tr>
-      <tr><td>6月5日（周五）</td><td>美国5月失业率</td><td>与非农数据共同影响市场对联储政策预期</td></tr>
-      <tr><td>6月6日（周六）</td><td>G7财长会议（待定）</td><td>中东危机应对协调；全球金融稳定议题</td></tr>
-      <tr><td>6月7日（周日）</td><td>美伊局势最新进展</td><td>伊朗轰炸美军基地后双方动向；停火谈判可能性</td></tr>
+      <tr><td>6月5日（周五）</td><td>美国5月非农就业报告</td><td>最关键的劳动力市场数据</td></tr>
     </table>
   </div>
 </div>
 
 <div class="footer">
   <p>全球情报日报 &middot; 2026年5月31日 · 星期日 &middot; 自动生成</p>
-  <p>数据来源：IMF、美联储、世界银行、CNBC、WEF、BlackRock、Moody's、Gartner、a16z、WIRED、NBER、PIIE、BEA、Scientific American、美国财政部、Congress.gov、Russia in Global Affairs 等25+信源</p>
+  <p>数据采集方式：RSS Feed + 信源官网页面直接抓取（非搜索引擎摘要）</p>
+  <p>信源：CNBC、Federal Reserve、U.S. Treasury、NBER、Russia in Global Affairs、WIRED、House Financial Services Committee 等</p>
   <p><a href="https://woaipashanhu.github.io/daily-intel-report/" target="_blank">日报主页</a></p>
 </div>
 
