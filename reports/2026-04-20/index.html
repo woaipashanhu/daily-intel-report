@@ -70,10 +70,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <div class="sub">25 个权威信源 · 2026 年 4 月 20 日 · 星期一 · 地缘政治 · 宏观经济 · 金融市场 · 科技前沿</div>
 </div>
 <div class="nav">
-  <a href="../2026-04-19/index.html">&larr; 上一日 (4月19日)</a>
-  <button onclick="location.reload()" style="cursor:pointer;background:var(--accent);color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.85rem;">刷新</button>
-  <a href="../2026-04-22/index.html">下一日 (4月22日) &rarr;</a>
+  <a href="../2026-04-19/index.html" class="nav-btn prev-btn">&larr; 4月19日</a>
+  <button onclick="location.reload()" class="nav-btn refresh-btn">刷新</button>
+  <div class="date-picker">
+    <button class="nav-btn date-picker-btn" onclick="toggleDatePicker()">选日期</button>
+    <div class="date-picker-dropdown" id="datePickerDropdown">
+        <a href="../2026-04-19/index.html" class="date-option">2026年4月19日</a>
+        <a href="../2026-04-20/index.html" class="date-option current">2026年4月20日</a>
+        <a href="../2026-04-22/index.html" class="date-option">2026年4月22日</a>
+        <a href="../2026-05-31/index.html" class="date-option">2026年5月31日</a>
+    </div>
+  </div>
+  <a href="../2026-04-22/index.html" class="nav-btn next-btn">4月22日 &rarr;</a>
 </div>
+
+<script>
+function toggleDatePicker() {
+  var dropdown = document.getElementById('datePickerDropdown');
+  dropdown.classList.toggle('show');
+}
+// 点击外部关闭
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.date-picker')) {
+    var dropdown = document.getElementById('datePickerDropdown');
+    if (dropdown) dropdown.classList.remove('show');
+  }
+});
+</script>
 <div class="container">
 
 <div class="section-title"><span class="tag tag-urgent">紧急</span> 紧急关注</div>
