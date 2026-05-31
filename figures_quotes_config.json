@@ -64,9 +64,126 @@
           "Paul Tudor Jones statement speech",
           "保罗都铎琼斯 言论"
         ]
+      },
+      {
+        "name": "杰米·戴蒙",
+        "name_en": "Jamie Dimon",
+        "org": "摩根大通 JPMorgan",
+        "search_keywords": [
+          "Jamie Dimon JPMorgan statement speech interview",
+          "戴蒙 摩根大通 言论"
+        ]
+      },
+      {
+        "name": "大卫·所罗门",
+        "name_en": "David Solomon",
+        "org": "高盛 Goldman Sachs",
+        "search_keywords": [
+          "David Solomon Goldman Sachs statement speech",
+          "所罗门 高盛 言论"
+        ]
+      },
+      {
+        "name": "布莱恩·莫伊尼汉",
+        "name_en": "Brian Moynihan",
+        "org": "美国银行 Bank of America",
+        "search_keywords": [
+          "Brian Moynihan Bank of America statement",
+          "莫伊尼汉 美国银行 言论"
+        ]
       }
     ],
     "科技界": [
+      {
+        "name": "德米斯·哈萨比斯",
+        "name_en": "Demis Hassabis",
+        "org": "Google DeepMind/诺贝尔化学奖",
+        "search_keywords": [
+          "Demis Hassabis DeepMind statement speech interview",
+          "哈萨比斯 谷歌 诺贝尔 言论 AI"
+        ]
+      },
+      {
+        "name": "杰夫·贝索斯",
+        "name_en": "Jeff Bezos",
+        "org": "亚马逊 Amazon/蓝色起源",
+        "search_keywords": [
+          "Jeff Bezos Amazon statement speech interview",
+          "贝索斯 亚马逊 言论"
+        ]
+      },
+      {
+        "name": "拉里·佩奇",
+        "name_en": "Larry Page",
+        "org": "Google/Alphabet 联合创始人",
+        "search_keywords": [
+          "Larry Page Google statement speech",
+          "佩奇 谷歌 言论"
+        ]
+      },
+      {
+        "name": "谢尔盖·布林",
+        "name_en": "Sergey Brin",
+        "org": "Google/Alphabet 联合创始人",
+        "search_keywords": [
+          "Sergey Brin Google statement speech",
+          "布林 谷歌 言论"
+        ]
+      },
+      {
+        "name": "黄仁勋",
+        "name_en": "Jensen Huang",
+        "org": "英伟达 NVIDIA",
+        "search_keywords": [
+          "Jensen Huang Nvidia statement speech interview",
+          "黄仁勋 英伟达 言论"
+        ]
+      },
+      {
+        "name": "蒂姆·库克",
+        "name_en": "Tim Cook",
+        "org": "苹果 Apple",
+        "search_keywords": [
+          "Tim Cook Apple statement speech interview",
+          "库克 苹果 言论"
+        ]
+      },
+      {
+        "name": "马克·扎克伯格",
+        "name_en": "Mark Zuckerberg",
+        "org": "Meta",
+        "search_keywords": [
+          "Mark Zuckerberg Meta statement speech interview",
+          "扎克伯格 Meta 言论"
+        ]
+      },
+      {
+        "name": "桑达尔·皮查伊",
+        "name_en": "Sundar Pichai",
+        "org": "Google/Alphabet",
+        "search_keywords": [
+          "Sundar Pichai Google Alphabet statement speech interview",
+          "皮查伊 谷歌 言论"
+        ]
+      },
+      {
+        "name": "萨蒂亚·纳德拉",
+        "name_en": "Satya Nadella",
+        "org": "微软 Microsoft",
+        "search_keywords": [
+          "Satya Nadella Microsoft statement speech interview",
+          "纳德拉 微软 言论"
+        ]
+      },
+      {
+        "name": "苏姿丰",
+        "name_en": "Lisa Su",
+        "org": "AMD",
+        "search_keywords": [
+          "Lisa Su AMD statement speech interview",
+          "苏姿丰 AMD 言论"
+        ]
+      },
       {
         "name": "埃隆·马斯克",
         "name_en": "Elon Musk",
@@ -81,62 +198,8 @@
         "name_en": "Sam Altman",
         "org": "OpenAI",
         "search_keywords": [
-          "Sam Altman OpenAI statement speech",
+          "Sam Altman OpenAI statement speech interview",
           "奥特曼 OpenAI 言论"
-        ]
-      },
-      {
-        "name": "黄仁勋",
-        "name_en": "Jensen Huang",
-        "org": "英伟达 NVIDIA",
-        "search_keywords": [
-          "Jensen Huang Nvidia statement speech",
-          "黄仁勋 英伟达 言论"
-        ]
-      },
-      {
-        "name": "蒂姆·库克",
-        "name_en": "Tim Cook",
-        "org": "苹果 Apple",
-        "search_keywords": [
-          "Tim Cook Apple statement speech",
-          "库克 苹果 言论"
-        ]
-      },
-      {
-        "name": "马克·扎克伯格",
-        "name_en": "Mark Zuckerberg",
-        "org": "Meta",
-        "search_keywords": [
-          "Mark Zuckerberg Meta statement speech",
-          "扎克伯格 Meta 言论"
-        ]
-      },
-      {
-        "name": "桑达尔·皮查伊",
-        "name_en": "Sundar Pichai",
-        "org": "Google/Alphabet",
-        "search_keywords": [
-          "Sundar Pichai Google statement speech",
-          "皮查伊 谷歌 言论"
-        ]
-      },
-      {
-        "name": "萨蒂亚·纳德拉",
-        "name_en": "Satya Nadella",
-        "org": "微软 Microsoft",
-        "search_keywords": [
-          "Satya Nadella Microsoft statement speech",
-          "纳德拉 微软 言论"
-        ]
-      },
-      {
-        "name": "苏姿丰",
-        "name_en": "Lisa Su",
-        "org": "AMD",
-        "search_keywords": [
-          "Lisa Su AMD statement speech",
-          "苏姿丰 AMD 言论"
         ]
       }
     ],
@@ -194,6 +257,42 @@
           "Robert Shiller statement speech",
           "席勒 言论"
         ]
+      },
+      {
+        "name": "克劳德·香农",
+        "name_en": "Claude Shannon",
+        "org": "MIT/信息论之父",
+        "search_keywords": [
+          "Claude Shannon statement",
+          "香农 信息论"
+        ]
+      },
+      {
+        "name": "彼得·蒂尔",
+        "name_en": "Peter Thiel",
+        "org": "PayPal/Founders Fund",
+        "search_keywords": [
+          "Peter Thiel statement speech interview",
+          "彼得蒂尔 言论"
+        ]
+      },
+      {
+        "name": "加里·贝克尔",
+        "name_en": "Gary Becker",
+        "org": "芝加哥大学/诺贝尔经济学奖",
+        "search_keywords": [
+          "Gary Becker statement",
+          "贝克尔 言论"
+        ]
+      },
+      {
+        "name": "罗伯特·默顿",
+        "name_en": "Robert Merton",
+        "org": "MIT/诺贝尔经济学奖",
+        "search_keywords": [
+          "Robert Merton statement speech",
+          "默顿 言论"
+        ]
       }
     ],
     "政策与地缘": [
@@ -222,6 +321,33 @@
         "search_keywords": [
           "Kevin Warsh Fed statement speech",
           "沃什 美联储 言论"
+        ]
+      },
+      {
+        "name": "克里斯蒂娜·拉加德",
+        "name_en": "Christine Lagarde",
+        "org": "欧洲央行 ECB",
+        "search_keywords": [
+          "Christine Lagarde ECB statement speech",
+          "拉加德 欧洲央行 言论"
+        ]
+      },
+      {
+        "name": "岸田文雄",
+        "name_en": "Fumio Kishida",
+        "org": "日本首相",
+        "search_keywords": [
+          "Fumio Kishida statement speech",
+          "岸田文雄 言论"
+        ]
+      },
+      {
+        "name": "习近平",
+        "name_en": "Xi Jinping",
+        "org": "中国国家主席",
+        "search_keywords": [
+          "Xi Jinping speech statement",
+          "习近平 讲话"
         ]
       }
     ]
