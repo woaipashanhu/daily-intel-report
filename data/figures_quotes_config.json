@@ -1,0 +1,229 @@
+{
+  "description": "重要人物言论追踪配置",
+  "categories": {
+    "金融投资界": [
+      {
+        "name": "乔治·索罗斯",
+        "name_en": "George Soros",
+        "org": "索罗斯基金会",
+        "search_keywords": [
+          "George Soros statement speech interview",
+          "索罗斯 言论 演讲"
+        ]
+      },
+      {
+        "name": "沃伦·巴菲特",
+        "name_en": "Warren Buffett",
+        "org": "伯克希尔·哈撒韦",
+        "search_keywords": [
+          "Warren Buffett statement speech interview",
+          "巴菲特 言论 采访"
+        ]
+      },
+      {
+        "name": "瑞·达利欧",
+        "name_en": "Ray Dalio",
+        "org": "桥水基金",
+        "search_keywords": [
+          "Ray Dalio Bridgewater statement speech",
+          "达利欧 桥水 言论"
+        ]
+      },
+      {
+        "name": "拉里·芬克",
+        "name_en": "Larry Fink",
+        "org": "贝莱德 BlackRock",
+        "search_keywords": [
+          "Larry Fink BlackRock statement speech",
+          "拉里芬克 贝莱德 言论"
+        ]
+      },
+      {
+        "name": "史蒂夫·施瓦茨曼",
+        "name_en": "Steve Schwarzman",
+        "org": "黑石集团 Blackstone",
+        "search_keywords": [
+          "Steve Schwarzman Blackstone statement",
+          "施瓦茨曼 黑石 言论"
+        ]
+      },
+      {
+        "name": "肯·格里芬",
+        "name_en": "Ken Griffin",
+        "org": "城堡投资 Citadel",
+        "search_keywords": [
+          "Ken Griffin Citadel statement speech",
+          "格里芬 城堡 言论"
+        ]
+      },
+      {
+        "name": "保罗·都铎·琼斯",
+        "name_en": "Paul Tudor Jones",
+        "org": "都铎投资",
+        "search_keywords": [
+          "Paul Tudor Jones statement speech",
+          "保罗都铎琼斯 言论"
+        ]
+      }
+    ],
+    "科技界": [
+      {
+        "name": "埃隆·马斯克",
+        "name_en": "Elon Musk",
+        "org": "Tesla/SpaceX/xAI",
+        "search_keywords": [
+          "Elon Musk statement speech interview",
+          "马斯克 言论 采访"
+        ]
+      },
+      {
+        "name": "萨姆·奥特曼",
+        "name_en": "Sam Altman",
+        "org": "OpenAI",
+        "search_keywords": [
+          "Sam Altman OpenAI statement speech",
+          "奥特曼 OpenAI 言论"
+        ]
+      },
+      {
+        "name": "黄仁勋",
+        "name_en": "Jensen Huang",
+        "org": "英伟达 NVIDIA",
+        "search_keywords": [
+          "Jensen Huang Nvidia statement speech",
+          "黄仁勋 英伟达 言论"
+        ]
+      },
+      {
+        "name": "蒂姆·库克",
+        "name_en": "Tim Cook",
+        "org": "苹果 Apple",
+        "search_keywords": [
+          "Tim Cook Apple statement speech",
+          "库克 苹果 言论"
+        ]
+      },
+      {
+        "name": "马克·扎克伯格",
+        "name_en": "Mark Zuckerberg",
+        "org": "Meta",
+        "search_keywords": [
+          "Mark Zuckerberg Meta statement speech",
+          "扎克伯格 Meta 言论"
+        ]
+      },
+      {
+        "name": "桑达尔·皮查伊",
+        "name_en": "Sundar Pichai",
+        "org": "Google/Alphabet",
+        "search_keywords": [
+          "Sundar Pichai Google statement speech",
+          "皮查伊 谷歌 言论"
+        ]
+      },
+      {
+        "name": "萨蒂亚·纳德拉",
+        "name_en": "Satya Nadella",
+        "org": "微软 Microsoft",
+        "search_keywords": [
+          "Satya Nadella Microsoft statement speech",
+          "纳德拉 微软 言论"
+        ]
+      },
+      {
+        "name": "苏姿丰",
+        "name_en": "Lisa Su",
+        "org": "AMD",
+        "search_keywords": [
+          "Lisa Su AMD statement speech",
+          "苏姿丰 AMD 言论"
+        ]
+      }
+    ],
+    "学术界与经济学家": [
+      {
+        "name": "杰弗里·萨克斯",
+        "name_en": "Jeffrey Sachs",
+        "org": "哥伦比亚大学",
+        "search_keywords": [
+          "Jeffrey Sachs statement speech interview",
+          "萨克斯 言论"
+        ]
+      },
+      {
+        "name": "保罗·克鲁格曼",
+        "name_en": "Paul Krugman",
+        "org": "纽约时报/诺贝尔经济学奖",
+        "search_keywords": [
+          "Paul Krugman column statement",
+          "克鲁格曼 言论"
+        ]
+      },
+      {
+        "name": "杰弗里·辛顿",
+        "name_en": "Geoffrey Hinton",
+        "org": "多伦多大学/图灵奖",
+        "search_keywords": [
+          "Geoffrey Hinton statement speech AI",
+          "辛顿 Hinton 言论 AI"
+        ]
+      },
+      {
+        "name": "约瑟夫·斯蒂格利茨",
+        "name_en": "Joseph Stiglitz",
+        "org": "哥伦比亚/诺贝尔经济学奖",
+        "search_keywords": [
+          "Joseph Stiglitz statement speech",
+          "斯蒂格利茨 言论"
+        ]
+      },
+      {
+        "name": "纳西姆·塔勒布",
+        "name_en": "Nassim Taleb",
+        "org": "纽约大学",
+        "search_keywords": [
+          "Nassim Taleb statement speech",
+          "塔勒布 言论"
+        ]
+      },
+      {
+        "name": "罗伯特·席勒",
+        "name_en": "Robert Shiller",
+        "org": "耶鲁/诺贝尔经济学奖",
+        "search_keywords": [
+          "Robert Shiller statement speech",
+          "席勒 言论"
+        ]
+      }
+    ],
+    "政策与地缘": [
+      {
+        "name": "珍妮特·耶伦",
+        "name_en": "Janet Yellen",
+        "org": "美国财政部/美联储",
+        "search_keywords": [
+          "Janet Yellen statement speech",
+          "耶伦 言论"
+        ]
+      },
+      {
+        "name": "杰罗姆·鲍威尔",
+        "name_en": "Jerome Powell",
+        "org": "美联储",
+        "search_keywords": [
+          "Jerome Powell statement speech",
+          "鲍威尔 言论"
+        ]
+      },
+      {
+        "name": "凯文·沃什",
+        "name_en": "Kevin Warsh",
+        "org": "美联储主席",
+        "search_keywords": [
+          "Kevin Warsh Fed statement speech",
+          "沃什 美联储 言论"
+        ]
+      }
+    ]
+  }
+}
