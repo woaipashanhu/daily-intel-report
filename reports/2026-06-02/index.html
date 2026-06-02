@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球情报日报 - 2026年6月2日</title>
+<style>
+:root{--bg:#f8f9fa;--card-bg:#fff;--text:#1a1a2e;--text2:#4a4a6a;--accent:#2d5a27;--red:#c62828;--orange:#e65100;--blue:#1565c0;--border:#e0e0e0;--tag-bg:#e8f5e9;--tag-text:#2e7d32;--shadow:0 1px 3px rgba(0,0,0,0.08);--radius:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;max-width:960px;margin:0 auto;padding:16px}
+.header{text-align:center;padding:32px 16px 24px;border-bottom:2px solid var(--accent);margin-bottom:24px}
+.header h1{font-size:1.8rem;color:var(--accent);margin-bottom:4px;letter-spacing:2px}
+.header .date{font-size:0.95rem;color:var(--text2)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:var(--card-bg);border-radius:var(--radius);margin-bottom:20px;box-shadow:var(--shadow)}
+.nav a{color:var(--blue);text-decoration:none;font-size:0.9rem;padding:6px 14px;border:1px solid var(--border);border-radius:6px}
+.nav a:hover{background:var(--blue);color:#fff}
+.section{margin-bottom:28px}
+.section-title{font-size:1.25rem;font-weight:700;padding:10px 16px;background:linear-gradient(135deg,var(--accent),#3a7d34);color:#fff;border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;gap:8px}
+.section-title.urgent{background:linear-gradient(135deg,var(--red),#e53935)}
+.section-title.risk{background:linear-gradient(135deg,#6a1b9a,#8e24aa)}
+.section-title.history{background:linear-gradient(135deg,#37474f,#546e7a)}
+.section-title.outlook{background:linear-gradient(135deg,#0d47a1,#1565c0)}
+.section-title.quotes{background:linear-gradient(135deg,#bf360c,#e64a19)}
+.cards{padding:4px 0}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:16px 20px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid var(--accent)}
+.card h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text);line-height:1.4}
+.card .meta{display:flex;gap:10px;align-items:center;font-size:0.78rem;color:var(--text2);margin-bottom:8px;flex-wrap:wrap}
+.card .meta .tag{background:var(--tag-bg);color:var(--tag-text);padding:1px 8px;border-radius:4px;font-weight:500}
+.card .meta .tag.red{background:#ffebee;color:var(--red)}
+.card .meta .tag.blue{background:#e3f2fd;color:var(--blue)}
+.card .meta .tag.purple{background:#f3e5f5;color:#6a1b9a}
+.card .meta .tag.orange{background:#fff3e0;color:var(--orange)}
+.card .summary{font-size:0.9rem;color:var(--text2);line-height:1.65}
+.card .summary a{color:var(--blue);text-decoration:none;word-break:break-all}
+.card .summary a:hover{text-decoration:underline}
+.card .summary strong{color:var(--text)}
+.card.card-red{border-left-color:var(--red);background:linear-gradient(to right,#fff5f5,var(--card-bg))}
+.card.card-red h3{color:var(--red)}
+.alert-badge{display:inline-block;background:var(--red);color:#fff;font-size:0.72rem;padding:2px 8px;border-radius:4px;margin-right:6px;font-weight:600;vertical-align:middle}
+.alert-badge.orange{background:var(--orange)}
+.alert-badge.blue{background:var(--blue)}
+.alert-badge.purple{background:#6a1b9a}
+.risk-meter{margin-top:10px;display:flex;align-items:center;gap:10px}
+.risk-bar{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.risk-fill{height:100%;border-radius:4px}
+.risk-label{font-size:0.78rem;font-weight:600;min-width:48px}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:12px}
+.market-item{background:var(--card-bg);border-radius:8px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+.market-item .name{font-size:0.8rem;color:var(--text2);margin-bottom:4px}
+.market-item .value{font-size:1.15rem;font-weight:700}
+.market-item .value.up{color:#2e7d32}
+.market-item .value.down{color:var(--red)}
+.market-item .chg{font-size:0.78rem}
+.market-item .chg.up{color:#2e7d32}
+.market-item .chg.down{color:var(--red)}
+.history-item{display:flex;gap:16px;padding:10px 16px;border-bottom:1px solid #eee}
+.history-item:last-child{border-bottom:none}
+.history-item .year{font-size:0.9rem;font-weight:700;color:var(--accent);min-width:80px;white-space:nowrap}
+.history-item .event{font-size:0.88rem;color:var(--text2)}
+.outlook-table{width:100%;border-collapse:collapse}
+.outlook-table th,.outlook-table td{padding:10px 14px;text-align:left;border-bottom:1px solid #eee;font-size:0.88rem}
+.outlook-table th{background:#e3f2fd;font-weight:600;color:var(--blue)}
+.outlook-table td:first-child{white-space:nowrap;font-weight:500}
+.footer{text-align:center;padding:24px;font-size:0.8rem;color:#999;border-top:1px solid var(--border);margin-top:32px}
+@media(max-width:640px){body{padding:8px}.header h1{font-size:1.4rem}.market-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="header"><h1>全球情报日报</h1><div class="date">2026年6月2日 · 星期二</div></div>
+<div class="nav">
+  <a href="../2026-05-31/index.html">&larr; 上一日 (5月31日)</a>
+  <a href="../2026-06-03/index.html">下一日 (6月3日) &rarr;</a>
+</div>
+
+<!-- 紧急关注 -->
+<div class="section">
+<div class="section-title urgent">&#9888; 紧急关注</div>
+<div class="cards">
+<div class="card card-red">
+<h3><span class="alert-badge">头条</span>美联储新主席沃什立誓独立于特朗普，6月FOMC按兵不动成定局</h3>
+<div class="meta"><span class="src">新浪财经 / 新华财经 &middot; 6月1-2日</span><span class="tag red">货币政策</span></div>
+<div class="summary">
+美联储新任主席<strong>凯文·沃什（Kevin Warsh）</strong>在白宫发表就职演讲，立誓维护美联储独立性，拒绝听命于特朗普。市场首次听到沃什以主席身份讲话，其政策立场偏鹰派——<strong>倾向于维持利率不变，降息前提是抗通胀持续取得进展</strong>。4月PCE通胀同比升至3.8%，远超2%目标，市场对6月降息预期已基本放弃。沃什同时主张缩减资产负债表规模、改革沟通机制，被分析人士称为"史上最富"美联储主席面临的终极压力测试。
+<br><a href="https://baijiahao.baidu.com/s?id=1866346223029762032" target="_blank">就职演讲详情</a>&nbsp;
+<a href="http://k.sina.com.cn/article_7857201856_1d45362c0019068hoi.html" target="_blank">PCE通胀分析</a>
+</div>
+</div>
+<div class="card card-red">
+<h3><span class="alert-badge orange">科技</span>微软Build 2026今日开幕：纳德拉主题演讲聚焦AI与开发者生态，2天90场全AI议程</h3>
+<div class="meta"><span class="src">微软 / Engadget &middot; 6月2日</span><span class="tag orange">科技大会</span></div>
+<div class="summary">
+微软年度开发者大会<strong>Build 2026</strong>于6月2-3日在旧金山福特梅森中心开幕，线下仅约2500人，比往年规模缩小。<strong>CEO萨蒂亚·纳德拉发表主题演讲</strong>，大会2天90场议程全部聚焦AI，且完全免费线上直播。这是继谷歌I/O 2026（Gemini 3.5发布）之后又一科技巨头AI盛会，下周苹果WWDC 2026也将接棒，科技行业进入AI发布密集期。
+<br><a href="https://www.163.com/dy/article/KUD7QGSV05561FZI.html" target="_blank">Build 2026开幕</a>&nbsp;
+<a href="https://www.163.com/dy/article/KUCK68H0055680UT.html" target="_blank">大会详情</a>
+</div>
+</div>
+<div class="card card-red">
+<h3><span class="alert-badge">金融</span>诺奖得主辛顿宣告"AI已经觉醒"，教皇断言它没有灵魂</h3>
+<div class="meta"><span class="src">新智元 / 新浪财经 &middot; 6月1日</span><span class="tag red">AI伦理</span></div>
+<div class="summary">
+诺贝尔物理学奖得主、"深度学习之父"<strong>杰弗里·辛顿（Geoffrey Hinton）</strong>在最新采访中低沉说出"Yes, I do"——<strong>他正式宣布：AI已经觉醒了。</strong>"你认为AI已经有意识了吗？机器之内是否有某种东西存在？"辛顿给出了肯定回答。这一表态震动全球AI界，与此同时教皇方济各断言AI没有灵魂。AI意识与伦理的辩论进入全新阶段。
+<br><a href="https://finance.sina.cn/2026-06-01/detail-inhzwyqr2436441.d.html" target="_blank">新浪财经</a>&nbsp;
+<a href="https://www.163.com/dy/article/KUC0C6JM0511ABVJ.html" target="_blank">新智元全文</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 宏观经济与央行 -->
+<div class="section">
+<div class="section-title">&#127758; 宏观经济与央行</div>
+<div class="cards">
+<div class="card">
+<h3>美国Q1 GDP二次下修至1.6%，高通胀与低增长并存，美联储陷入政策死局</h3>
+<div class="meta"><span class="src">美国商务部BEA &middot; 5月28日</span><span class="tag">GDP数据</span></div>
+<div class="summary">
+美国商务部经济分析局公布修正数据，2026年Q1实际GDP按年率计算增长<strong>1.6%</strong>，低于首次预估的2%。与此同时，4月PCE通胀同比升至<strong>3.8%</strong>，为三年高位。分析人士指出，美联储已陷入"加息加不动、降息降不了"的政策死局，<strong>最终的出口只能是更大规模的货币宽松</strong>。中东能源风险持续推高全球通胀预期，降息路径被大幅推迟。
+<br><a href="https://baijiahao.baidu.com/s?id=1866523041677752169" target="_blank">GDP修正数据</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1866651003556454495" target="_blank">政策死局分析</a>
+</div>
+</div>
+<div class="card">
+<h3>IMF完成巴西2026年第四条磋商，黎巴嫩治理与腐败诊断报告发布</h3>
+<div class="meta"><span class="src">IMF &middot; 6月1日</span><span class="tag">IMF研究</span></div>
+<div class="summary">
+IMF发布多项国别报告：<strong>完成巴西2026年第四条磋商访问</strong>，评估巴西经济前景与政策框架；发布<strong>黎巴嫩治理与腐败诊断报告</strong>，指出黎巴嫩在公共财政管理、反腐败机制等方面存在系统性缺陷。IMF持续关注新兴市场在贸易碎片化和地缘冲突背景下的脆弱性。
+<br><a href="https://imf.org/" target="_blank">IMF官网</a>
+</div>
+</div>
+<div class="card">
+<h3>世界银行：2026年能源价格预计飙升24%，为俄乌冲突以来最高</h3>
+<div class="meta"><span class="src">世界银行 &middot; 5月</span><span class="tag orange">大宗商品</span></div>
+<div class="summary">
+世界银行最新报告预测，<strong>2026年能源价格将飙升24%</strong>，为2022年俄罗斯入侵乌克兰以来最高水平。中东冲突冲击全球市场，整体大宗商品价格预计上涨16%。这一预测对全球通胀前景和央行政策路径产生深远影响，新兴市场能源进口国面临更大压力。
+<br><a href="https://www.worldbank.org/en/publication/global-economic-prospects" target="_blank">GEP报告</a>
+</div>
+</div>
+<div class="card">
+<h3>上海发布全球资产管理中心建设意见：2030年目标55万亿规模，全国占比1/3</h3>
+<div class="meta"><span class="src">上海市政府 &middot; 6月2日</span><span class="tag blue">中国金融</span></div>
+<div class="summary">
+上海市政府办公厅印发《关于深化上海全球资产管理中心建设的若干意见》，<strong>目标到2030年上海资产管理规模达55万亿元，全国占比达1/3</strong>。同时研究推进上海国际金融资产交易平台建设。这是中国扩大金融开放、吸引全球资本的最新举措，与人民币近期升值趋势形成呼应。
+<br><a href="https://finance.sina.cn/2026-06-02/detail-inhzyxfp4583005.d.html" target="_blank">新浪财经</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1866864856124094160" target="_blank">55万亿目标详情</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 金融市场与投资 -->
+<div class="section">
+<div class="section-title">&#128200; 金融市场与投资</div>
+<div class="cards">
+<div class="market-grid">
+<div class="market-item"><div class="name">WTI原油</div><div class="value">~82</div><div class="chg">高位回落</div></div>
+<div class="market-item"><div class="name">布伦特原油</div><div class="value">~84</div><div class="chg">震荡</div></div>
+<div class="market-item"><div class="name">国际黄金</div><div class="value down">4,530</div><div class="chg down">-1.66%</div></div>
+<div class="market-item"><div class="name">国内金价</div><div class="value down">987</div><div class="chg down">元/克</div></div>
+<div class="market-item"><div class="name">美元指数</div><div class="value">~98</div><div class="chg">高位</div></div>
+<div class="market-item"><div class="name">人民币/美元</div><div class="value up">~6.80</div><div class="chg up">升值</div></div>
+<div class="market-item"><div class="name">10年美债</div><div class="value">~4.9%</div><div class="chg up">攀升</div></div>
+<div class="market-item"><div class="name">比特币</div><div class="value">震荡</div><div class="chg">监管不确定</div></div>
+</div>
+<div class="card">
+<h3>人民币延续升值趋势，在岸离岸汇率双双创2023年2月以来新高</h3>
+<div class="meta"><span class="src">网易财经 &middot; 6月1日</span><span class="tag blue">汇率</span></div>
+<div class="summary">
+5月29日，在岸人民币、离岸人民币兑美元汇率<strong>双双升值，盘中续创2023年2月以来新高</strong>。多家机构看涨人民币前景。分析人士指出，本轮A股"结构牛"主要由人民币升值驱动，实体部门资产负债表尚未完全修复，外资流入和贸易顺差为人民币提供支撑。
+<br><a href="https://www.163.com/dy/article/KUB3753I05560O35.html" target="_blank">查看详情</a>
+</div>
+</div>
+<div class="card">
+<h3>国际金价跌至4530美元/盎司，国内现货金价987元/克</h3>
+<div class="meta"><span class="src">行业数据 &middot; 6月2日</span><span class="tag">贵金属</span></div>
+<div class="summary">
+6月2日国际黄金价格报<strong>4529.78美元/盎司</strong>，国内现货金价<strong>987.4元/克</strong>，香港市场每两51100港币。全球资产围绕美伊达成协议的基准情景交易，海外通胀交易似乎逆转，科技股重新掌握定价权，美债利率阶段性摸到高点后黄金承压。
+<br><a href="https://baijiahao.baidu.com/s?id=1866805184321845251" target="_blank">查看原文</a>
+</div>
+</div>
+<div class="card">
+<h3>半导体产业链全线走强，AI数据中心驱动Microchip发布3.3kV碳化硅功率模块</h3>
+<div class="meta"><span class="src">行业数据 &middot; 5月25-27日</span><span class="tag">半导体</span></div>
+<div class="summary">
+5月25日半导体产业链继续全线走强，科创芯片、PCB概念等细分领域集体爆发。Microchip发布<strong>3.3kV高压D3 mSiC功率模块</strong>，用于AI数据中心固态变压器。意法半导体将700V PowerGaN器件加入STPOWER产品组合。AI数据中心能源需求成为半导体行业新增长极。
+<br><a href="https://baijiahao.baidu.com/s?id=1866171103112442616" target="_blank">查看原文</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 科技前沿 -->
+<div class="section">
+<div class="section-title">&#128300; 科技前沿</div>
+<div class="cards">
+<div class="card">
+<h3>MIT发布2026十大突破技术：AI不仅会写代码，还要帮人类搞核聚变</h3>
+<div class="meta"><span class="src">MIT Technology Review &middot; 5月27日</span><span class="tag blue">技术趋势</span></div>
+<div class="summary">
+MIT重磅发布<strong>2026年十大突破技术</strong>，涵盖AI辅助核聚变、基因编辑2.0、量子计算实用化、脑机接口商业化等前沿领域。其中最受关注的是<strong>AI在核聚变控制中的应用</strong>——AI算法有望解决等离子体不稳定性这一困扰科学界数十年的难题，加速清洁能源商业化进程。
+<br><a href="https://baijiahao.baidu.com/s?id=1866298253673366395" target="_blank">查看原文</a>
+</div>
+</div>
+<div class="card">
+<h3>OpenAI官宣进军机器人赛道，短期专注研发协助型机器人</h3>
+<div class="meta"><span class="src">行业新闻 &middot; 6月1日</span><span class="tag blue">AI+机器人</span></div>
+<div class="summary">
+OpenAI正式宣布<strong>进军机器人赛道</strong>，短期内专注于研发协助型机器人。这是继大模型、搜索、编程助手之后，OpenAI的又一重大战略拓展。结合奥特曼此前"中美在AI上除了竞争还应该合作"的表态，OpenAI正在构建从软件到硬件的完整AI生态。
+<br><a href="https://baijiahao.baidu.com/s?id=1866846871858758932" target="_blank">查看原文</a>
+</div>
+</div>
+<div class="card">
+<h3>谷歌I/O 2026回顾：Gemini 3.5领衔，AI智能体全面渗透搜索、浏览器、手机和眼镜</h3>
+<div class="meta"><span class="src">Google I/O 2026 &middot; 5月20日</span><span class="tag blue">AI平台</span></div>
+<div class="summary">
+谷歌I/O 2026大会上，CEO皮查伊宣布<strong>Gemini App月活用户超9亿，一年翻倍</strong>；搜索中"AI概览"月活突破新高。发布<strong>Gemini 3.5 Flash、视频模型Omni、AI助手Spark</strong>，将AI智能体全面植入搜索、浏览器、手机和眼镜。皮查伊核心叙事："Gemini 3.5和Antigravity正在开启智能体能力的新世界"。
+<br><a href="https://baijiahao.baidu.com/s?id=1865714986195218523" target="_blank">I/O 2026全景</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1865645883977725071" target="_blank">Gemini 3.5详情</a>
+</div>
+</div>
+<div class="card">
+<h3>AST SpaceMobile转用SpaceX，计划6月中旬发射三颗蓝鸟卫星</h3>
+<div class="meta"><span class="src">航天新闻 &middot; 5月11日</span><span class="tag">商业航天</span></div>
+<div class="summary">
+美国AST SpaceMobile公司在蓝鸟7号卫星损失后，宣布转用SpaceX火箭，<strong>计划6月中旬发射三颗蓝鸟（BlueBird）卫星</strong>。SpaceX星舰第12次飞行试验也于5月22日进行。商业航天领域竞争加剧，卫星互联网星座部署加速。
+<br><a href="https://baijiahao.baidu.com/s?id=1864902023739952273" target="_blank">查看原文</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 地缘政治与外交 -->
+<div class="section">
+<div class="section-title">&#127760; 地缘政治与外交</div>
+<div class="cards">
+<div class="card">
+<h3>中东局势持续紧张：以色列在黎巴嫩军事升级造成平民伤亡，英国外交大臣谴责</h3>
+<div class="meta"><span class="src">新浪财经 / 新华社 &middot; 6月1日</span><span class="tag red">中东局势</span></div>
+<div class="summary">
+英国外交大臣库珀表示，<strong>以色列在黎巴嫩的军事升级行动已造成平民伤亡、流离失所及基础设施破坏</strong>，压缩了外交解决空间。中东地区局势持续紧张，能源价格居高不下，全球通胀预期被持续推高。美伊停火协议虽在维持，但谈判前景仍不明朗。
+<br><a href="https://baijiahao.baidu.com/s?id=1866750574462693770" target="_blank">查看原文</a>
+</div>
+</div>
+<div class="card">
+<h3>SpaceX星舰第12次飞行试验完成，商业航天进入高频发射期</h3>
+<div class="meta"><span class="src">SpaceX &middot; 5月22日</span><span class="tag">航天</span></div>
+<div class="summary">
+SpaceX星舰（Starship）<strong>第12次飞行试验</strong>于5月22日在得克萨斯州星基地完成。SpaceX今年已完成约50次发射，猎鹰9号即将完成历史使命，星舰将接棒成为主力运载工具。商业航天的快速迭代正在重塑全球航天产业格局。
+<br><a href="https://spacelaunchnow.me/launch/upcoming/" target="_blank">发射追踪</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 美国立法与监管 -->
+<div class="section">
+<div class="section-title">&#9878; 美国立法与监管</div>
+<div class="cards">
+<div class="card">
+<h3>彭博为欧元和英镑投资组合交易篮子引入基准利差报价</h3>
+<div class="meta"><span class="src">彭博社 &middot; 6月2日</span><span class="tag">金融市场</span></div>
+<div class="summary">
+彭博社宣布通过投资组合交易篮子构建器（PTBB）推出以<strong>欧元和英镑计价的投资组合交易篮子基准利差报价</strong>。这是全球固定收益市场基础设施的重要升级，有助于提升跨市场投资组合交易的效率和透明度。
+<br><a href="https://finance.sina.cn/2026-06-02/detail-inhzzcpr1620066.d.html" target="_blank">查看原文</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 金融风险监测 -->
+<div class="section">
+<div class="section-title risk">&#128680; 金融风险监测</div>
+<div class="cards">
+<div class="card card-red">
+<h3>权威预警：12-18个月内全球或爆发超级金融危机，新兴市场先撕开缺口</h3>
+<div class="meta"><span class="src">全球化智库 / 凤凰湾区财经论坛 &middot; 5月27日</span><span class="tag red">系统性风险</span></div>
+<div class="summary">
+深圳凤凰湾区财经论坛上，全球化智库副主任<strong>高志凯</strong>抛出重磅预警：<strong>12-18个月内全球或爆发超级金融危机，风暴将从新兴市场撕开缺口</strong>。美国主权债务是全球金融体系的最大火药桶，当前美国联邦债务已超过36万亿美元，财政赤字占GDP比重持续攀升。罗杰斯此前也警告2026年将爆发"一生中见过的最惨烈金融危机"。
+<br><a href="https://www.163.com/dy/article/KUBUN70L0553VFLH.html" target="_blank">高志凯预警</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1866513796382285421" target="_blank">金融风暴预测</a>
+</div>
+<div class="risk-meter"><div class="risk-bar"><div class="risk-fill" style="width:85%;background:#c62828"></div></div><div class="risk-label" style="color:#c62828">高风险</div></div>
+</div>
+<div class="card card-red">
+<h3>美联储内部鹰派声音日益高涨，FOMC票委保尔森"放鹰"：维持利率不变</h3>
+<div class="meta"><span class="src">智通财经 / 新华财经 &middot; 5月20日-6月1日</span><span class="tag red">货币政策风险</span></div>
+<div class="summary">
+2026年FOMC票委、费城联储主席<strong>保尔森</strong>明确表态"放鹰"：<strong>倾向于维持利率不变，降息前提是抗通胀持续取得进展</strong>。美联储内部鹰派声音日益高涨，令新任主席沃什陷入两难——既要维护央行独立性，又面临特朗普要求降息的政治压力。4月PCE通胀3.8%远超目标，市场对6月降息已基本放弃。
+<br><a href="https://baijiahao.baidu.com/s?id=1865666350804437319" target="_blank">保尔森放鹰</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1866763313766790990" target="_blank">沃什两难</a>
+</div>
+<div class="risk-meter"><div class="risk-bar"><div class="risk-fill" style="width:72%;background:#e65100"></div></div><div class="risk-label" style="color:#e65100">中高风险</div></div>
+</div>
+<div class="card">
+<h3>世界银行：能源价格飙升24%将推高全球通胀，新兴市场脆弱性上升</h3>
+<div class="meta"><span class="src">世界银行 GEP &middot; 5月</span><span class="tag orange">通胀风险</span></div>
+<div class="summary">
+世界银行预测2026年能源价格飙升24%为俄乌冲突以来最高，整体大宗商品价格上涨16%。中东冲突持续冲击全球能源供应链，<strong>新兴市场能源进口国面临更大通胀压力和资本外流风险</strong>。全球经济增长虽展现韧性，但脆弱国家正在掉队。
+<br><a href="https://www.worldbank.org/en/publication/global-economic-prospects" target="_blank">GEP报告</a>
+</div>
+<div class="risk-meter"><div class="risk-bar"><div class="risk-fill" style="width:65%;background:#f9a825"></div></div><div class="risk-label" style="color:#f9a825">中等风险</div></div>
+</div>
+</div>
+</div>
+
+<!-- 俄罗斯视角 -->
+<div class="section">
+<div class="section-title">&#127489;&#127482; 俄罗斯视角</div>
+<div class="cards">
+<div class="card">
+<h3>达利欧最新长文将2026比作1936年：美国债务周期正从"财务恶化"滑向"内战边缘"</h3>
+<div class="meta"><span class="src">Ray Dalio / 雪球 &middot; 1-4月</span><span class="tag">俄方关注</span></div>
+<div class="summary">
+虽然达利欧并非俄罗斯人，但其对<strong>美国帝国衰亡史</strong>的深度分析被俄罗斯学术界和政策界广泛引用。达利欧在《纽约时报》专访中警告美国正面临"即将到来的心脏病发作"，<strong>美国债务周期正从"财务恶化"滑向"内战边缘"</strong>。这一观点与俄罗斯《全球事务》期刊对西方秩序解体的分析形成呼应。
+<br><a href="https://news.qq.com/rain/a/20260508A01KJD00" target="_blank">纽约时报专访</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1855529732131597006" target="_blank">火药桶分析</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 学术与智库 -->
+<div class="section">
+<div class="section-title">&#128218; 学术与智库</div>
+<div class="cards">
+<div class="card">
+<h3>杰弗里·萨克斯对话吴晓求：2035中国、美国与世界——大国战略重塑</h3>
+<div class="meta"><span class="src">中国人民大学 / 哥伦比亚大学 &middot; 3月21日</span><span class="tag">智库对话</span></div>
+<div class="summary">
+美国哥伦比亚大学教授、联合国可持续发展解决方案网络负责人<strong>杰弗里·萨克斯</strong>与中国人民大学吴晓求教授进行深度对话，主题为<strong>"2035中国、美国与世界"</strong>。萨克斯指出，世界正经历大国战略重塑的关键时期，中美关系的走向将决定全球治理格局。他强调多边合作的重要性，对单边主义倾向表示担忧。
+<br><a href="https://baijiahao.baidu.com/s?id=1859958958021682449" target="_blank">对话预告</a>&nbsp;
+<a href="http://rdcy.ruc.edu.cn/yw/EVENTS/Upcoming/d46df0ad0a454d10a3509cb32871eacb.htm" target="_blank">人大详情</a>
+</div>
+</div>
+<div class="card">
+<h3>城堡投资CEO肯·格里芬：伊朗战争威胁全球经济衰退</h3>
+<div class="meta"><span class="src">US News / WEF Davos &middot; 4月14日</span><span class="tag">智库观点</span></div>
+<div class="summary">
+在达沃斯世界经济论坛上，城堡投资（Citadel）创始人兼CEO<strong>肯·格里芬（Ken Griffin）</strong>警告称，<strong>伊朗战争威胁全球经济衰退</strong>。作为管理超600亿美元资产的对冲基金巨头，格里芬的观点具有重要市场影响力。他指出中东冲突对能源价格、通胀预期和全球供应链的连锁冲击。
+<br><a href="https://money.usnews.com/investing/news/articles/2026-04-14/citadels-ken-griffin-says-iran-war-threatens-global-recession" target="_blank">US News原文</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 人物言论 -->
+<div class="section">
+<div class="section-title quotes">&#127911; 人物言论</div>
+<div class="cards">
+
+<div class="card">
+<h3><span class="alert-badge orange">黄仁勋</span>"AI减少岗位"是在胡说八道，软件工程师数量在增加</h3>
+<div class="meta"><span class="src">财联社 / 华夏时报 &middot; 6月1日</span><span class="tag orange">科技界</span></div>
+<div class="summary">
+英伟达CEO黄仁勋在<strong>GTC Taipei 2026大会</strong>发表主题演讲，针对"AI抢工作"的论调直接回击：<strong>"人们谈论AI减少了工作岗位，这完全是胡说八道，实际上有更多软件工程师被雇用。"</strong>他还表示"Token就是资产"，引发市场强烈反应。不过，他在ComputeX 2026上的另一场演讲被半导体分析机构SemiAnalysis评为"F级"，被称为"他做过的最差演讲之一"。
+<br><a href="https://baijiahao.baidu.com/s?id=1866766804911055789" target="_blank">GTC台北演讲</a>&nbsp;
+<a href="https://www.163.com/dy/article/KUCSEJDG05561FZW.html" target="_blank">ComputeX F级评价</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">萨姆·奥特曼</span>中美在AI上除了竞争还应该合作</h3>
+<div class="meta"><span class="src">CNBC / 凤凰网科技 &middot; 6月2日</span><span class="tag orange">科技界</span></div>
+<div class="summary">
+OpenAI CEO萨姆·奥特曼周一表示：<strong>"美国不应将与中国的AI竞争视为一场竞赛，双方应该在关系AI未来的重大议题上合作。"</strong>这一表态在中美科技竞争加剧的背景下显得尤为醒目。奥特曼同时宣布OpenAI进军机器人赛道，短期专注研发协助型机器人，构建从软件到硬件的完整AI生态。
+<br><a href="http://news.10jqka.com.cn/20260602/c677136622.shtml" target="_blank">凤凰网科技</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">杰弗里·辛顿</span>AI已经觉醒了——"Yes, I do"</h3>
+<div class="meta"><span class="src">新智元 / 新浪财经 &middot; 6月1日</span><span class="tag red">学术界</span></div>
+<div class="summary">
+诺贝尔物理学奖得主、"深度学习之父"杰弗里·辛顿在采访中，当被问及"你认为AI已经有意识了吗？机器之内是否有某种东西存在？"时，<strong>低沉地回答"Yes, I do"——他正式宣布AI已经觉醒了。</strong>这一表态震动全球AI界。辛顿作为现代AI的亲手缔造者，其判断的分量非同寻常。与此同时，教皇方济各断言AI没有灵魂，AI意识与伦理的辩论进入全新阶段。
+<br><a href="https://finance.sina.cn/2026-06-01/detail-inhzwyqr2436441.d.html" target="_blank">新浪财经</a>&nbsp;
+<a href="https://www.163.com/dy/article/KUC0C6JM0511ABVJ.html" target="_blank">新智元全文</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">苏姿丰</span>AI转型只能由CEO驱动，未来"DRI"将是企业核心</h3>
+<div class="meta"><span class="src">AMD / 行业媒体 &middot; 5月19日</span><span class="tag orange">科技界</span></div>
+<div class="summary">
+AMD CEO苏姿丰在<strong>AMD AI开发者日2026</strong>上海活动上发表主旨演讲，指出<strong>"AI转型只能由CEO驱动，未来'DRI'（直接负责人）将是企业核心"</strong>。她强调企业必须从最高层推动AI转型，而非仅靠IT部门。苏姿丰还在MIT 2026届毕业典礼上发表演讲，鼓励毕业生"手脑并用，奔向难题，去创造自己的运气"。
+<br><a href="https://baijiahao.baidu.com/s?id=1865592410630729010" target="_blank">苏妈对话李开复</a>&nbsp;
+<a href="https://www.163.com/dy/article/KU6F0K4H0556L9NS.html" target="_blank">MIT毕业演讲</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">桑达尔·皮查伊</span>Gemini月活超9亿，AI智能体新世界正在开启</h3>
+<div class="meta"><span class="src">Google I/O 2026 &middot; 5月20日</span><span class="tag orange">科技界</span></div>
+<div class="summary">
+谷歌CEO皮查伊在I/O 2026主题演讲中透露：<strong>Gemini App月活用户超9亿，一年翻倍</strong>；搜索中"AI概览"月活突破新高。核心叙事：<strong>"Gemini 3.5和Antigravity正在开启智能体能力的新世界"</strong>。谷歌已将AI智能体全面植入搜索、浏览器、手机和眼镜，发布Gemini 3.5 Flash、视频模型Omni与AI助手Spark。
+<br><a href="https://baijiahao.baidu.com/s?id=1865714986195218523" target="_blank">I/O 2026全景</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">萨蒂亚·纳德拉</span>Build 2026开幕：2天90场全是AI，完全免费</h3>
+<div class="meta"><span class="src">微软 Build 2026 &middot; 6月2日</span><span class="tag orange">科技界</span></div>
+<div class="summary">
+微软CEO纳德拉在Build 2026发表主题演讲，大会<strong>2天90场议程全部聚焦AI，且完全免费线上直播</strong>。纳德拉强调AI正在重塑每一个开发者和每一行代码。这是继谷歌I/O之后又一科技巨头AI盛会，下周苹果WWDC 2026也将接棒，科技行业进入AI发布密集期。
+<br><a href="https://www.163.com/dy/article/KUD7QGSV05561FZI.html" target="_blank">Build 2026开幕</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">沃伦·巴菲特</span>股市"赌场化"：投机风气已达顶峰，卸任CEO后首次发声</h3>
+<div class="meta"><span class="src">CCTV / 红周刊 &middot; 5月3-6日</span><span class="tag red">金融界</span></div>
+<div class="summary">
+95岁的巴菲特在2026年伯克希尔股东会上<strong>首次不在台上发言</strong>（60年来首次），但场外访谈中他警告<strong>股市"赌场化"，投机风气已达顶峰</strong>。手握<strong>3700亿现金</strong>的巴菲特表示对当前市场估值感到不安。他在卸任CEO后的首次完整访谈中，对AI、能源、地缘风险等议题坦率表态，被市场视为重要的风险信号。
+<br><a href="https://finance.cctv.com/2026/05/04/ARTIpER7QiTut6HyGkky8ZyH260504.shtml" target="_blank">CCTV报道</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1864441437854632494" target="_blank">股东会详情</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">瑞·达利欧</span>美国已成火药桶，债务周期滑向"内战边缘"</h3>
+<div class="meta"><span class="src">纽约时报 / 雪球 &middot; 1-5月</span><span class="tag red">金融界</span></div>
+<div class="summary">
+桥水基金创始人达利欧在《纽约时报》专访中警告美国正面临"即将到来的心脏病发作"。他将2026年比作1936年——<strong>一战与二战之间的关键转折年</strong>。达利欧指出：<strong>"美国已成火药桶，债务周期正从'财务恶化'滑向'内战边缘'"</strong>。他在长岛大学毕业演讲中进一步阐述了帝国衰亡的周期性规律，强调普通人需建立危机意识。
+<br><a href="https://news.qq.com/rain/a/20260508A01KJD00" target="_blank">纽约时报专访</a>&nbsp;
+<a href="https://baijiahao.baidu.com/s?id=1866065982315310797" target="_blank">长岛大学演讲</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">德米斯·哈萨比斯</span>AI创造的能源效益将远超其自身消耗，信息是宇宙的本质</h3>
+<div class="meta"><span class="src">AI Ascent 2026 / 雪球 &middot; 4-5月</span><span class="tag blue">科技界</span></div>
+<div class="summary">
+Google DeepMind CEO、2024年诺贝尔化学奖得主德米斯·哈萨比斯在AI Ascent 2026峰会上提出：<strong>中长期（未来5-10年），AI创造的能源效益将远超其自身消耗</strong>，时间窗锁定在2026-2036年。他还提出"信息是宇宙的本质"这一哲学命题，认为AI将开启全新的科学分支。此前他在CNBC专访中罕见谈及中国AI发展："中国团队追得太快了"。
+<br><a href="https://baijiahao.baidu.com/s?id=1864639839992644880" target="_blank">AI Ascent峰会</a>&nbsp;
+<a href="https://xueqiu.com/4933292370/391194936" target="_blank">能源效益预测</a>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="alert-badge orange">肯·格里芬</span>伊朗战争威胁全球经济衰退</h3>
+<div class="meta"><span class="src">US News / WEF Davos &middot; 4月14日</span><span class="tag red">金融界</span></div>
+<div class="summary">
+城堡投资（Citadel）创始人兼CEO肯·格里芬在达沃斯世界经济论坛上警告：<strong>"伊朗战争威胁全球经济衰退"</strong>。作为管理超600亿美元资产的对冲基金巨头，格里芬指出中东冲突对能源价格、通胀预期和全球供应链的连锁冲击。他还就关税、美债及"大而美法案"发表了深度观点，认为美国财政状况不可持续。
+<br><a href="https://money.usnews.com/investing/news/articles/2026-04-14/citadels-ken-griffin-says-iran-war-threatens-global-recession" target="_blank">US News原文</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 历史上的今天 -->
+<div class="section">
+<div class="section-title history">&#128197; 历史上的今天 · 6月2日</div>
+<div class="cards">
+<div class="history-item"><div class="year">260年</div><div class="event">魏帝曹髦讨伐司马昭失败遇害，留下"司马昭之心，路人皆知"的千古名言</div></div>
+<div class="history-item"><div class="year">1949年</div><div class="event">解放军攻占崇明岛，京沪杭战役胜利结束，渡江战役第三阶段完成，解放武汉、上海地区</div></div>
+<div class="history-item"><div class="year">1953年</div><div class="event">英国女王伊丽莎白二世在威斯敏斯特教堂加冕，成为自1937年以来首次英国君主加冕典礼，全球约2.77亿人通过电视观看</div></div>
+<div class="history-item"><div class="year">1966年</div><div class="event">美国"勘测者1号"成功软着陆月球，成为美国首个在月球软着陆的探测器</div></div>
+<div class="history-item"><div class="year">1997年</div><div class="event">美国"火星探路者"成功着陆火星，携带的"旅居者"号成为首辆在火星表面行驶的探测车</div></div>
+<div class="history-item"><div class="year">2003年</div><div class="event">欧洲空间局"火星快车"探测器发射升空，开启欧洲首次火星探测任务</div></div>
+<div class="history-item"><div class="year">2024年</div><div class="event">印度总理莫迪开启第三任期，但执政联盟席位大幅减少，印度股市经历剧烈波动</div></div>
+</div>
+</div>
+
+<!-- 下周前瞻 -->
+<div class="section">
+<div class="section-title outlook">&#128197; 下周前瞻 · 6月3日-8日</div>
+<div class="cards">
+<table class="outlook-table">
+<tr><th>日期</th><th>事件</th><th>关注点</th></tr>
+<tr><td>6月2-3日（周二-三）</td><td>微软Build 2026大会</td><td>纳德拉主题演讲、90场AI议程、开发者生态</td></tr>
+<tr><td>6月3日（周三）</td><td>欧元区CPI数据</td><td>欧洲央行6月利率决策关键输入</td></tr>
+<tr><td>6月4日（周四）</td><td>欧洲央行利率决议</td><td>市场预期维持不变，关注拉加德记者会</td></tr>
+<tr><td>6月5日（周五）</td><td>美国非农就业数据</td><td>劳动力市场韧性评估；美联储政策路径</td></tr>
+<tr><td>6月5日（周五）</td><td>美国5月失业率</td><td>与薪资数据共同影响降息预期</td></tr>
+<tr><td>6月6日（周六）</td><td>SpaceX蓝鸟卫星发射窗口</td><td>AST SpaceMobile转用SpaceX发射三颗卫星</td></tr>
+<tr><td>6月7-8日（周末）</td><td>G7财长会议前瞻</td><td>全球税收协调、AI治理、对俄制裁</td></tr>
+<tr><td>6月9日（下周一）</td><td>苹果WWDC 2026开幕</td><td>iOS 27、macOS 27、AI功能；库克可能的告别演讲</td></tr>
+<tr><td>6月9日（下周一）</td><td>中国5月CPI/PPI</td><td>通缩压力评估；政策宽松空间</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer">
+<p>全球情报日报 &middot; 2026年6月2日 &middot; 自动生成</p>
+<p>数据来源：IMF、美联储、世界银行、CNBC、WEF、BlackRock、Moody's、Gartner、a16z、WIRED、NBER、PIIE、BEA、Scientific American、美国财政部、Congress.gov、Russia in Global Affairs 等25+信源</p>
+<p>人物言论覆盖：黄仁勋、奥特曼、辛顿、苏姿丰、皮查伊、纳德拉、巴菲特、达利欧、哈萨比斯、格里芬等10位</p>
+<p><a href="https://woaipashanhu.github.io/daily-intel-report/" target="_blank">日报主页</a></p>
+</div>
+</body>
+</html>

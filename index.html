@@ -3,28 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全球情报日报</title>
+<title>全球情报日报 - 归档</title>
 <style>
-body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #f8f9fa; }
-h1 { text-align: center; color: #2d5a27; margin-bottom: 8px; }
-.subtitle { text-align: center; color: #666; margin-bottom: 40px; font-size: 0.9rem; }
+:root { --bg: #f8f9fa; --card-bg: #fff; --accent: #2d5a27; --text: #1a1a2e; --text2: #4a4a6a; --border: #e0e0e0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+.header { text-align: center; padding: 40px 16px 32px; border-bottom: 2px solid var(--accent); margin-bottom: 28px; }
+.header h1 { font-size: 2rem; color: var(--accent); letter-spacing: 3px; margin-bottom: 8px; }
+.header p { color: var(--text2); font-size: 0.9rem; }
 .date-list { display: flex; flex-direction: column; gap: 8px; }
-.date-list a { display: block; padding: 14px 20px; background: white; border-radius: 8px; text-decoration: none; color: #1565c0; border: 1px solid #e0e0e0; transition: all 0.15s; font-size: 1rem; }
-.date-list a:hover { background: #e3f2fd; transform: translateX(4px); }
-.footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #999; }
+.date-link { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--card-bg); border-radius: 10px; text-decoration: none; color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.15s, box-shadow 0.15s; border-left: 4px solid var(--accent); }
+.date-link:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #f0fff0; }
+.date-text { font-weight: 600; font-size: 1rem; }
+.weekday { font-size: 0.85rem; color: var(--text2); background: #f0f0f0; padding: 2px 10px; border-radius: 12px; }
+.footer { text-align: center; padding: 32px; font-size: 0.8rem; color: #999; margin-top: 40px; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
-<h1>全球情报日报</h1>
-<p class="subtitle">直接采集自各信源官网（RSS Feed + 页面抓取）</p>
+<div class="header">
+  <h1>全球情报日报</h1>
+  <p>每日精选25+权威信源，覆盖全球政经、金融、科技与地缘风险</p>
+</div>
 <div class="date-list">
-    <a href="reports/2026-04-19/index.html">2026-04-19</a>
-    <a href="reports/2026-04-20/index.html">2026-04-20</a>
-    <a href="reports/2026-04-22/index.html">2026-04-22</a>
-    <a href="reports/2026-05-31/index.html">2026-05-31</a>
+    <a href="reports/2026-06-02/index.html" class="date-link"><span class="date-text">2026年6月2日</span><span class="weekday">星期二</span></a>
+    <a href="reports/2026-05-31/index.html" class="date-link"><span class="date-text">2026年5月31日</span><span class="weekday">星期日</span></a>
+    <a href="reports/2026-04-22/index.html" class="date-link"><span class="date-text">2026年4月22日</span><span class="weekday">星期三</span></a>
+    <a href="reports/2026-04-20/index.html" class="date-link"><span class="date-text">2026年4月20日</span><span class="weekday">星期一</span></a>
+    <a href="reports/2026-04-19/index.html" class="date-link"><span class="date-text">2026年4月19日</span><span class="weekday">星期日</span></a>
+
 </div>
 <div class="footer">
-  <p>信源：CNBC、Federal Reserve、U.S. Treasury、NBER、Russia in Global Affairs、WIRED 等</p>
+  <p>全球情报日报 &middot; 自动生成 &middot; GitHub Pages 部署</p>
 </div>
 </body>
 </html>
