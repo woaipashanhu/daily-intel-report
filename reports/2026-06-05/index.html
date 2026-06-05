@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球情报日报 - 2026年6月5日 · 星期五</title>
+<style>
+:root{--bg:#f8f9fa;--card-bg:#fff;--text:#1a1a2e;--text2:#4a4a6a;--accent:#2d5a27;--red:#c62828;--orange:#e65100;--blue:#1565c0;--border:#e0e0e0;--tag-bg:#e8f5e9;--tag-text:#2e7d32;--shadow:0 1px 3px rgba(0,0,0,0.08);--radius:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;max-width:960px;margin:0 auto;padding:16px}
+.header{text-align:center;padding:32px 16px 24px;border-bottom:2px solid var(--accent);margin-bottom:24px}
+.header h1{font-size:1.8rem;color:var(--accent);margin-bottom:4px;letter-spacing:2px}
+.header .date{font-size:0.95rem;color:var(--text2)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:var(--card-bg);border-radius:var(--radius);margin-bottom:20px;box-shadow:var(--shadow)}
+.nav a{color:var(--blue);text-decoration:none;font-size:0.9rem;padding:6px 14px;border:1px solid var(--border);border-radius:6px}
+.nav a:hover{background:var(--blue);color:#fff}
+.section{margin-bottom:28px}
+.section-title{font-size:1.25rem;font-weight:700;padding:10px 16px;background:linear-gradient(135deg,var(--accent),#3a7d34);color:#fff;border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;gap:8px}
+.section-title.urgent{background:linear-gradient(135deg,var(--red),#e53935)}
+.section-title.risk{background:linear-gradient(135deg,#6a1b9a,#8e24aa)}
+.section-title.history{background:linear-gradient(135deg,#37474f,#546e7a)}
+.section-title.outlook{background:linear-gradient(135deg,#0d47a1,#1565c0)}
+.section-title.quotes{background:linear-gradient(135deg,#bf360c,#e64a19)}
+.cards{padding:4px 0}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:16px 20px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid var(--accent)}
+.card h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text);line-height:1.4}
+.card .meta{display:flex;gap:10px;align-items:center;font-size:0.78rem;color:var(--text2);margin-bottom:8px;flex-wrap:wrap}
+.card .meta .tag{background:var(--tag-bg);color:var(--tag-text);padding:1px 8px;border-radius:4px;font-weight:500}
+.card .meta .tag.red{background:#ffebee;color:var(--red)}
+.card .meta .tag.blue{background:#e3f2fd;color:var(--blue)}
+.card .meta .tag.purple{background:#f3e5f5;color:#6a1b9a}
+.card .meta .tag.orange{background:#fff3e0;color:var(--orange)}
+.card .summary{font-size:0.9rem;color:var(--text2);line-height:1.65}
+.card .summary a{color:var(--blue);text-decoration:none;word-break:break-all}
+.card .summary a:hover{text-decoration:underline}
+.card .summary strong{color:var(--text)}
+.card.card-red{border-left-color:var(--red);background:linear-gradient(to right,#fff5f5,var(--card-bg))}
+.card.card-red h3{color:var(--red)}
+.alert-badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.78rem;font-weight:600;color:#fff;background:var(--red);margin-right:6px}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:12px 0}
+.market-item{background:var(--card-bg);border-radius:var(--radius);padding:12px 16px;text-align:center;box-shadow:var(--shadow)}
+.market-item .name{font-size:0.8rem;color:var(--text2);margin-bottom:4px}
+.market-item .value{font-size:1.15rem;font-weight:700;color:var(--text)}
+.market-item .value.up{color:#2e7d32}
+.market-item .value.down{color:var(--red)}
+.market-item .chg{font-size:0.8rem;margin-top:2px}
+.market-item .chg.up{color:#2e7d32}
+.market-item .chg.down{color:var(--red)}
+.history-item{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--border)}
+.history-item:last-child{border-bottom:none}
+.history-item .year{flex-shrink:0;width:90px;font-weight:700;color:var(--accent);font-size:0.95rem}
+.history-item .event{color:var(--text2);font-size:0.9rem}
+.outlook-table{width:100%;border-collapse:collapse;margin-top:12px}
+.outlook-table th{background:var(--accent);color:#fff;padding:8px 12px;text-align:left;font-size:0.85rem}
+.outlook-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.85rem;color:var(--text2)}
+.outlook-table tr:hover{background:#f0f7f0}
+.risk-meter{margin-top:10px}
+.risk-bar{height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.risk-fill{height:100%;border-radius:3px}
+.risk-label{font-size:0.78rem;font-weight:600;margin-top:4px}
+.footer{text-align:center;padding:24px 0;color:var(--text2);font-size:0.8rem;border-top:1px solid var(--border);margin-top:32px}
+@media(max-width:600px){body{padding:8px}.header h1{font-size:1.3rem}.market-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>&#x1f30d; 全球情报日报</h1>
+<div class="date">2026年6月5日 · 星期五</div>
+</div>
+
+<div class="nav">
+<a href="../2026-06-03/index.html">&#x2190; 上一日</a>
+<span style="color:var(--text2);font-size:0.85rem">2026-06-05</span>
+<a href="#">下一日 &#x2192;</a>
+</div>
+
+<div class="section">
+<div class="section-title urgent">&#x26a0; 紧急关注</div>
+<div class="cards"><div class="card card-red">
+<h3>特朗普再启关税战，12.5%税率落地中国</h3>
+<div class="meta"><span class="src">头条/外交部 · 6月4日</span><span class="tag red">紧急</span><span class="tag orange">关税</span></div>
+<div class="summary">美国贸易代表办公室以<strong>"强迫劳动"为由</strong>宣布对华加征12.5%关税。中方严正表态驳斥，指出此举违背中美刚达成的休战协议精神。<br><a href="https://m.toutiao.com/a7647402952403075636/" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>美国拟对60个经济体大规模加征关税</h3>
+<div class="meta"><span class="src">头条 · 6月5日</span><span class="tag red">紧急</span><span class="tag orange">关税</span></div>
+<div class="summary">特朗普政府抛出全球关税加征方案，对<strong>60个经济体</strong>挥舞关税大棒，引发欧盟等主要贸易伙伴强烈反应。<br><a href="https://m.toutiao.com/article/7647725312993804840/" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>伊朗强硬声明：美以持续违反停火协议</h3>
+<div class="meta"><span class="src">头条/伊朗外交部 · 6月2日</span><span class="tag red">紧急</span><span class="tag red">地缘</span></div>
+<div class="summary">伊朗外交部发表措辞强硬声明，直指美国和以色列持续违反停火协议。中东"<strong>斗而不破</strong>"格局面临新考验。<br><a href="https://m.toutiao.com/a1866853583800324/" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>俄军73枚导弹656架无人机空袭乌克兰全境</h3>
+<div class="meta"><span class="src">头条/俄乌冲突 · 6月2日</span><span class="tag red">紧急</span><span class="tag red">地缘</span></div>
+<div class="summary">俄军对乌全境发动<strong>2026年以来规模最大空袭之一</strong>，73枚导弹与656架无人机划过乌克兰夜空，造成严重基础设施损毁。<br><a href="https://m.toutiao.com/a7646765417540731455/" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>道指涨逾870点创历史新高，博通盘后暴跌15%</h3>
+<div class="meta"><span class="src">新浪财经 · 6月5日</span><span class="tag red">紧急</span><span class="tag">市场</span></div>
+<div class="summary">美股6月4日收盘道指涨逾870点创历史新高。但博通财报AI指引未达顶标，<strong>盘后暴跌15%</strong>，拖累纳指收跌。市场分化加剧。<br><a href="https://finance.sina.com.cn/headline/2026-06-05/doc-iniahxpe8824154.shtml" target="_blank">原文</a></div>
+</div></div>
+</div>
+<div class="section">
+<div class="section-title">&#x1f4c8; 市场数据快照（6月4日收盘）</div>
+<div class="market-grid">
+<div class="market-item"><div class="name">道琼斯</div><div class="value up">创新高</div><div class="chg up">+870+点</div></div>
+<div class="market-item"><div class="name">纳斯达克</div><div class="value down">下跌</div><div class="chg down">受博通拖累</div></div>
+<div class="market-item"><div class="name">布伦特原油</div><div class="value up">$95.45</div><div class="chg up">+4.33</div></div>
+<div class="market-item"><div class="name">WTI原油</div><div class="value up">$92.29</div><div class="chg up">+0.13</div></div>
+<div class="market-item"><div class="name">现货黄金</div><div class="value up">高位运行</div><div class="chg up">~$992元/克</div></div>
+<div class="market-item"><div class="name">美元指数</div><div class="value">99.25</div><div class="chg">窄幅波动</div></div>
+</div>
+</div><div class="section">
+<div class="section-title">&#x1f310; 宏观经济与央行</div>
+<div class="cards"><div class="card">
+<h3>美国PCE同比涨3.8%创三年新高，GDP下修至1.6%</h3>
+<div class="meta"><span class="src">BEA数据/头条 · 5月29日</span><span class="tag purple">数据</span><span class="tag purple">央行</span></div>
+<div class="summary">2026年4月PCE物价指数同比上涨<strong>3.8%</strong>，创2023年5月以来新高。Q1 GDP增速从初值2%下调至1.6%。通胀高企+增长放缓，美联储政策困境加剧。<br><a href="https://www.toutiao.com/a7645092703113363983/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>沃什正式接任美联储第17任主席</h3>
+<div class="meta"><span class="src">雪球/美联储 · 5月22日</span><span class="tag purple">央行</span><span class="tag purple">IMF</span></div>
+<div class="summary">Kevin Warsh于2026年5月15日正式接任美联储主席。历史数据显示新主席上任后短期内市场波动加大，投资者密切关注其<strong>货币政策信号</strong>。<br><a href="https://xueqiu.com/4967465879/389223736" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>IMF下调2026年全球经济增长预期至3.1%</h3>
+<div class="meta"><span class="src">IMF/商务部 · 4月15日</span><span class="tag purple">IMF</span></div>
+<div class="summary">IMF在最新《世界经济展望》中下调2026年全球经济增长预测至<strong>3.1%</strong>，贸易紧张和地缘冲突是主要下行风险。<br><a href="http://munich.mofcom.gov.cn/jmxw/art/2026/art_a07f44c8d1a742caaa33395712b4e640.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>CNBC调查：高油价使2026年通胀居高不下，降息受阻</h3>
+<div class="meta"><span class="src">CNBC · 4月29日</span><span class="tag purple">央行</span><span class="tag orange">石油</span></div>
+<div class="summary">CNBC美联储调查显示，持续高企的油价正重塑2026年通胀前景，美联储被迫维持<strong>谨慎立场</strong>，新任主席降息面临重重阻力。<br><a href="https://finance.sina.cn/usstock/mggd/2026-04-29/detail-inhweskw7580544.d.html" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title">&#x1f4b0; 金融市场与投资</div>
+<div class="cards"><div class="card">
+<h3>布伦特原油站上95美元，WTI突破92美元</h3>
+<div class="meta"><span class="src">163财经 · 6月2日</span><span class="tag orange">石油</span></div>
+<div class="summary">国际油价持续攀升，布伦特原油报<strong>$95.45/桶</strong>，WTI报$92.29/桶。EIA预计2026年布伦特均价$95。中东冲突和供应链风险是主要推手。<br><a href="https://m.163.com/dy/article/KUDNT0KE055655OW.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>金价持续高位运行，零售价突破千元/克</h3>
+<div class="meta"><span class="src">腾讯新闻 · 6月5日</span><span class="tag orange">黄金</span></div>
+<div class="summary">国际金价维持高位，国内各大金店零售价格每克<strong>1158-1389元</strong>区间。全球12位殿堂级投资大佬密集发声看好黄金长期牛市。<br><a href="https://news.qq.com/rain/a/20260605A0284800" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>博通创纪录财报但AI指引不及预期，盘后暴跌15%</h3>
+<div class="meta"><span class="src">搜狐/环球市场 · 6月4日</span><span class="tag blue">科技</span><span class="tag blue">AI</span></div>
+<div class="summary">博通2026Q2营收创纪录，但AI芯片收入指引<strong>未达市场最高预期</strong>，"买预期卖事实"行情下盘后暴跌15%。<br><a href="https://www.sohu.com/a/1032258635_122014422" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>全球12位投资大佬密集看多：黄金2030年剑指$10000</h3>
+<div class="meta"><span class="src">东方财富 · 5月31日</span><span class="tag orange">黄金</span></div>
+<div class="summary">债务危机、去美元化与地缘风险共振，<strong>12位殿堂级投资大佬</strong>密集发声预言黄金2030年剑指$10000+/盎司。<br><a href="https://caifuhao.eastmoney.com/news/20260531194456696420950" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title">&#x1f680; 科技前沿</div>
+<div class="cards"><div class="card">
+<h3>黄仁勋GTC Taipei：代理式AI时代已到来</h3>
+<div class="meta"><span class="src">财联社 · 6月1日</span><span class="tag blue">AI</span><span class="tag blue">芯片</span></div>
+<div class="summary">英伟达CEO黄仁勋在GTC Taipei 2026发表近<strong>2.5小时</strong>主题演讲，宣布战略从"GPU芯片"转向"AI基础设施"，宣告代理式AI和实用型AI时代到来。<br><a href="https://www.cls.cn/detail/2386778" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>黄仁勋：Vera CPU将比GPU更受欢迎</h3>
+<div class="meta"><span class="src">雪球 · 6月2日</span><span class="tag blue">芯片</span></div>
+<div class="summary">黄仁勋在COMPUTEX展前演讲透露，英伟达全新<strong>Vera CPU</strong>将比GPU更受欢迎，将成为公司新增长动力引擎。<br><a href="https://xueqiu.com/8685069808/391633533" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>哈萨比斯：AGI最快2029-2031年到来，全球应对机制缺失</h3>
+<div class="meta"><span class="src">头条 · 6月3日</span><span class="tag blue">AI</span></div>
+<div class="summary">谷歌DeepMind CEO哈萨比斯公开预测<strong>AGI最快2029-2031年间</strong>问世，警告人类社会尚未构建起应对其颠覆性影响的防护网。<br><a href="https://m.toutiao.com/a7646909938043847194/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>微软Build连发七款AI模型，打造"思考+编程"闭环</h3>
+<div class="meta"><span class="src">搜狐 · 6月3日</span><span class="tag blue">AI</span></div>
+<div class="summary">微软Build 2026一口气发布<strong>七款新AI模型</strong>，覆盖推理、编码、视觉、多模态等领域，正面冲击Anthropic。<br><a href="https://www.sohu.com/a/1031310743_130887" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>AMD第六代EPYC "Venice" 2nm量产</h3>
+<div class="meta"><span class="src">电子工程专辑 · 6月3日</span><span class="tag blue">芯片</span></div>
+<div class="summary">AMD宣布代号"Venice"的第六代EPYC处理器正式启动量产，采用<strong>台积电2nm</strong>先进工艺，在台积电台湾工厂生产。<br><a href="https://www.eepw.com.cn/news/listbylabel/label/amd/page/12" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>Gartner 2026十大战略技术趋势：AI成为组织内核</h3>
+<div class="meta"><span class="src">CSDN/Gartner · 5月25日</span><span class="tag blue">AI</span></div>
+<div class="summary">Gartner指出2026年AI已从"工具升级"跃升为<strong>组织运行、技术架构、风险治理</strong>的核心驱动力，企业竞争力进入AI原生时代。<br><a href="https://blog.csdn.net/qq_27731689/article/details/161381569" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title">&#x1f30d; 地缘政治与外交</div>
+<div class="cards"><div class="card">
+<h3>中美关系"双面大戏"：刚回暖即遭关税重击</h3>
+<div class="meta"><span class="src">头条 · 6月4日</span><span class="tag red">地缘</span><span class="tag red">制裁</span></div>
+<div class="summary">6月2日美方高调抛出全球关税方案，6月3日又以"强迫劳动"为由对华加征12.5%关税。中美关系上演"双面大戏"，中方斥其<strong>违背休战精神</strong>。<br><a href="https://m.toutiao.com/a7647402952403075636/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>俄乌和谈难破冰：佩斯科夫提撤军硬条件</h3>
+<div class="meta"><span class="src">头条 · 6月3日</span><span class="tag red">地缘</span></div>
+<div class="summary">佩斯科夫表示俄方愿和谈但前提是乌克兰接受<strong>核心条件</strong>，否则军事行动继续。乌方遭美援断供陷入两难。<br><a href="https://m.toutiao.com/a7646772227953934890/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>6月中东危局：美伊"斗而不破"，黎以冲突再越红线</h3>
+<div class="meta"><span class="src">头条 · 6月4日</span><span class="tag red">地缘</span></div>
+<div class="summary">中东多条战线呈现<strong>"斗而不破、打谈交织"</strong>复杂态势，波斯湾到地中海东岸各方势力博弈加剧。<br><a href="https://www.toutiao.com/a7647345856466698790/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>6月变局频发：多国密集调整外交经贸布局</h3>
+<div class="meta"><span class="src">头条 · 6月5日</span><span class="tag red">地缘</span></div>
+<div class="summary">进入6月上旬，全球地缘、能源、经贸领域接连迎来重磅变化。俄乌和谈迎来关键转机，<strong>欧盟落地核心技术新规</strong>。<br><a href="https://www.toutiao.com/article/7647743941273469482/" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title">&#x1f3db; 美国立法与监管</div>
+<div class="cards"><div class="card">
+<h3>美国贸易代表办公室启动对60国关税审查程序</h3>
+<div class="meta"><span class="src">头条/USTR · 6月5日</span><span class="tag red">制裁</span><span class="tag orange">关税</span></div>
+<div class="summary">USTR以"未禁止进口强迫劳动"为由启动大规模关税加征审查，涵盖<strong>60个经济体</strong>，引发欧盟等主要贸易伙伴强烈反应。<br><a href="https://m.toutiao.com/article/7647725312993804840/" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title risk">&#x26a0; 金融风险监测</div>
+<div class="cards"><div class="card card-red">
+<h3>IMF与顶尖学者齐发声：2026下半年至2027上半年或爆发全球金融危机</h3>
+<div class="meta"><span class="src">头条/IMF · 5月31日</span><span class="tag red">风险</span></div>
+<div class="summary">从国际组织到顶尖学者密集警告：未来<strong>12至18个月</strong>全球可能面临规模性金融危机，高债务+地缘冲突+通胀是三重引爆器。<br><a href="https://m.toutiao.com/a7645896654750630419/" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>2026年全球金融风险全景：局部震荡vs系统性危机</h3>
+<div class="meta"><span class="src">头条 · 5月29日</span><span class="tag red">风险</span></div>
+<div class="summary">权威机构与市场预判分化：基准情景为局部震荡（IMF/OECD），悲观情景为系统性金融危机（部分对冲基金/学者）。<br><a href="https://m.toutiao.com/a1866526941569027/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>文化纵横：当代资本主义面临解构性结构性持续性危机</h3>
+<div class="meta"><span class="src">虎嗅/文化纵横 · 6月4日</span><span class="tag red">风险</span></div>
+<div class="summary">当代资本主义面临一场深刻的解构性、结构性、持续性危机。<strong>全球倒退的下半场才刚刚开始</strong>——债务、去工业化、政治极化三重夹击。<br><a href="https://m.huxiu.com/article/4864495.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>德媒警告：西方经济2026年可能出现的六个危机点</h3>
+<div class="meta"><span class="src">参考消息/明镜周刊 · 1月13日</span><span class="tag red">风险</span></div>
+<div class="summary">德国《明镜周刊》分析2026年六大潜在危机源：<strong>金融市场泡沫、商业地产、债务可持续性、能源转型阵痛、政治极化和贸易碎片化</strong>。<br><a href="https://segg.sh.gov.cn/ydyl/yjbg/20260113/d8bf6c77122245b18265bd76cd90372c.html" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title">&#x1f1f7;&#x1f1fa; 俄罗斯视角</div>
+<div class="cards"><div class="card"><div class="summary">本期俄罗斯Global Affairs暂无重大新分析更新。</div></div></div>
+</div><div class="section">
+<div class="section-title">&#x1f4da; 学术与智库</div>
+<div class="cards"><div class="card">
+<h3>彼得森研究所分析2026年全球经济增速放缓原因</h3>
+<div class="meta"><span class="src">WTO咨询网/PIIE · 5月21日</span><span class="tag">智库</span></div>
+<div class="summary">PIIE发布最新分析，指出<strong>贸易政策不确定性、地缘冲突和债务高企</strong>是拖累2026年全球经济增长的三大结构性因素。<br><a href="http://chinawto.mofcom.gov.cn/article/gjzk" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>世界经济论坛2026年年会回顾</h3>
+<div class="meta"><span class="src">百科 · 6月2日</span><span class="tag">智库</span></div>
+<div class="summary">第56届WEF年会于2026年1月在瑞士达沃斯举行，聚焦<strong>AI治理、气候行动和全球合作</strong>三大主题。<br><a href="https://m.baike.so.com/doc/30561613.html" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title quotes">&#x1f5e3; 人物言论</div>
+<div class="cards"><div class="card">
+<h3><span class="alert-badge">黄仁勋</span>代理式AI和实用型AI时代已到来</h3>
+<div class="meta"><span class="src">GTC Taipei 2026 · 6月1日</span></div>
+<div class="summary">英伟达CEO黄仁勋发表近2.5小时主题演讲，宣布战略从"GPU芯片"转向"AI基础设施"。<br><a href="https://www.cls.cn/detail/2386778" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">黄仁勋</span>Vera CPU将比GPU更受欢迎</h3>
+<div class="meta"><span class="src">COMPUTEX Taipei · 6月2日</span></div>
+<div class="summary">英伟达全新Vera CPU将成为公司新增长动力引擎。<br><a href="https://xueqiu.com/8685069808/391633533" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">哈萨比斯</span>AGI最快2029-2031年到来</h3>
+<div class="meta"><span class="src">公开演讲 · 6月3日</span></div>
+<div class="summary">谷歌DeepMind CEO预测AGI最快3年内问世，但警告全球应对机制严重缺失。<br><a href="https://m.toutiao.com/a7646909938043847194/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">奥特曼</span>中美AI不应只竞争还应在重大议题上合作</h3>
+<div class="meta"><span class="src">CNBC · 6月2日</span></div>
+<div class="summary">OpenAI CEO萨姆·奥特曼呼吁中美在AI领域既竞争又合作。<br><a href="https://www.cls.cn" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">纳德拉</span>Build 2026发布七款AI模型</h3>
+<div class="meta"><span class="src">微软Build · 6月2日</span></div>
+<div class="summary">微软CEO萨蒂亚·纳德拉在Build大会上发布七款AI模型，覆盖推理、编码、视觉、多模态。<br><a href="https://www.sohu.com/a/1031310743_130887" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">苏莱曼</span>未来12-18个月AI将接手大量专业任务</h3>
+<div class="meta"><span class="src">微软AI · 5月22日</span></div>
+<div class="summary">微软AI负责人穆斯塔法·苏莱曼判断，AI将在一年半内大幅替代电脑前的专业工作。<br><a href="https://m.toutiao.com/a7642414917512938024/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">达利欧</span>2026下半年三大变局已现，全球正站在临界点</h3>
+<div class="meta"><span class="src">桥水基金年会 · 5月30日</span></div>
+<div class="summary">瑞·达利欧在桥水基金年度投资者会议上发表90分钟演讲，警告全球财富大洗牌即将到来。<br><a href="https://m.toutiao.com/a7645583882087154195/" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">格里芬</span>AI将金融PhD投研时间从数周缩至数小时</h3>
+<div class="meta"><span class="src">斯坦福领袖论坛 · 5月18日</span></div>
+<div class="summary">Citadel CEO Ken Griffin在2026斯坦福领袖论坛上展示内部AI投研工具的颠覆性效率。<br><a href="https://new.qq.com/rain/a/20260518A051LI00" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">库克</span>30亿美元关税退款全数投入美国制造</h3>
+<div class="meta"><span class="src">苹果Q2财报会 · 5月30日</span></div>
+<div class="summary">苹果CEO库克宣布将约30亿美元关税退款全部再投资于美国本土制造业。<br><a href="https://readhub.cn/topic/8slMaUX3poU" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">苏姿丰</span>AMD Venice 2nm EPYC正式量产</h3>
+<div class="meta"><span class="src">AMD官方公告 · 6月3日</span></div>
+<div class="summary">AMD第六代EPYC处理器采用台积电2nm工艺正式量产。<br><a href="https://www.eepw.com.cn/news/listbylabel/label/amd/page/12" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">辛顿</span>AI已经觉醒了——Yes, I do</h3>
+<div class="meta"><span class="src">新智元 · 6月1日</span></div>
+<div class="summary">图灵奖得主杰弗里·辛顿再次警告AI意识问题。<br><a href="#" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">哈萨比斯</span>站在奇点的山脚下，AI将开启全新科学分支</h3>
+<div class="meta"><span class="src">Google I/O · 6月2日</span></div>
+<div class="summary">DeepMind CEO在Google I/O分享AI推动科学发现的最新进展。<br><a href="#" target="_blank">原文</a></div>
+</div></div>
+</div><div class="section">
+<div class="section-title history">&#x1f4d5; 历史上的今天（6月5日）</div>
+<div class="cards">
+<div class="history-item"><div class="year">公元前482年</div><div class="event">黄池会盟，吴王夫差与晋争霸——春秋末期霸权转移的标志性事件</div></div>
+<div class="history-item"><div class="year">1265年</div><div class="event">意大利著名诗人<strong>但丁</strong>诞生——文艺复兴先驱，《神曲》作者</div></div>
+<div class="history-item"><div class="year">1640年</div><div class="event">明末<strong>蒲松龄</strong>诞辰——《聊斋志异》作者，中国短篇小说之王</div></div>
+<div class="history-item"><div class="year">1723年</div><div class="event">经济学鼻祖<strong>亚当·斯密</strong>诞生——《国富论》作者，现代经济学奠基人</div></div>
+<div class="history-item"><div class="year">1947年</div><div class="event">美国国务卿<strong>马歇尔</strong>在哈佛演讲，提出"马歇尔计划"——奠定战后西方经济复兴基础</div></div>
+<div class="history-item"><div class="year">1972年</div><div class="event"><strong>联合国大会</strong>确定6月5日为"世界环境日"——全球环保运动的里程碑</div></div>
+<div class="history-item"><div class="year">2022年</div><div class="event"><strong>神舟十四号</strong>成功发射，陈冬、刘洋、蔡旭哲飞赴空间站，见证中国空间站在轨建成</div></div>
+</div>
+</div><div class="section">
+<div class="section-title outlook">&#x1f4c5; 下周前瞻（6月9-13日）</div>
+<div class="cards">
+<table class="outlook-table">
+<tr><th>日期</th><th>事件</th><th>重要性</th></tr>
+<tr><td>6月9日（周一）</td><td><strong>苹果WWDC 2026</strong>开幕，发布iOS 27、macOS 27等，Siri大升级成焦点</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月10日（周二）</td><td><strong>EIA月度短期能源展望报告</strong></td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月11日（周三）</td><td>美国CPI数据公布（若提前发布）</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月12日（周四）</td><td><strong>华为HDC 2026</strong>开发者大会，HarmonyOS 7.0发布</td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月13日（周五）</td><td>苹果WWDC 2026闭幕；美股期权到期日（"三巫日"）</td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>全周</td><td>美联储官员讲话（关注沃什新主席政策信号）</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+</table></div>
+</div>
+
+<div class="footer">
+<p>全球情报日报 · 自动生成于 2026年6月5日 · 星期五</p>
+<p>数据来源：CNBC · IMF · 美联储 · 世界银行 · BlackRock · Moody's · Gartner · a16z · WIRED · NBER · PIIE · BEA · Scientific American · 美国财政部 · Congress.gov · Global Affairs 等25个信源</p>
+<p><a href="https://woaipashanhu.github.io/daily-intel-report/" target="_blank">返回导航页</a></p>
+</div>
+
+</body>
+</html>
