@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球情报日报 - 2026年6月6日 · 星期六</title>
+<style>
+
+:root{--bg:#f8f9fa;--card-bg:#fff;--text:#1a1a2e;--text2:#4a4a6a;--accent:#2d5a27;--red:#c62828;--orange:#e65100;--blue:#1565c0;--border:#e0e0e0;--tag-bg:#e8f5e9;--tag-text:#2e7d32;--shadow:0 1px 3px rgba(0,0,0,0.08);--radius:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;max-width:960px;margin:0 auto;padding:16px}
+.header{text-align:center;padding:32px 16px 24px;border-bottom:2px solid var(--accent);margin-bottom:24px}
+.header h1{font-size:1.8rem;color:var(--accent);margin-bottom:4px;letter-spacing:2px}
+.header .date{font-size:0.95rem;color:var(--text2)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:var(--card-bg);border-radius:var(--radius);margin-bottom:20px;box-shadow:var(--shadow)}
+.nav a{color:var(--blue);text-decoration:none;font-size:0.9rem;padding:6px 14px;border:1px solid var(--border);border-radius:6px}
+.nav a:hover{background:var(--blue);color:#fff}
+.section{margin-bottom:28px}
+.section-title{font-size:1.25rem;font-weight:700;padding:10px 16px;background:linear-gradient(135deg,var(--accent),#3a7d34);color:#fff;border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;gap:8px}
+.section-title.urgent{background:linear-gradient(135deg,var(--red),#e53935)}
+.section-title.risk{background:linear-gradient(135deg,#6a1b9a,#8e24aa)}
+.section-title.history{background:linear-gradient(135deg,#37474f,#546e7a)}
+.section-title.outlook{background:linear-gradient(135deg,#0d47a1,#1565c0)}
+.section-title.quotes{background:linear-gradient(135deg,#bf360c,#e64a19)}
+.cards{padding:4px 0}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:16px 20px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid var(--accent)}
+.card h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text);line-height:1.4}
+.card .meta{display:flex;gap:10px;align-items:center;font-size:0.78rem;color:var(--text2);margin-bottom:8px;flex-wrap:wrap}
+.card .meta .tag{background:var(--tag-bg);color:var(--tag-text);padding:1px 8px;border-radius:4px;font-weight:500}
+.card .meta .tag.red{background:#ffebee;color:var(--red)}
+.card .meta .tag.blue{background:#e3f2fd;color:var(--blue)}
+.card .meta .tag.purple{background:#f3e5f5;color:#6a1b9a}
+.card .meta .tag.orange{background:#fff3e0;color:var(--orange)}
+.card .summary{font-size:0.9rem;color:var(--text2);line-height:1.65}
+.card .summary a{color:var(--blue);text-decoration:none;word-break:break-all}
+.card .summary a:hover{text-decoration:underline}
+.card .summary strong{color:var(--text)}
+.card.card-red{border-left-color:var(--red);background:linear-gradient(to right,#fff5f5,var(--card-bg))}
+.card.card-red h3{color:var(--red)}
+.alert-badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.78rem;font-weight:600;color:#fff;background:var(--red);margin-right:6px}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:12px 0}
+.market-item{background:var(--card-bg);border-radius:var(--radius);padding:12px 16px;text-align:center;box-shadow:var(--shadow)}
+.market-item .name{font-size:0.8rem;color:var(--text2);margin-bottom:4px}
+.market-item .value{font-size:1.15rem;font-weight:700;color:var(--text)}
+.market-item .value.up{color:#2e7d32}
+.market-item .value.down{color:var(--red)}
+.market-item .chg{font-size:0.8rem;margin-top:2px}
+.market-item .chg.up{color:#2e7d32}
+.market-item .chg.down{color:var(--red)}
+.history-item{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--border)}
+.history-item:last-child{border-bottom:none}
+.history-item .year{flex-shrink:0;width:90px;font-weight:700;color:var(--accent);font-size:0.95rem}
+.history-item .event{color:var(--text2);font-size:0.9rem}
+.outlook-table{width:100%;border-collapse:collapse;margin-top:12px}
+.outlook-table th{background:var(--accent);color:#fff;padding:8px 12px;text-align:left;font-size:0.85rem}
+.outlook-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.85rem;color:var(--text2)}
+.outlook-table tr:hover{background:#f0f7f0}
+.risk-meter{margin-top:10px}
+.risk-bar{height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.risk-fill{height:100%;border-radius:3px}
+.risk-label{font-size:0.78rem;font-weight:600;margin-top:4px}
+.footer{text-align:center;padding:24px 0;color:var(--text2);font-size:0.8rem;border-top:1px solid var(--border);margin-top:32px}
+@media(max-width:600px){body{padding:8px}.header h1{font-size:1.3rem}.market-grid{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>&#x1f30d; 全球情报日报</h1>
+<div class="date">2026年6月6日 · 星期六</div>
+</div>
+
+<div class="nav">
+<a href="../2026-06-05/index.html">&#x2190; 上一日</a>
+<span style="color:var(--text2);font-size:0.85rem">2026-06-06</span>
+<a href="#">下一日 &#x2192;</a>
+</div>
+<div class="section">
+<div class="section-title urgent">&#x26a0; 紧急关注</div>
+<div class="cards">
+<div class="card card-red">
+<h3>美伊冲突急剧升级：美军空袭伊朗雷达站，伊朗导弹还击美军基地</h3>
+<div class="meta"><span class="src">新华/百度 · 6月6日</span><span class="tag red">紧急</span><span class="tag red">地缘</span></div>
+<div class="summary">当地时间6月6日，美军空袭伊朗锡里克地区雷达站。伊朗伊斯兰革命卫队随即发射导弹<strong>打击美军驻巴林第五舰队总部</strong>及周边设施。科威特和巴林全国拉响防空警报。海湾局势骤然升级。<br><a href="https://baijiahao.baidu.com/s?id=1867227630519229838" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>纳指暴跌1100点创近8个月最大跌幅，美联储加息预期引爆抛售潮</h3>
+<div class="meta"><span class="src">新浪财经/百度 · 6月6日</span><span class="tag red">紧急</span><span class="tag orange">市场</span></div>
+<div class="summary">北京时间6月6日凌晨，美股周五全线暴跌。纳指重挫<strong>1121点</strong>，创近8个月最大跌幅。美国5月非农新增17.2万远超预期，美联储加息预期完全计入，美债收益率全线飙升。<br><a href="https://baijiahao.baidu.com/s?id=1867200103133619945" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>泽连斯基致信普京提议面谈，俄乌冲突迎四年最大转折</h3>
+<div class="meta"><span class="src">新华社/央视 · 6月4-5日</span><span class="tag red">紧急</span><span class="tag red">地缘</span></div>
+<div class="summary">泽连斯基6月4日公开致信普京，提议在第三国举行面对面会晤以结束战事。<strong>这是2022年冲突升级以来泽连斯基首次公开致信普京</strong>。普京表示愿在安克雷奇会晤基础上谈判，联合国表态支持。<br><a href="https://baijiahao.baidu.com/s?id=1867123350990016625" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>美国5月非农炸裂：新增17.2万远超预期近一倍</h3>
+<div class="meta"><span class="src">华泰证券/新浪财经 · 6月5-6日</span><span class="tag red">紧急</span><span class="tag purple">数据</span></div>
+<div class="summary">美国5月新增非农就业<strong>17.2万人</strong>，远超彭博一致预期8.5万，前两个月累计上修9.3万。失业率维持4.3%。强劲就业彻底击碎降息预期。<br><a href="https://baijiahao.baidu.com/s?id=1867162113488792836" target="_blank">原文</a></div>
+</div><div class="card card-red">
+<h3>SpaceX敲定IPO：135美元/股融资750亿，6月12日纳斯达克挂牌</h3>
+<div class="meta"><span class="src">财联社/百度 · 6月3-6日</span><span class="tag red">紧急</span><span class="tag blue">IPO</span></div>
+<div class="summary">马斯克旗下SpaceX每股定价<strong>135美元</strong>，出售5.556亿股，融资<strong>750亿美元</strong>，有望成为史上最大IPO。马斯克持股账面估值达8665亿美元。<br><a href="https://baijiahao.baidu.com/s?id=1867030039353786940" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f4c8; 市场数据快照（6月6日收盘）</div>
+<div class="market-grid">
+<div class="market-item"><div class="name">道琼斯</div><div class="value down">大跌</div><div class="chg down">全线下跌</div></div>
+<div class="market-item"><div class="name">纳斯达克</div><div class="value down">暴跌1100+点</div><div class="chg down">8个月最大跌幅</div></div>
+<div class="market-item"><div class="name">标普500</div><div class="value down">下跌</div><div class="chg down">加息预期冲击</div></div>
+<div class="market-item"><div class="name">布伦特原油</div><div class="value up">$95+区间</div><div class="chg up">美伊冲突推升</div></div>
+<div class="market-item"><div class="name">现货黄金</div><div class="value up">高位运行</div><div class="chg up">避险需求旺盛</div></div>
+<div class="market-item"><div class="name">美债收益率</div><div class="value up">全线飙升</div><div class="chg up">两年期创14月最大涨</div></div>
+</div>
+</div><div class="section">
+<div class="section-title">&#x1f310; 宏观经济与央行</div>
+<div class="cards">
+<div class="card">
+<h3>非农引爆加息预期，美联储年底加息被完全计入</h3>
+<div class="meta"><span class="src">华泰证券/新浪财经 · 6月6日</span><span class="tag purple">央行</span><span class="tag purple">数据</span></div>
+<div class="summary">5月非农17.2万远超预期，交易员已完全计入美联储<strong>年底前加息</strong>。美债收益率全线上涨，两年期创14个月最大单日涨幅。<br><a href="http://finance.sina.com.cn/stock/hkstock/ggscyd/2026-06-06/doc-iniamnzu2184374.shtml" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>美联储内部鹰派声音高涨，沃什陷入两难</h3>
+<div class="meta"><span class="src">新华财经 · 6月1日</span><span class="tag purple">央行</span></div>
+<div class="summary">美联储官员表态"若通胀未能迅速缓解可能需要加息"，鹰派声音在沃什新主席上任初期日益高涨。<br><a href="https://baijiahao.baidu.com/s?id=1866763313766790990" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>联合国年中报告：全球经济受中东危机拖累增长承压</h3>
+<div class="meta"><span class="src">经济参考报/联合国 · 6月4日</span><span class="tag purple">IMF</span><span class="tag purple">联合国</span></div>
+<div class="summary">联合国《2026年中世界经济形势与展望》指出，受中东危机影响全球经济面临<strong>增长承压、通胀攀升</strong>双重挑战。<br><a href="https://baijiahao.baidu.com/s?id=1867009811306369632" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>特朗普签署公告降低部分钢铝铜产品关税</h3>
+<div class="meta"><span class="src">贸促会 · 6月5日</span><span class="tag orange">关税</span></div>
+<div class="summary">特朗普签署总统公告，将各类农业设备等部分产品的钢铝铜进口关税<strong>从25%降至0%</strong>。<br><a href="https://ccpit.taian.cn/art/2026/6/5/art_98273_10307957.html" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f4b0; 金融市场与投资</div>
+<div class="cards">
+<div class="card">
+<h3>非农引爆美债大抛售，两年期收益率创14个月最大涨幅</h3>
+<div class="meta"><span class="src">新浪财经 · 6月6日</span><span class="tag orange">债市</span><span class="tag red">加息</span></div>
+<div class="summary"><strong>31万亿美元</strong>美债市场遭抛售潮，收益率全线飙升。加息预期完全计入，高利率环境系统性风险加速积累。<br><a href="http://finance.sina.com.cn/stock/hkstock/ggscyd/2026-06-06/doc-iniamnzu2184374.shtml" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>油价受美伊冲突支撑维持95美元高位</h3>
+<div class="meta"><span class="src">东方财富 · 6月5日</span><span class="tag orange">石油</span></div>
+<div class="summary">国际油价6月5日下跌，布油美油均跌超2%，但美伊冲突升级<strong>限制下行空间</strong>，布伦特仍在$95附近。<br><a href="https://quote.eastmoney.com/globalfuture/CL00Y.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>SpaceX史上最大IPO：750亿美元融资定价$135/股</h3>
+<div class="meta"><span class="src">财联社/百度 · 6月4-6日</span><span class="tag blue">IPO</span><span class="tag blue">SpaceX</span></div>
+<div class="summary">SpaceX以$135/股定价，融资750亿美元。马斯克持股账面估值<strong>8665亿美元</strong>，有望诞生全球首位万亿美元富豪。<br><a href="https://baijiahao.baidu.com/s?id=1867123751485661366" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>6月市场三重风险窗口：世界杯、非农、美联储</h3>
+<div class="meta"><span class="src">百度/机构 · 6月2日</span><span class="tag red">风险</span></div>
+<div class="summary">机构警告6月全球资本市场面临<strong>三件重量级大事</strong>共振：世界杯开幕、非农数据冲击加息预期、美联储新主席政策信号。<br><a href="https://baijiahao.baidu.com/s?id=1866866053395691574" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f680; 科技前沿</div>
+<div class="cards">
+<div class="card">
+<h3>黄仁勋GTC Taipei：Vera Rubin全面量产，重新定义PC</h3>
+<div class="meta"><span class="src">钛媒体/百度 · 6月1-3日</span><span class="tag blue">AI</span><span class="tag blue">芯片</span></div>
+<div class="summary">黄仁勋宣布Vera Rubin超级AI芯片<strong>正式全面量产</strong>，凝聚4万名工程师研发。与微软联合宣布40年来首次重新定义PC。<br><a href="https://baijiahao.baidu.com/s?id=1866783928027198505" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>COMPUTEX 2026：1500家企业参展聚焦AI运算</h3>
+<div class="meta"><span class="src">百度 · 6月2日</span><span class="tag blue">芯片</span><span class="tag blue">AI</span></div>
+<div class="summary">以"AI Together"为主题的2026台北国际电脑展盛大开幕，<strong>1500家企业参展</strong>、6000个展位，聚焦AI运算和新CPU。<br><a href="https://baijiahao.baidu.com/s?id=1866758538853734575" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>OpenAI与美国政府磋商持股方案，谈判已超1年</h3>
+<div class="meta"><span class="src">CNBC/IT之家 · 6月6日</span><span class="tag blue">AI</span><span class="tag purple">政策</span></div>
+<div class="summary">CNBC报道称OpenAI CEO奥特曼正在与白宫谈判<strong>政府入股OpenAI</strong>方案，磋商已超过1年且仍在推进。<br><a href="http://finance.sina.com.cn/tech/digi/2026-06-06/doc-iniamxrq2041648.shtml" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>奥特曼表态不为2026美国中期选举捐款</h3>
+<div class="meta"><span class="src">财联社 · 6月4日</span><span class="tag blue">AI</span><span class="tag purple">政治</span></div>
+<div class="summary">OpenAI CEO奥特曼明确表示<strong>不打算为2026年美国中期选举提供资金支持</strong>，与其他硅谷亿万富豪形成对比。<br><a href="https://baijiahao.baidu.com/s?id=1867038344794028134" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>工信部组织开展6G创新发展专项行动</h3>
+<div class="meta"><span class="src">央视/163 · 6月5日</span><span class="tag blue">6G</span><span class="tag blue">通信</span></div>
+<div class="summary">工信部组织开展6G创新发展专项行动，加强商业航天等6G关联产业培育，<strong>形成自主创新的6G技术方案</strong>。<br><a href="https://m.163.com/dy/article/KUL5TT3B05561281.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>PIIE专家：AI在美国GDP统计中存在严重缺位</h3>
+<div class="meta"><span class="src">彼得森研究所 · 6月1日</span><span class="tag ">智库</span><span class="tag blue">AI</span></div>
+<div class="summary">AI正以惊人速度重塑经济版图，但这场变革在官方统计数据中却<strong>几乎销声匿迹</strong>，算力支出年均暴增但GDP贡献被严重低估。<br><a href="https://mp.weixin.qq.com/s?__biz=MzIxNDI5NTI2Ng==&mid=2247488487&idx=1&sn=cf5d455d0fa021632dabb209d2a5029c" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f30d; 地缘政治与外交</div>
+<div class="cards">
+<div class="card">
+<h3>美伊冲突第二幕：海湾交锋骤然升级，科威特巴林拉响警报</h3>
+<div class="meta"><span class="src">新华社/搜狐 · 6月6日</span><span class="tag red">地缘</span><span class="tag red">军事</span></div>
+<div class="summary">美军空袭伊朗雷达站，伊朗导弹还击美军第五舰队，科威特巴林全国拉响防空警报。伊朗战争<strong>"第二幕"正式开启</strong>。<br><a href="https://www.sohu.com/a/1032919910_121908123" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>俄乌冲突迎历史性转折：泽连斯基首次致信普京，双方释放和谈信号</h3>
+<div class="meta"><span class="src">新华社/搜狐 · 6月4-5日</span><span class="tag red">地缘</span></div>
+<div class="summary">持续1562天的俄乌冲突迎来最重要拐点。泽连斯基首次公开致信普京提议面谈止战，普京表示愿在安克雷奇会晤基础上谈判。<br><a href="https://baijiahao.baidu.com/s?id=1867154139799662281" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>圣彼得堡论坛：130国参会，中美代表同框，沙特主宾国抢眼</h3>
+<div class="meta"><span class="src">百度/搜狐 · 6月3-6日</span><span class="tag red">外交</span></div>
+<div class="summary">第29届圣彼得堡国际经济论坛<strong>130多国代表</strong>出席，美国十年首派代表参会，中国高级代表团同框。西方四年制裁被"面对面出席"击碎。<br><a href="https://baijiahao.baidu.com/s?id=1867078189996453274" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>中方禁止新西兰有关议员入境，反制窜台行为</h3>
+<div class="meta"><span class="src">外交部/163 · 6月4日</span><span class="tag red">外交</span><span class="tag orange">制裁</span></div>
+<div class="summary">中国驻新西兰使馆宣布<strong>禁止有关议员入境</strong>，反制新西兰少数议员窜台行为。外交部强调一个中国原则不可逾越。<br><a href="https://www.163.com/dy/article/KUJDV8D60550HXM1.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>美大使喊话欧盟：美国赢中国才重要，别想着自主</h3>
+<div class="meta"><span class="src">观察者网/新浪 · 6月6日</span><span class="tag red">外交</span><span class="tag purple">欧盟</span></div>
+<div class="summary">欧盟公布"欧洲技术主权一揽子方案"后，美国大使公开喊话："<strong>美国赢中国才重要，欧盟别想着自主</strong>"。欧美科技主权分歧公开化。<br><a href="http://k.sina.com.cn/article_7857201856_1d45362c001906dhly.html" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f3db; 美国立法与监管</div>
+<div class="cards">
+<div class="card">
+<h3>USTR对60国分两档加征关税：10%-12.5%，中国列最高档</h3>
+<div class="meta"><span class="src">央视/百度 · 6月3-5日</span><span class="tag red">制裁</span><span class="tag orange">关税</span></div>
+<div class="summary">美国贸易代表办公室以"强迫劳动"为由拟对<strong>60个经济体</strong>加征10%-12.5%关税。中国列入最高12.5%档。欧盟坚决不接受。<br><a href="https://baijiahao.baidu.com/s?id=1867037760172475672" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title risk">&#x26a0; 金融风险监测</div>
+<div class="cards">
+<div class="card card-red">
+<h3>非农超预期引爆加息预期：31万亿美债市场剧震</h3>
+<div class="meta"><span class="src">新浪财经 · 6月6日</span><span class="tag red">风险</span></div>
+<div class="summary">美联储加息预期完全计入，<strong>31万亿美元美债市场遭新一轮抛售潮</strong>。两年期收益率创14个月最大涨幅，高利率环境下债务成本加速攀升。<br><a href="http://finance.sina.com.cn/stock/hkstock/ggscyd/2026-06-06/doc-iniamnzu2184374.shtml" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>格林大华：地缘政治、债务危机与AI泡沫风险交织</h3>
+<div class="meta"><span class="src">格林大华期货/同花顺 · 6月5日</span><span class="tag red">风险</span></div>
+<div class="summary">机构报告指出2026年全球经济下行压力加剧，<strong>地缘政治、债务危机与AI泡沫风险</strong>三重叠加冲击金融市场。<br><a href="https://stock.10jqka.com.cn/20260605/c677232992.shtml" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>专家预警：2026下半年至2027上半年或爆发全球金融危机</h3>
+<div class="meta"><span class="src">全球化智库/百度 · 5月29-31日</span><span class="tag red">风险</span></div>
+<div class="summary">全球化智库副主任高志凯在凤凰湾区财经论坛警告，未来<strong>12到18个月</strong>全球可能爆发金融危机。美国主权债务失控是最大火药桶。<br><a href="https://baijiahao.baidu.com/s?id=1866577739939701655" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f1f7;&#x1f1fa; 俄罗斯视角</div>
+<div class="cards">
+<div class="card">
+<h3>萨克斯在圣彼得堡论坛：美欧主导地位已接近终结</h3>
+<div class="meta"><span class="src">萨克斯/163 · 6月5日</span><span class="tag purple">视角</span></div>
+<div class="summary">哥伦比亚大学教授萨克斯在圣彼得堡论坛上表示，<strong>美国和欧洲的统治地位已接近终结</strong>，但美欧至今仍未意识到这一点。<br><a href="https://www.163.com/dy/article/KULJTGGK0556AP19.html" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title">&#x1f4da; 学术与智库</div>
+<div class="cards">
+<div class="card">
+<h3>PIIE：AI在美国GDP统计中存在严重缺位</h3>
+<div class="meta"><span class="src">彼得森研究所 · 6月1日</span><span class="tag ">智库</span><span class="tag blue">AI</span></div>
+<div class="summary">AI正以惊人速度重塑经济版图，但这场变革在官方统计数据中几乎销声匿迹。政策制定基于<strong>失真的经济画像</strong>。<br><a href="https://mp.weixin.qq.com/s?__biz=MzIxNDI5NTI2Ng==&mid=2247488487&idx=1&sn=cf5d455d0fa021632dabb209d2a5029c" target="_blank">原文</a></div>
+</div><div class="card">
+<h3>复旦大学：美国对华贸易"管理性贸易"议程剖析</h3>
+<div class="meta"><span class="src">复旦大学发展研究院 · 3月</span><span class="tag ">智库</span><span class="tag orange">贸易</span></div>
+<div class="summary">研究指出2026年美国对华贸易政策已从WTO框架下的自由贸易转向<strong>"管理性贸易"</strong>范式，中美经贸博弈进入长期相持阶段。<br><a href="https://fddi.fudan.edu.cn/c8/91/c21253a772241/page.htm" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title quotes">&#x1f5e3; 人物言论</div>
+<div class="cards">
+<div class="card">
+<h3><span class="alert-badge">萨克斯</span>美欧主导地位已接近终结，无力对中俄伊施压</h3>
+<div class="meta"><span class="src">圣彼得堡国际经济论坛 · 6月5日</span></div>
+<div class="summary">哥伦比亚大学教授杰弗里·萨克斯在圣彼得堡论坛上公开表示，美国和欧洲两个世纪以来的统治地位已接近终结。<br><a href="https://www.163.com/dy/article/KULJTGGK0556AP19.html" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">奥特曼</span>不为2026中期选举捐款，与硅谷富豪切割</h3>
+<div class="meta"><span class="src">CNBC/财联社 · 6月4日</span></div>
+<div class="summary">OpenAI CEO奥特曼明确表示不打算为2026年美国中期选举提供任何资金支持。<br><a href="https://baijiahao.baidu.com/s?id=1867038344794028134" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">黄仁勋</span>Vera Rubin全面量产，40年来首次重新定义PC</h3>
+<div class="meta"><span class="src">GTC Taipei / COMPUTEX · 6月1-2日</span></div>
+<div class="summary">英伟达CEO黄仁勋在GTC Taipei宣布Vera Rubin超级AI芯片全面量产，与微软联合宣布AI PC时代到来。<br><a href="https://baijiahao.baidu.com/s?id=1866783928027198505" target="_blank">原文</a></div>
+</div><div class="card">
+<h3><span class="alert-badge">马斯克</span>SpaceX IPO定价$135/股，融资750亿美元</h3>
+<div class="meta"><span class="src">SEC文件/财联社 · 6月3-6日</span></div>
+<div class="summary">马斯克旗下SpaceX正式敲定IPO细节，每股135美元融资750亿美元，持股账面估值达8665亿美元。<br><a href="https://baijiahao.baidu.com/s?id=1867030039353786940" target="_blank">原文</a></div>
+</div></div></div><div class="section">
+<div class="section-title history">&#x1f4d5; 历史上的今天（6月6日）</div>
+<div class="cards">
+<div class="history-item"><div class="year">公元前575年</div><div class="event"><strong>鄢陵之战</strong>，晋楚争霸——春秋时期最具决定性的战役之一</div></div><div class="history-item"><div class="year">1644年</div><div class="event"><strong>清朝入主北京</strong>，多尔衮率清军入关定都，开启268年清王朝</div></div><div class="history-item"><div class="year">1756年</div><div class="event"><strong>七年战争</strong>爆发——欧洲列强全面冲突，深刻重塑全球殖民格局</div></div><div class="history-item"><div class="year">1944年</div><div class="event"><strong>诺曼底登陆（D-Day）</strong>——盟军16万部队横渡英吉利海峡，开辟欧洲第二战场</div></div><div class="history-item"><div class="year">1946年</div><div class="event"><strong>NBA前身BAA</strong>成立——篮球商业化起点</div></div><div class="history-item"><div class="year">1966年</div><div class="event"><strong>中国第一颗氢弹空投爆炸成功</strong>——中国成为全球第四个掌握氢弹技术的国家</div></div><div class="history-item"><div class="year">2012年</div><div class="event"><strong>FAST正式开工</strong>——全球最大单口径射电望远镜，奠定中国射电天文领先地位</div></div></div></div><div class="section">
+<div class="section-title outlook">&#x1f4c5; 下周前瞻（6月9-13日）</div>
+<div class="cards">
+<table class="outlook-table">
+<tr><th>日期</th><th>事件</th><th>重要性</th></tr>
+<tr><td>6月9日（周一）</td><td><strong>苹果WWDC 2026</strong>开幕，iOS 27、macOS 27发布</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月11日（周三）</td><td><strong>SpaceX纳斯达克挂牌</strong>（史上最大IPO）</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月11日（周三）</td><td><strong>美加墨世界杯</strong>开幕</td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月11日（周三）</td><td>美国<strong>CPI数据</strong>公布</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月12日（周四）</td><td><strong>SpaceX正式上市</strong>交易；美联储官员讲话</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月12日（周四）</td><td><strong>华为HDC 2026</strong>开发者大会，HarmonyOS 7.0</td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>6月13日（周五）</td><td>美股期权到期日（"三巫日"）；EIA短期能源展望</td><td>&#x2b50;&#x2b50;</td></tr>
+<tr><td>全周</td><td>美联储官员密集讲话（关注沃什新主席政策信号）</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+<tr><td>全周</td><td><strong>美伊冲突走向</strong>：海湾局势是否进一步升级</td><td>&#x2b50;&#x2b50;&#x2b50;</td></tr>
+</table></div>
+</div>
+<div class="footer">
+<p>全球情报日报 · 自动生成于 2026年6月6日 · 星期六</p>
+<p>数据来源：CNBC · IMF · 美联储 · 世界银行 · BlackRock · Moody's · Gartner · a16z · WIRED · NBER · PIIE · BEA · Scientific American · 美国财政部 · Congress.gov · Global Affairs 等25个信源</p>
+<p><a href="https://woaipashanhu.github.io/daily-intel-report/" target="_blank">返回导航页</a></p>
+</div>
+</body></html>
